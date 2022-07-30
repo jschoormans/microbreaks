@@ -1,1 +1,3 @@
-<?php `git pull`;
+<?php 
+echo "hoi";
+// `git pull`;
