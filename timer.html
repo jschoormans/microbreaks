@@ -1,0 +1,534 @@
+<html data-theme="garden">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>MicroBreaks Focus Timer</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <meta name="author" content="Jasper Schoormans" />
+  <meta name="description"
+    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer." />
+  <meta name="keywords" content="study, timer, micro breaks, micro rests, gap, pomodoro, study timer, focus" />
+
+  <link href="output.css" rel="stylesheet" />
+  <link href="youtube_css.css" rel="stylesheet" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@jasperschoormns" />
+  <meta name="twitter:title" content="MicroBreaks Focus Timer" />
+  <meta name="twitter:description"
+    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
+  <meta name="twitter:image" content="https://www.microbreaks.co/card.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="MicroBreaks Focus Timer" />
+  <meta property="og:description"
+    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
+  <meta property="og:url" content="https://www.microbreaks.co" />
+  <meta property="og:image" content="https://www.microbreaks.co/card.png" />
+
+  <!-- Plausible analytics -->
+  <script defer data-domain="microbreaks.co" src="https://plausible.io/js/plausible.js"></script>
+
+</head>
+
+<body>
+  <container>
+
+
+    <!--  START OF HERO -->
+    <div class="hero min-h-screen bg-base-200 bg-opacity-20" id="cont"
+      style="background-image: url('pic1.jpg'); background-size: cover">
+      <div class="hero-overlay bg-opacity-20"></div>
+
+
+
+      <!-- HERO : MAIN PAGE -->
+      <div class="hero-content text-center" id="hero-main">
+        <div class="max-w-xl">
+          <h1 class="text-6xl font-bold text-secondary drop-shadow-xl" id="mainTitle">
+            MicroBreaks Focus Timer
+          </h1>
+          <h2 class="text-xl font-bold py-6 text-secondary-focus drop-shadow-xl">
+            <span id="demo3_default">Learn better with random micro breaks 🚀</span>
+          </h2>
+
+          <!-- STEPS EXPLAINING HOW IT WORKS -->
+          <div id="steps">
+            <ul class="steps font-bold text-neutral-focus hover:drop-shadow-xl">
+              <li class="step step-secondary text-secondary">Focus mode (15 seconds)</li>
+              <li class="step step-secondary text-secondary">Start working</li>
+              <li class="step step-secondary text-secondary">
+                Random Micro breaks <br />
+                Do nothing 10 seconds
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <!-- HERO : WORK MODE / MICROBREAK MODE -->
+      <div class="flex flex-col justify-center text-center min-h-[80%] max-w-xl" id="hero-microbreak" style="border: 0px solid blue;">
+        <!-- <header
+          class="navbar object-center bg-primary rounded-full text-center absolute inset-x-0 top-0 mx-5 mt-5 w-1/2 left-1/2 -translate-x-1/2"
+          id="navbar">
+          <div class="navbar-start"></div>
+          <div class="navbar-center">
+            <a class="btn btn-ghost normal-case text-xl text-neutral-content">
+              MicroBreaks Focus Timer</a>
+          </div>
+          <div class="navbar-end"></div>
+        </header> -->
+
+        <div style="border: 0px solid red;"
+        class="text-3xl font-bold text-secondary	" id="demo3_wm">
+        </div>
+
+        <div class="grow flex flex-col justify-center items-center" style="border: 0px solid red;">
+          <div class="radial-progress text-5xl bg-glass text-primary-content border-4 border-primary"
+            id="progbar" style="border: 0px solid red;">
+            <!-- <span class="countdown font-mono text-6xl">
+              <span id="counterElementMinutes"></span>:
+              <span id="counterElementSeconds"></span>
+            </span> -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- START AND STOP BUTTONS -->
+      <div class="btn-group absolute bottom-0 fixed left-1/2 -translate-x-1/2 pb-8 z-100">
+        <button class="btn md:btn-lg rounded-full btn-secondary" id="para">
+          Start
+        </button>
+        <button class="btn md:btn-lg rounded-full btn-secondary" id="stop">
+          Stop
+        </button>
+      </div>
+      
+
+      
+
+
+
+
+      <!-- Feedback -->
+      <a href="https://tally.so/r/3XxOY4" target="_blank">
+        <div
+          class=" z-[100] fixed bottom-0 left-0 ml-2 mb-2 p-2
+           cursor-pointer rounded text-m font-bold text-secondary hover:bg-base-200 hover:opacity-100 hover:border-solid duration-200">
+          Feedback?
+        </div>
+      </a>
+
+      <a href="#howitworks">
+      <div
+      class="z-[100] absolute bottom-0 right-0 p-2 mt-2 mb-2 ml-2 
+       cursor-pointer text-l font-bold text-secondary =">
+       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path>
+        <line x1="12" y1="19" x2="12" y2="19.01"></line>
+       </svg>
+    </div>
+    </a>
+
+
+
+      <div
+        class="fixed top-0 right-0 p-2 z-[100] cursor-pointer text-m font-bold opacity-95">
+        <label class="btn btn-circle swap swap-rotate glass">
+          <!-- this hidden checkbox controls the state -->
+          <input type="checkbox" id="audioToggleCheckBox"/>
+
+          <!-- volume on icon -->
+          <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24">
+            <path
+              d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+          </svg>
+
+          <!-- volume off icon -->
+          <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24">
+            <path
+              d="M3,9H7L12,4V20L7,15H3V9M16.59,12L14,9.41L15.41,8L18,10.59L20.59,8L22,9.41L19.41,12L22,14.59L20.59,16L18,13.41L15.41,16L14,14.59L16.59,12Z" />
+          </svg>
+        </label>
+
+        <label for="modal-settings" class="btn btn-circle glass swap swap-rotate">
+  
+          <!-- this hidden checkbox controls the state -->
+          <input type="checkbox" />
+          
+          <!-- hamburger icon -->
+          <!-- <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg> -->
+          <svg class="swap-off fill-current"  width="32" height="32" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" >
+            <path d="M15.808,14.066H6.516v-1.162H5.354v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.58s0.26,0.58,0.581,0.58h1.162
+              v1.162h1.162v-1.162h9.292c0.32,0,0.58-0.26,0.58-0.58S16.128,14.066,15.808,14.066z M15.808,9.419h-1.742V8.258h-1.162v1.161
+              h-8.71c-0.321,0-0.581,0.26-0.581,0.581c0,0.321,0.26,0.581,0.581,0.581h8.71v1.161h1.162v-1.161h1.742
+              c0.32,0,0.58-0.26,0.58-0.581C16.388,9.679,16.128,9.419,15.808,9.419z M17.55,0.708H2.451c-0.962,0-1.742,0.78-1.742,1.742v15.1
+              c0,0.961,0.78,1.74,1.742,1.74H17.55c0.962,0,1.742-0.779,1.742-1.74v-15.1C19.292,1.488,18.512,0.708,17.55,0.708z M18.13,17.551
+              c0,0.32-0.26,0.58-0.58,0.58H2.451c-0.321,0-0.581-0.26-0.581-0.58v-15.1c0-0.321,0.26-0.581,0.581-0.581H17.55
+              c0.32,0,0.58,0.26,0.58,0.581V17.551z M15.808,4.774H9.419V3.612H8.258v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.581
+              s0.26,0.581,0.581,0.581h4.065v1.162h1.161V5.935h6.388c0.32,0,0.58-0.26,0.58-0.581S16.128,4.774,15.808,4.774z"></path>
+          </svg>
+          <!-- close icon -->
+          <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
+          
+        </label>        
+      </div>
+
+    </div>
+    <!-- ----------- end of hero ----------- -->
+
+    <!-- Fix this whole part  -->
+    <div class=" container mx-auto max-w-xl p-4" id="howitworks">
+      <div class="collapse rounded-xl collapse-plus">
+        <input type="checkbox" checked/>
+        <div class="collapse-title text-xl font-medium">
+          How does this work?
+        </div>
+        <div class="collapse-content text-left justify-center justify-center">
+          <p>
+            Research has shown that learning rates improves tremendously
+            while taking random micro rests.
+          </p>
+          <br />
+          <div class="stats shadow w-full">
+            <div class="stat w-full">
+              <div class="stat-figure text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  class="inline-block w-8 h-8 stroke-current">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                  </path>
+                </svg>
+              </div>
+              <div class="stat-title">Learning Recall</div>
+              <div class="stat-value text-primary">+33%</div>
+              <div class="stat-desc">Learn Faster ( made up for now)</div>
+            </div>
+
+            <div class="stat w-full">
+              <div class="stat-figure text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  class="inline-block w-8 h-8 stroke-current">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                  </path>
+                </svg>
+              </div>
+              <div class="stat-title">Effectiveness</div>
+              <div class="stat-value text-primary">+55%</div>
+              <div class="stat-desc">Remember more!</div>
+            </div>
+          </div>
+
+          <br /><br />
+          <p>
+            Start the microbreaks timer, and at random intervals you will
+            be prompted to take a microbreak. Close your eyes, think of
+            nothing for a few seconds, and continue working or studying
+            after the beep.
+          </p>
+          <br />
+
+          <br />
+          <h2 class="text-xl font-bold">Check out this video</h2>
+          <div class="place-content-center text-center">
+            <!-- METHOD B IN https://ourcodeworld.com/articles/read/1383/how-to-properly-configure-lazy-loading-of-a-youtube-embed-video -->
+            <!-- 1. Video Wrapper Container -->
+            <div class="embed-youtube" data-video-id="gu9htLeElv8">
+              <!-- 2. The preview button that will contain the Play icon -->
+              <div class="embed-youtube-play"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <footer class="footer items-center p-4 bg-neutral text-neutral-content place-content-center">
+      <div class="max-w-md">
+        <a href="https://www.twitter.com/jasperschoormns" target="_blank">
+          Made by Jasper 👋</a>
+      </div>
+    </footer>
+  </container>
+
+
+  <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
+  <script src="timer.js"></script>
+  <script>
+
+    // Initial Settings and Toggles
+    var timer_runs = false;  // timer is already running (so start button should not do anything)
+    var FocusModeToggle = false; //Show 15 seconds focus mode before work 
+    var breathingToggle = true; //Show breathing animation
+    var audioToggle = true; //Turn on off beeps and other audio effects
+
+    var timerMinimum = 30; // minimum time between rests
+
+
+    var breakCount = 0;
+    var totalTime = 0;
+
+    var debug = false; 
+
+    // Set Default Mode upon loading the site first
+    setDefaultMode();
+    // setWorkMode();
+
+
+
+
+    function setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString) {
+      totalTimePercentage = (totalTime / totalWorkTimeSeconds) * 100;
+      document.getElementById("progbar").innerText = timeLeftString
+      // document.getElementById('counterElementMinutes').style.setProperty('--value', timeLeftMinutes);  
+      // document.getElementById('counterElementSeconds').style.setProperty('--value', timeLeftSeconds);       
+      document.getElementById("progbar").style =
+        "--value:" + totalTimePercentage + "; --size:18rem; --thickness:12px;";
+
+    }
+
+
+    function timeLeftCalculation(totalWorkTimeSeconds, totalTime){
+      timeLeft = totalWorkTimeSeconds - totalTime;
+      timeLeftMinutes = Math.floor(timeLeft / 60);
+      timeLeftSeconds = timeLeft - timeLeftMinutes * 60;
+      timeLeftString = timeLeftMinutes + ":" +
+        timeLeftSeconds.toLocaleString("en-US", {
+          minimumIntegerDigits: 2,
+          useGrouping: false,
+        });
+      console.log("TimeLeft: " + timeLeftMinutes + ":" + timeLeftSeconds); 
+      console.log("Seconds Remaing: " + seconds);
+      console.log("totalTime: " + totalTime); 
+      return [timeLeftMinutes, timeLeftSeconds, timeLeftString];
+    }
+
+
+
+
+    var seconds = 1; // a bit hacky - I want it to start in the end of the cycle thing immediately to change the things
+
+    // RemainingTime Function 
+    let RemainingTime = () => {
+      console.log("Running the function RemainingTime");
+      seconds = seconds - 1;
+
+      var timeLeftMinutes = 0;
+      var timeLeftSeconds = 0;
+
+      // Calculate the totalWorkTime in Seconds
+      if (FocusModeToggle == true) {
+        totalWorkTimeSeconds = totalWorkTimeMinutes * 60 + 15;
+      } else {
+        totalWorkTimeSeconds = totalWorkTimeMinutes * 60;
+      }
+      
+      [timeLeftMinutes, timeLeftSeconds, timeLeftString] = timeLeftCalculation(totalWorkTimeSeconds, totalTime)
+      setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString); 
+
+      // CHANGE THE TITLE EVERY SECOND
+      if (breakCount % 2 === 0) {
+        // MICROBREAK MODE
+        newPageTitle = "Microbreak Time"
+      } else {
+        // WORK MODE
+        newPageTitle = timeLeftString + " - MicroBreaks.co";
+      }
+      document.querySelector("title").textContent = newPageTitle;
+
+      if (seconds === 0) {
+        // At the end of either work or microbreak sesh
+        beep2(audioToggle);
+        if (breakCount % 2 === 0) {
+          // WORK MODE
+
+          // Reset the timer
+          seconds =
+            timerMinimum +
+            Math.floor(Math.random() * (timerMaximum - timerMinimum + 1));
+
+          if (debug) {
+            seconds = 8;
+          }
+
+          console.log("Next working session will last:" + seconds);
+          breakCount++;
+          setWorkMode();
+        } else {
+          // MICRO BREAK MODE
+          seconds = microBreakTime;
+          breakCount++;
+          setMicroBreakMode();
+        }
+      }
+      totalTime++;
+    };
+
+
+  </script>
+
+  <!-- YOUTUBE CONTAINER (FOR PAGE SPEED) -->
+  <script src="youtubeContainer.js"></script>
+
+
+
+<!-- SETTINGS MODAL -->
+<input type="checkbox" id="modal-settings" class="modal-toggle" />
+<label for="modal-settings" class="modal cursor-pointer">
+  <label class="modal-box relative" for="">
+    <h3 class="text-lg font-bold">Settings</h3>
+    <div>
+      Maximum time between rests
+      <input type="range" min="60" max="300" value="180" class="range range-sm range-primary" step="30"
+        id="timermaximum" />
+      <div class="w-full flex justify-between text-xs px-2">
+        <span>1 min</span>
+        <span>2 min</span>
+        <span>3 min</span>
+        <span>4 min</span>
+        <span>5 min</span>
+      </div>
+
+      <br />
+      Microbreak time
+      <input type="range" min="5" max="25" value="10" class="range range-sm range-primary" step="5"
+        id="microbreaktime" />
+      <div class="w-full flex justify-between text-xs px-2">
+        <span>5 s</span>
+        <span>10 s</span>
+        <span>15 s</span>
+        <span>20 s</span>
+        <span>25 s</span>
+      </div>
+
+      <br />
+      Work time
+      <input type="range" min="10" max="60" value="30" class="range range-sm range-primary" step="5"
+        id="worktime" />
+      <div class="w-full flex justify-between text-xs px-2">
+        <span>10 min</span>
+        <span>20 min</span>
+        <span>30 min</span>
+        <span>40 min</span>
+        <span>50 min</span>
+        <span>60 min</span>
+      </div>
+
+      <br />
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span>Focus training prior to start</span>
+          <input type="checkbox" checked="checked" class="checkbox checkbox-primary" id="focusModeCheckBox"/>
+        </label>
+      </div>
+
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span>Breathing routine</span>
+          <input type="checkbox" checked="checked" class="checkbox checkbox-primary" id="breathingModeCheckBox"/>
+        </label>
+      </div>
+
+
+      <br />
+    </div>
+  </label>
+</label>
+
+
+
+
+  <!-- FOCUS MODE MODAL -->
+  <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+  <div class="modal modal-bottom sm:modal-middle justify-center w-full bg-accent p-3">
+    <div class="modal-box justify-center text-accent-content bg-accent-focus place-content-center">
+      <h3 class="font-bold neutral text-center text-2xl" id="focusheader">
+        Focus for 15 seconds!
+      </h3>
+      <p class="py-4 neutral text-center" id="focustext">
+        To get in a deep learning state, focus on the cat for 15 seconds.
+      </p>
+
+      <!-- add image -->
+      <br /><br /><br /><br /><br />
+      <div class="grid place-items-center" div="bouncingcat">
+        <img src="favicon.ico"" alt=" Focus image" class="object-none
+          object-center animate-bounce " id="bouncingcat">
+        <p id="focustext2"></p>
+      </div>
+      <br /><br /><br /><br /><br /><br />
+    </div>
+  </div>
+
+
+<script>
+// Watch Buttons for clicks
+
+// START AND STOP BUTTONS
+document.getElementById("para").onclick = function () {
+  console.log("button clicked");
+  setWorkMode();
+  console.log("timer_runs: " + timer_runs);
+
+  if (!timer_runs) {
+    let a = pointFocusModeOn();
+    document.getElementById("steps").classList.add("invisible");
+    let timer = setIntervalImmediately(RemainingTime, 1000);
+    timer_runs = true;
+
+    document.getElementById("stop").onclick = function () {
+      console.log("stop button clicked");
+      document.getElementById("steps").classList.remove("invisible");
+      clearInterval(timer);
+      setDefaultMode();
+      timer_runs = false;
+    };
+  }
+};
+
+// get values from settings modal
+document.getElementById("focusModeCheckBox").onchange = function () {
+  console.log("focusMode checkbox changed");
+  FocusModeToggle = FocusModeToggle ? false : true; 
+  console.log("FocusModeToggle: " + FocusModeToggle);
+};
+
+document.getElementById("breathingModeCheckBox").onchange = function () {
+  console.log("breathingToggle checkbox changed");
+  breathingToggle = breathingToggle ? false : true; 
+  console.log("breathingToggle: " + breathingToggle);
+};
+
+document.getElementById("audioToggleCheckBox").onchange = function () {
+  console.log("audioToggle checkbox changed");
+  audioToggle = audioToggle ? false : true; 
+  console.log("audioToggle: " + audioToggle);
+};
+
+var timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
+      console.log("timemaximum: " + timerMaximum);
+
+var microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
+      console.log("microbreaktime: " + microBreakTime);
+
+var totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
+
+
+</script>
+
+
+
+</body>
+
+</html>
