@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on My New Hugo Site</title>
-    <link>https://www.microbreaks.co/dev/blog/public/posts/</link>
-    <description>Recent content in Posts on My New Hugo Site</description>
+    <title>Posts on MicroBreaks.co Blog</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on MicroBreaks.co Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Jul 2022 20:49:08 +0200</lastBuildDate><atom:link href="https://www.microbreaks.co/dev/blog/public/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Jul 2022 21:07:19 +0200</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Value of Microbreaks</title>
+      <link>/posts/the-value-of-microbreaks/</link>
+      <pubDate>Sun, 31 Jul 2022 21:07:19 +0200</pubDate>
+      
+      <guid>/posts/the-value-of-microbreaks/</guid>
+      <description>While it is true that blablabla</description>
+    </item>
+    
     <item>
       <title>My First Post</title>
-      <link>https://www.microbreaks.co/dev/blog/public/posts/my-first-post/</link>
+      <link>/posts/my-first-post/</link>
       <pubDate>Sun, 31 Jul 2022 20:49:08 +0200</pubDate>
       
-      <guid>https://www.microbreaks.co/dev/blog/public/posts/my-first-post/</guid>
+      <guid>/posts/my-first-post/</guid>
       <description></description>
     </item>
     
