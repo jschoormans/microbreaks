@@ -1,4 +1,4 @@
-baseURL = "https://www.microbreaks.co/dev/blog/public/"
+baseURL = "https://www.microbreaks.co/blog/public/"
 title = "MicroBreaks.co Blog"
 theme = "paper"
 languageCode = 'en-us'
@@ -16,3 +16,4 @@ languageCode = 'en-us'
 
 [Permalinks]
     post = "/:filename/"
+cd
