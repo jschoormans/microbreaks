@@ -17,14 +17,5 @@
 It is well known that more repetitions improve memory.</description>
     </item>
     
-    <item>
-      <title>My First Post</title>
-      <link>https://www.microbreaks.co/dev/blog/public/posts/my-first-post/</link>
-      <pubDate>Sun, 31 Jul 2022 20:49:08 +0200</pubDate>
-      
-      <guid>https://www.microbreaks.co/dev/blog/public/posts/my-first-post/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
