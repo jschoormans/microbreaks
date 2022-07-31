@@ -108,6 +108,9 @@
         <button class="btn md:btn-lg rounded-full btn-secondary" id="stop">
           Stop
         </button>
+        <button class="btn md:btn-lg rounded-full btn-secondary" id="reset">
+          Reset
+        </button>
       </div>
       
 
@@ -269,9 +272,9 @@
 
     // Initial Settings and Toggles
     var timer_runs = false;  // timer is already running (so start button should not do anything)
-    var FocusModeToggle = false; //Show 15 seconds focus mode before work 
-    var breathingToggle = true; //Show breathing animation
-    var audioToggle = true; //Turn on off beeps and other audio effects
+    // var FocusModeToggle = false; //Show 15 seconds focus mode before work 
+    // var breathingToggle = true; //Show breathing animation
+    // var audioToggle = true; //Turn on off beeps and other audio effects
 
     var timerMinimum = 30; // minimum time between rests
 
@@ -318,14 +321,15 @@
 
 
     var seconds = 1; // a bit hacky - I want it to start in the end of the cycle thing immediately to change the things
+    var timeLeftMinutes = 0;
+    var timeLeftSeconds = 0;
 
     // RemainingTime Function 
     let RemainingTime = () => {
       console.log("Running the function RemainingTime");
-      seconds = seconds - 1;
+      console.log("totalWorkTimeMinutes"+ totalWorkTimeMinutes);
 
-      var timeLeftMinutes = 0;
-      var timeLeftSeconds = 0;
+      seconds = seconds - 1;
 
       // Calculate the totalWorkTime in Seconds
       if (FocusModeToggle == true) {
@@ -373,6 +377,19 @@
         }
       }
       totalTime++;
+
+      // check for end
+      if (totalTime > (totalWorkTimeSeconds + 1)) {
+        // End of the timer
+        console.log("End of the timer");
+        timer_runs = false;
+        totalTime = 0;
+        seconds = 1;
+        breakCount = 0
+        beep2();
+        clearInterval(timer);
+        setDefaultMode();
+      }
     };
 
 
@@ -484,7 +501,7 @@ document.getElementById("para").onclick = function () {
   if (!timer_runs) {
     let a = pointFocusModeOn();
     document.getElementById("steps").classList.add("invisible");
-    let timer = setIntervalImmediately(RemainingTime, 1000);
+    timer = setIntervalImmediately(RemainingTime, 1000);
     timer_runs = true;
 
     document.getElementById("stop").onclick = function () {
@@ -494,35 +511,72 @@ document.getElementById("para").onclick = function () {
       setDefaultMode();
       timer_runs = false;
     };
+
+    // Reset button (time should be reset to default)
+    document.getElementById("reset").onclick = function () {
+      console.log("reset button clicked");
+      document.getElementById("steps").classList.remove("invisible");
+      clearInterval(timer);
+      setDefaultMode();
+      timer_runs = false;
+      totalTime = 0;
+      seconds = 1;
+      breakCount = 0
+
+    };
+
+
+
+
+
   }
 };
 
 // get values from settings modal
+
+// On changes
 document.getElementById("focusModeCheckBox").onchange = function () {
   console.log("focusMode checkbox changed");
   FocusModeToggle = FocusModeToggle ? false : true; 
-  console.log("FocusModeToggle: " + FocusModeToggle);
+  console.log("changed - FocusModeToggle: " + FocusModeToggle);
 };
 
 document.getElementById("breathingModeCheckBox").onchange = function () {
   console.log("breathingToggle checkbox changed");
   breathingToggle = breathingToggle ? false : true; 
-  console.log("breathingToggle: " + breathingToggle);
+  console.log("changed - breathingToggle: " + breathingToggle);
 };
 
 document.getElementById("audioToggleCheckBox").onchange = function () {
   console.log("audioToggle checkbox changed");
   audioToggle = audioToggle ? false : true; 
-  console.log("audioToggle: " + audioToggle);
+  console.log("changed - audioToggle: " + audioToggle);
 };
 
-var timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
-      console.log("timemaximum: " + timerMaximum);
+document.getElementById("timermaximum").onchange = function () {
+  timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
+  console.log("changed - timemaximum: " + timerMaximum);
+}
 
-var microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
-      console.log("microbreaktime: " + microBreakTime);
+document.getElementById("microbreaktime").onchange = function () {
+  microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
+  console.log("changed - microbreaktime: " + microBreakTime);
+}
 
-var totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
+document.getElementById("worktime").onchange = function () {
+  totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
+  console.log("changed - totalWorkTimeMinutes: " + totalWorkTimeMinutes);
+
+}
+
+
+//Initial Settings
+FocusModeToggle = document.getElementById("focusModeCheckBox").value;
+breathingToggle = document.getElementById("breathingModeCheckBox").value;
+audioToggle = document.getElementById("audioToggleCheckBox").value;
+timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
+microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
+totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
 
 
 </script>
