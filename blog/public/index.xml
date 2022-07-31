@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MicroBreaks.co Blog</title>
-    <link>https://www.microbreaks.co/dev/blog/public/</link>
+    <link>https://www.microbreaks.co/blog/public/</link>
     <description>Recent content on MicroBreaks.co Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Jul 2022 21:07:19 +0200</lastBuildDate><atom:link href="https://www.microbreaks.co/dev/blog/public/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Jul 2022 21:07:19 +0200</lastBuildDate><atom:link href="https://www.microbreaks.co/blog/public/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Value of Microbreaks</title>
-      <link>https://www.microbreaks.co/dev/blog/public/posts/the-value-of-microbreaks/</link>
+      <link>https://www.microbreaks.co/blog/public/posts/the-value-of-microbreaks/</link>
       <pubDate>Sun, 31 Jul 2022 21:07:19 +0200</pubDate>
       
-      <guid>https://www.microbreaks.co/dev/blog/public/posts/the-value-of-microbreaks/</guid>
+      <guid>https://www.microbreaks.co/blog/public/posts/the-value-of-microbreaks/</guid>
       <description>In 1885, the German psychologist Herman Ebinghaus discovered something very peculiar. He was a psychologist who was very interested in the study of memory. In one of his experiments, he compared 38 repetitions over three days, with 68 repetitions all in one go. The result in memory perfomance was the same. So, the time between learning, or spacing interval, seems as important as the time spent studying.
 It is well known that more repetitions improve memory.</description>
     </item>

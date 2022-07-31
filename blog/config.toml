@@ -16,4 +16,3 @@ languageCode = 'en-us'
 
 [Permalinks]
     post = "/:filename/"
-cd
