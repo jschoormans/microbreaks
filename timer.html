@@ -1,8 +1,8 @@
-<html data-theme="garden">
+<html data-theme="garden" lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0" />
   <title>MicroBreaks Focus Timer</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
@@ -446,14 +446,14 @@
       <div class="form-control">
         <label class="label cursor-pointer">
           <span>Focus training prior to start</span>
-          <input type="checkbox" checked="checked" class="checkbox checkbox-primary" id="focusModeCheckBox"/>
+          <input type="checkbox" class="toggle toggle-primary" checked id="focusModeCheckBox"/>
         </label>
       </div>
 
       <div class="form-control">
         <label class="label cursor-pointer">
           <span>Breathing routine</span>
-          <input type="checkbox" checked="checked" class="checkbox checkbox-primary" id="breathingModeCheckBox"/>
+          <input type="checkbox" class="toggle toggle-primary" checked id="breathingModeCheckBox"/>
         </label>
       </div>
 
@@ -571,13 +571,15 @@ document.getElementById("worktime").onchange = function () {
 
 
 //Initial Settings
-FocusModeToggle = document.getElementById("focusModeCheckBox").value;
-breathingToggle = document.getElementById("breathingModeCheckBox").value;
+FocusModeToggle = document.getElementById("focusModeCheckBox").value === "on";
+breathingToggle = document.getElementById("breathingModeCheckBox").value === "on";
 audioToggle = document.getElementById("audioToggleCheckBox").value;
 timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
 microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
 totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
 
+
+console.log("FocusModeToggle: " + FocusModeToggle);
 
 </script>
 
