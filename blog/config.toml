@@ -1,4 +1,4 @@
-baseURL = 'https://www.microbreaks.co/dev/blog/'
+baseURL = 'https://www.microbreaks.co/dev/blog/public/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = "ananke"
