@@ -2,20 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.microbreaks.co/</loc>
+    <loc>https://www.microbreaks.co/dev/blog/public/</loc>
     <lastmod>2022-07-31T21:07:19+02:00</lastmod>
   </url><url>
-    <loc>https://www.microbreaks.co/posts/</loc>
+    <loc>https://www.microbreaks.co/dev/blog/public/posts/</loc>
     <lastmod>2022-07-31T21:07:19+02:00</lastmod>
   </url><url>
-    <loc>https://www.microbreaks.co/posts/the-value-of-microbreaks/</loc>
+    <loc>https://www.microbreaks.co/dev/blog/public/posts/the-value-of-microbreaks/</loc>
     <lastmod>2022-07-31T21:07:19+02:00</lastmod>
   </url><url>
-    <loc>https://www.microbreaks.co/posts/my-first-post/</loc>
+    <loc>https://www.microbreaks.co/dev/blog/public/posts/my-first-post/</loc>
     <lastmod>2022-07-31T20:49:08+02:00</lastmod>
   </url><url>
-    <loc>https://www.microbreaks.co/categories/</loc>
+    <loc>https://www.microbreaks.co/dev/blog/public/categories/</loc>
   </url><url>
-    <loc>https://www.microbreaks.co/tags/</loc>
+    <loc>https://www.microbreaks.co/dev/blog/public/tags/</loc>
   </url>
 </urlset>

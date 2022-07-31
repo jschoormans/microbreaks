@@ -1,4 +1,4 @@
-baseURL = "https://www.microbreaks.co/"
+baseURL = "https://www.microbreaks.co/dev/blog/public/"
 title = "MicroBreaks.co Blog"
 theme = "paper"
 languageCode = 'en-us'
