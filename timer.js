@@ -13,6 +13,28 @@ function beep2(audioToggle) {
   }
 }
 
+function boxingBell(audioToggle){
+  var audio = new Audio('/assets/audio/boxing-bell.wav');
+  if (audioToggle) {
+    audio.play();
+  }
+}
+
+function singleChime(audioToggle){
+  var audio = new Audio('/assets/audio/singleChime.wav');
+  if (audioToggle) {
+  audio.play();
+  }
+}
+
+function dingaLing(audioToggle){
+  var audio = new Audio('/assets/audio/dingaling.mp3');
+  if (audioToggle) {
+    audio.play();
+  }
+}
+
+
 ////////////////////////////////////////
 // 2. States
 
@@ -21,6 +43,7 @@ var imageStart = "pic1.jpg";
 var imageMicroBreak = "pic3.jpg";
 
 function setWorkMode() {
+  singleChime(audioToggle)
   document.getElementById("hero-main").classList.add("invisible")
   document.getElementById("hero-microbreak").classList.remove("invisible")
 
@@ -32,6 +55,7 @@ function setWorkMode() {
 }
 
 function setMicroBreakMode() {
+  dingaLing(audioToggle)
   document.getElementById("hero-main").classList.add("invisible")
   document.getElementById("hero-microbreak").classList.remove("invisible")
 

@@ -15,6 +15,7 @@
   <link href="output.css" rel="stylesheet" />
   <link href="youtube_css.css" rel="stylesheet" />
 
+
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@jasperschoormns" />
   <meta name="twitter:title" content="MicroBreaks Focus Timer" />
@@ -104,13 +105,15 @@
       <!-- START AND STOP BUTTONS -->
       <div class="btn-group absolute bottom-0 fixed left-1/2 -translate-x-1/2 pb-8 z-100">
         <button class="btn md:btn-lg rounded-full btn-secondary" id="para">
-          Start
+          <img class="object-contain h-4" src="assets/icons/arrow_handdrawn.png">
         </button>
         <button class="btn md:btn-lg rounded-full btn-secondary" id="stop">
-          Stop
+          <img class="object-contain h-4" src="assets/icons/pause_handdrawn.png">
+
         </button>
         <button class="btn md:btn-lg rounded-full btn-secondary" id="reset">
-          Reset
+          <img class="object-contain h-4" src="assets/icons/square_handdrawn.png">
+
         </button>
       </div>
       
@@ -138,6 +141,8 @@
         <path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path>
         <line x1="12" y1="19" x2="12" y2="19.01"></line>
        </svg>
+       <!-- <img src="assets/icons/question_handdrawn.png" class="content-fit h-8"> -->
+
     </div>
     </a>
 
@@ -390,7 +395,7 @@
         totalTime = 0;
         seconds = 1;
         breakCount = 0
-        beep2();
+        boxingBell(audioToggle);
         clearInterval(timer);
         setDefaultMode();
       }
@@ -450,14 +455,14 @@
       <div class="form-control">
         <label class="label cursor-pointer">
           <span>Focus training prior to start</span>
-          <input type="checkbox" class="toggle toggle-primary" checked id="focusModeCheckBox"/>
+          <input type="checkbox" class="toggle toggle-primary" id="focusModeCheckBox" value="off" unchecked/>
         </label>
       </div>
 
       <div class="form-control">
         <label class="label cursor-pointer">
           <span>Breathing routine</span>
-          <input type="checkbox" class="toggle toggle-primary" checked id="breathingModeCheckBox"/>
+          <input type="checkbox" class="toggle toggle-primary unchecked" id="breathingModeCheckBox" value="off" unchecked/>
         </label>
       </div>
 
@@ -555,6 +560,11 @@ document.getElementById("audioToggleCheckBox").onchange = function () {
   console.log("audioToggle checkbox changed");
   audioToggle = audioToggle ? false : true; 
   console.log("changed - audioToggle: " + audioToggle);
+  // dingaLing(audioToggle)
+  // boxingBell(audioToggle)
+  // beep2(audioToggle)
+  // singleChime(audioToggle)
+
 };
 
 document.getElementById("timermaximum").onchange = function () {
@@ -582,7 +592,7 @@ timerMaximum = document.getElementById("timermaximum").value; // maximum time be
 microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
 totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
 
-
+console.log(document.getElementById("focusModeCheckBox").value);
 console.log("FocusModeToggle: " + FocusModeToggle);
 
 </script>
@@ -592,3 +602,5 @@ console.log("FocusModeToggle: " + FocusModeToggle);
 </body>
 
 </html>
+
+<!-- TODO credit <a href="https://www.flaticon.com/free-icons/mug" title="mug icons">Mug icons created by Freepik - Flaticon</a> -->
