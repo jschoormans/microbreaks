@@ -48,7 +48,7 @@ function setWorkMode() {
   document.getElementById("hero-microbreak").classList.remove("invisible")
 
 
-  document.getElementById("demo3_wm").innerHTML = "WORK MODE 💪";
+  document.getElementById("demo3_wm").innerHTML = "Work mode 💪";
   document.getElementById("cont").style.background =
     "url('" + imageWork + "')";
   document.getElementById("cont").style.backgroundSize = "cover";
@@ -58,7 +58,6 @@ function setMicroBreakMode() {
   dingaLing(audioToggle)
   document.getElementById("hero-main").classList.add("invisible")
   document.getElementById("hero-microbreak").classList.remove("invisible")
-
   document.getElementById("demo3_wm").innerHTML =
     "Close your eyes and relax!";
   document.getElementById("cont").style.background =
@@ -68,14 +67,29 @@ function setMicroBreakMode() {
 
 // Default = first screen (hero)
 function setDefaultMode() {
-  document.getElementById("hero-main").classList.remove("invisible")
-  document.getElementById("hero-microbreak").classList.add("invisible")
-  document.getElementById("mainTitle").classList.remove("invisible");
+  setProgBar(0, 30*60, 30, 0, '30:00')
+
+  document.getElementById("hero-main").classList.add("invisible")
+  document.getElementById("hero-microbreak").classList.remove("invisible")
+  document.getElementById("demo3_wm").innerHTML = "Do something today";
+
   document.getElementById("cont").style.background =
     "url('" + imageStart + "')";
   document.getElementById("cont").style.backgroundSize = "cover";
 
 }
+
+
+function setPauseMode() {
+  document.getElementById("cont").style.background =
+    "url('" + imageStart + "')";
+  document.getElementById("cont").style.backgroundSize = "cover";
+  document.getElementById("demo3_wm").innerHTML =
+  "🧘  Pause. ";
+
+}
+
+
 
 // Focus on point 
 async function pointFocusModeOn() {
@@ -112,3 +126,6 @@ function setIntervalImmediately(func, interval) {
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
     }
+
+
+////////////////////////////////////////

@@ -40,6 +40,8 @@
 
 
     <!--  START OF HERO -->
+
+
     <div class="hero min-h-screen bg-base-200 bg-opacity-20" id="cont"
       style="background-image: url('pic1.jpg'); background-size: cover">
       <div class="hero-overlay bg-opacity-20"></div>
@@ -48,77 +50,151 @@
 
       <!-- HERO : MAIN PAGE -->
       <div class="hero-content text-center" id="hero-main">
-        <div class="max-w-xl">
-          <h1 class="text-6xl font-bold text-secondary drop-shadow-xl" id="mainTitle">
-            MicroBreaks Focus Timer
-          </h1>
-          <h2 class="text-xl font-bold py-6 text-secondary-focus drop-shadow-xl">
-            <span id="demo3_default">Learn better with random micro breaks 🚀</span>
-          </h2>
-
-          <!-- STEPS EXPLAINING HOW IT WORKS -->
-          <div id="steps">
-            <ul class="steps font-bold text-neutral-focus hover:drop-shadow-xl">
-              <li class="step step-secondary text-secondary">Focus mode (15 seconds)</li>
-              <li class="step step-secondary text-secondary">Start working</li>
-              <li class="step step-secondary text-secondary">
-                Random Micro breaks <br />
-                Do nothing 10 seconds
-              </li>
-            </ul>
-          </div>
-
-        </div>
+        <!-- UNUSED FOR NOW -->
       </div>
 
 
+      <!-- SETTINGS -->
+      <div class="navbar bg-secondary md:w-5/6 rounded-full p-2 drop-shadow-xl flex flex-row justify-content-center absolute top-0 mt-3
+        flex flex-row justify-between">
 
-      <!-- HERO : WORK MODE / MICROBREAK MODE -->
-      <div class="flex flex-col justify-center text-center min-h-[80%] max-w-xl" id="hero-microbreak" style="border: 0px solid blue;">
-        <!-- <header
-          class="navbar object-center bg-primary rounded-full text-center absolute inset-x-0 top-0 mx-5 mt-5 w-1/2 left-1/2 -translate-x-1/2"
-          id="navbar">
-          <div class="navbar-start"></div>
-          <div class="navbar-center">
-            <a class="btn btn-ghost normal-case text-xl text-neutral-content">
-              MicroBreaks Focus Timer</a>
-          </div>
-          <div class="navbar-end"></div>
-        </header> -->
 
-        <div style="border: 0px solid red;"
-        class="text-3xl font-bold text-secondary	" id="demo3_wm">
+        <div class="navbar-left hidden lg:flex">
+          <a class="btn btn-ghost normal-case text-xl">MicroBreaks.co</a>
         </div>
 
+        <div class="navbar-center">
+          <a class="btn btn-ghost normal-case text-xl" id="demo3_wm">Do something today</a>
+        </div>
+
+
+        <div class="navbar-right flex flex-row items-center md:gap-2" id="Buttons">
+
+          <!-- FOCUS MODE  TOGGLE  -->
+          <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Focus Exercise">
+
+          <label class="btn btn-sm btn-circle swap swap-rotate glass">
+            <!-- this hidden checkbox controls the state -->
+            <input type="checkbox" id="focusModeCheckBox" />
+
+            <!-- focus on icon -->
+            <img class="swap-on h-6 top-0 left-0" src="assets/icons/idea_handdrawn.png">
+            <img class="swap-off h-6 top-0 left-0" src="assets/icons/idea_handdrawn.png">
+            <img class="swap-off h-6 absolute top-0 left-0 group-hover:invisible"
+              src="assets/icons/cross_handdrawn2.png">
+          </label>
+        </div>
+
+          <!-- BREATHING MODE  TOGGLE  -->
+          <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Breathing Exercise (not yet implemented)">
+
+            <label class="btn btn-sm btn-circle swap swap-rotate glass">
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" id="breathingModeCheckBox" />
+
+              <!-- focus on icon -->
+              <img class="swap-on h-6 top-0 left-0" src="assets/icons/breath_handdrawn.png">
+              <img class="swap-off h-6 top-0 left-0" src="assets/icons/breath_handdrawn.png">
+              <img class="swap-off h-6 absolute top-0 left-0 group-hover:invisible"
+                src="assets/icons/cross_handdrawn2.png">
+            </label>
+          </div>
+
+
+
+          <!-- AUDIO TOGGLE  -->
+          <label class="btn btn-sm btn-circle swap swap-rotate glass">
+            <!-- this hidden checkbox controls the state -->
+            <input type="checkbox" id="audioToggleCheckBox" />
+
+            <!-- volume on icon -->
+            <svg class="swap-off fill-secondary-content" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24">
+              <path
+                d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+            </svg>
+
+            <!-- volume off icon -->
+            <svg class="swap-on fill-secondary-content" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24">
+              <path
+                d="M3,9H7L12,4V20L7,15H3V9M16.59,12L14,9.41L15.41,8L18,10.59L20.59,8L22,9.41L19.41,12L22,14.59L20.59,16L18,13.41L15.41,16L14,14.59L16.59,12Z" />
+            </svg>
+          </label>
+
+          <!-- SETTINGS TOGGLE -->
+          <label for="modal-settings" class="btn btn-sm btn-circle glass swap swap-rotate">
+
+            <!-- this hidden checkbox controls the state -->
+            <input type="checkbox" />
+
+            <!-- hamburger icon -->
+            <!-- <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg> -->
+            <svg class="swap-off fill-secondary-content" width="24" height="24" viewBox="0 0 20 20 "
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.808,14.066H6.516v-1.162H5.354v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.58s0.26,0.58,0.581,0.58h1.162
+              v1.162h1.162v-1.162h9.292c0.32,0,0.58-0.26,0.58-0.58S16.128,14.066,15.808,14.066z M15.808,9.419h-1.742V8.258h-1.162v1.161
+              h-8.71c-0.321,0-0.581,0.26-0.581,0.581c0,0.321,0.26,0.581,0.581,0.581h8.71v1.161h1.162v-1.161h1.742
+              c0.32,0,0.58-0.26,0.58-0.581C16.388,9.679,16.128,9.419,15.808,9.419z M17.55,0.708H2.451c-0.962,0-1.742,0.78-1.742,1.742v15.1
+              c0,0.961,0.78,1.74,1.742,1.74H17.55c0.962,0,1.742-0.779,1.742-1.74v-15.1C19.292,1.488,18.512,0.708,17.55,0.708z M18.13,17.551
+              c0,0.32-0.26,0.58-0.58,0.58H2.451c-0.321,0-0.581-0.26-0.581-0.58v-15.1c0-0.321,0.26-0.581,0.581-0.581H17.55
+              c0.32,0,0.58,0.26,0.58,0.581V17.551z M15.808,4.774H9.419V3.612H8.258v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.581
+              s0.26,0.581,0.581,0.581h4.065v1.162h1.161V5.935h6.388c0.32,0,0.58-0.26,0.58-0.581S16.128,4.774,15.808,4.774z">
+              </path>
+            </svg>
+            <!-- close icon -->
+            <svg class="swap-on fill-secondary-content" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+              viewBox="0 0 512 512">
+              <polygon
+                points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+            </svg>
+
+          </label>
+        </div>
+      </div>
+
+      <!-- HERO : WORK MODE / MICROBREAK MODE -->
+      <div class="flex flex-col justify-center text-center min-h-[87%] max-w-xl" id="hero-microbreak"
+        style="border: 0px solid blue;">
         <div class="grow flex flex-col justify-center items-center" style="border: 0px solid red;">
-          <div class="radial-progress text-5xl bg-glass text-primary-content border-4 border-primary"
-            id="progbar" style="border: 0px solid red;">
-            <!-- <span class="countdown font-mono text-6xl">
-              <span id="counterElementMinutes"></span>:
-              <span id="counterElementSeconds"></span>
-            </span> -->
+          <div class="radial-progress text-5xl text-secondary border-4 border-primary-content" id="progbar"
+            style="--value:0; --size:18rem; --thickness:12px;">
+            30:00
           </div>
         </div>
       </div>
 
 
       <!-- START AND STOP BUTTONS -->
-      <div class="btn-group absolute bottom-0 fixed left-1/2 -translate-x-1/2 pb-8 z-100">
-        <button class="btn md:btn-lg rounded-full btn-secondary" id="para">
-          <img class="object-contain h-4" src="assets/icons/arrow_handdrawn.png">
-        </button>
-        <button class="btn md:btn-lg rounded-full btn-secondary" id="stop">
-          <img class="object-contain h-4" src="assets/icons/pause_handdrawn.png">
+      <div class="absolute bottom-0 fixed pb-8 z-100 w-full">
+        <div class="flex flex-row justify-center">
 
-        </button>
-        <button class="btn md:btn-lg rounded-full btn-secondary" id="reset">
-          <img class="object-contain h-4" src="assets/icons/square_handdrawn.png">
 
-        </button>
+          <div class="btn-group">
+            <button class="btn md:btn-lg rounded-full btn-secondary" id="stop">
+              <img class="object-contain h-5" src="assets/icons/pause_handdrawn.png">
+            </button>
+
+            <button class="btn md:btn-lg rounded-full btn-secondary" id="para">
+              <img class="object-contain h-6" src="assets/icons/arrow_handdrawn.png">
+            </button>
+
+            <button class="btn md:btn-lg rounded-full btn-secondary" id="reset">
+              <img class="object-contain h-5" src="assets/icons/square_handdrawn.png">
+            </button>
+
+
+          </div>
+
+
+        </div>
+
       </div>
-      
 
-      
+
+
+
+
 
 
 
@@ -126,33 +202,44 @@
       <!-- Feedback -->
       <a href="https://tally.so/r/3XxOY4" target="_blank">
         <div
-          class=" z-[100] fixed bottom-0 left-0 ml-2 mb-2 p-2
+          class="z-[100] fixed bottom-0 left-0 ml-2 mb-2 p-2
            cursor-pointer rounded text-m font-bold text-secondary hover:bg-base-200 hover:opacity-100 hover:border-solid duration-200">
           Feedback?
         </div>
       </a>
 
-      <a href="#howitworks">
-      <div
-      class="z-[100] absolute bottom-0 right-0 p-2 mt-2 mb-2 ml-2 
-       cursor-pointer text-l font-bold text-secondary =">
-       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path>
-        <line x1="12" y1="19" x2="12" y2="19.01"></line>
-       </svg>
-       <!-- <img src="assets/icons/question_handdrawn.png" class="content-fit h-8"> -->
 
-    </div>
-    </a>
+      <div class="fixed top-0 right-0 p-2 z-[100] cursor-pointer text-m font-bold opacity-95 invisible">
 
 
+        <!-- FOCUS MODE  TOGGLE  -->
+        <label class="btn btn-circle swap swap-rotate glass"">
+          <!-- this hidden checkbox controls the state -->
+          <input type=" checkbox" id="focusModeCheckBox" />
 
-      <div
-        class="fixed top-0 right-0 p-2 z-[100] cursor-pointer text-m font-bold opacity-95">
+        <!-- focus on icon -->
+        <img class="swap-on h-6 top-0 left-0" src="assets/icons/idea_handdrawn.png">
+        <img class="swap-off h-6 top-0 left-0" src="assets/icons/idea_handdrawn.png">
+        <img class="swap-off h-6 absolute top-0 left-0 group-hover:invisible" src="assets/icons/cross_handdrawn2.png">
+        </label>
+
+        <!-- BREATHING MODE  TOGGLE  -->
         <label class="btn btn-circle swap swap-rotate glass">
           <!-- this hidden checkbox controls the state -->
-          <input type="checkbox" id="audioToggleCheckBox"/>
+          <input type="checkbox" id="breathingModeCheckBox" />
+
+          <!-- focus on icon -->
+          <img class="swap-on h-6 top-0 left-0" src="assets/icons/breath_handdrawn.png">
+          <img class="swap-off h-6 top-0 left-0" src="assets/icons/breath_handdrawn.png">
+          <img class="swap-off h-6 absolute top-0 left-0 group-hover:invisible" src="assets/icons/cross_handdrawn2.png">
+        </label>
+
+
+
+        <!-- AUDIO TOGGLE  -->
+        <label class="btn btn-circle swap swap-rotate glass">
+          <!-- this hidden checkbox controls the state -->
+          <input type="checkbox" id="audioToggleCheckBox" />
 
           <!-- volume on icon -->
           <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -169,27 +256,35 @@
           </svg>
         </label>
 
+        <!-- SETTINGS TOGGLE -->
         <label for="modal-settings" class="btn btn-circle glass swap swap-rotate">
-  
+
           <!-- this hidden checkbox controls the state -->
           <input type="checkbox" />
-          
+
           <!-- hamburger icon -->
           <!-- <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg> -->
-          <svg class="swap-off fill-current"  width="32" height="32" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" >
-            <path d="M15.808,14.066H6.516v-1.162H5.354v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.58s0.26,0.58,0.581,0.58h1.162
+          <svg class="swap-off fill-current" width="32" height="32" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15.808,14.066H6.516v-1.162H5.354v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.58s0.26,0.58,0.581,0.58h1.162
               v1.162h1.162v-1.162h9.292c0.32,0,0.58-0.26,0.58-0.58S16.128,14.066,15.808,14.066z M15.808,9.419h-1.742V8.258h-1.162v1.161
               h-8.71c-0.321,0-0.581,0.26-0.581,0.581c0,0.321,0.26,0.581,0.581,0.581h8.71v1.161h1.162v-1.161h1.742
               c0.32,0,0.58-0.26,0.58-0.581C16.388,9.679,16.128,9.419,15.808,9.419z M17.55,0.708H2.451c-0.962,0-1.742,0.78-1.742,1.742v15.1
               c0,0.961,0.78,1.74,1.742,1.74H17.55c0.962,0,1.742-0.779,1.742-1.74v-15.1C19.292,1.488,18.512,0.708,17.55,0.708z M18.13,17.551
               c0,0.32-0.26,0.58-0.58,0.58H2.451c-0.321,0-0.581-0.26-0.581-0.58v-15.1c0-0.321,0.26-0.581,0.581-0.581H17.55
               c0.32,0,0.58,0.26,0.58,0.581V17.551z M15.808,4.774H9.419V3.612H8.258v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.581
-              s0.26,0.581,0.581,0.581h4.065v1.162h1.161V5.935h6.388c0.32,0,0.58-0.26,0.58-0.581S16.128,4.774,15.808,4.774z"></path>
+              s0.26,0.581,0.581,0.581h4.065v1.162h1.161V5.935h6.388c0.32,0,0.58-0.26,0.58-0.581S16.128,4.774,15.808,4.774z">
+            </path>
           </svg>
           <!-- close icon -->
-          <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
-          
-        </label>        
+          <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+            viewBox="0 0 512 512">
+            <polygon
+              points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+          </svg>
+
+        </label>
       </div>
 
     </div>
@@ -198,7 +293,7 @@
     <!-- Fix this whole part  -->
     <div class=" container mx-auto max-w-xl p-4" id="howitworks">
       <div class="collapse rounded-xl collapse-plus">
-        <input type="checkbox" checked/>
+        <input type="checkbox" unchecked />
         <div class="collapse-title text-xl font-medium">
           How does this work?
         </div>
@@ -291,7 +386,7 @@
     var breakCount = 0;
     var totalTime = 0;
 
-    var debug = false; 
+    var debug = false;
 
     // Set Default Mode upon loading the site first
     setDefaultMode();
@@ -311,7 +406,7 @@
     }
 
 
-    function timeLeftCalculation(totalWorkTimeSeconds, totalTime){
+    function timeLeftCalculation(totalWorkTimeSeconds, totalTime) {
       timeLeft = totalWorkTimeSeconds - totalTime;
       timeLeftMinutes = Math.floor(timeLeft / 60);
       timeLeftSeconds = timeLeft - timeLeftMinutes * 60;
@@ -320,9 +415,9 @@
           minimumIntegerDigits: 2,
           useGrouping: false,
         });
-      console.log("TimeLeft: " + timeLeftMinutes + ":" + timeLeftSeconds); 
+      console.log("TimeLeft: " + timeLeftMinutes + ":" + timeLeftSeconds);
       console.log("Seconds Remaing: " + seconds);
-      console.log("totalTime: " + totalTime); 
+      console.log("totalTime: " + totalTime);
       return [timeLeftMinutes, timeLeftSeconds, timeLeftString];
     }
 
@@ -336,7 +431,7 @@
     // RemainingTime Function 
     let RemainingTime = () => {
       console.log("Running the function RemainingTime");
-      console.log("totalWorkTimeMinutes"+ totalWorkTimeMinutes);
+      console.log("totalWorkTimeMinutes" + totalWorkTimeMinutes);
 
       seconds = seconds - 1;
 
@@ -346,9 +441,9 @@
       } else {
         totalWorkTimeSeconds = totalWorkTimeMinutes * 60;
       }
-      
+
       [timeLeftMinutes, timeLeftSeconds, timeLeftString] = timeLeftCalculation(totalWorkTimeSeconds, totalTime)
-      setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString); 
+      setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString);
 
       // CHANGE THE TITLE EVERY SECOND
       if (breakCount % 2 === 0) {
@@ -409,68 +504,52 @@
 
 
 
-<!-- SETTINGS MODAL -->
-<input type="checkbox" id="modal-settings" class="modal-toggle" />
-<label for="modal-settings" class="modal cursor-pointer">
-  <label class="modal-box relative" for="">
-    <h3 class="text-lg font-bold">Settings</h3>
-    <div>
-      Maximum time between rests
-      <input type="range" min="60" max="300" value="180" class="range range-sm range-primary" step="30"
-        id="timermaximum" />
-      <div class="w-full flex justify-between text-xs px-2">
-        <span>1 min</span>
-        <span>2 min</span>
-        <span>3 min</span>
-        <span>4 min</span>
-        <span>5 min</span>
+  <!-- SETTINGS MODAL -->
+  <input type="checkbox" id="modal-settings" class="modal-toggle" />
+  <label for="modal-settings" class="modal cursor-pointer">
+    <label class="modal-box relative" for="">
+      <h3 class="text-lg font-bold">Settings</h3>
+      <div>
+        Maximum time between rests
+        <input type="range" min="60" max="300" value="180" class="range range-sm range-primary" step="30"
+          id="timermaximum" />
+        <div class="w-full flex justify-between text-xs px-2">
+          <span>1 min</span>
+          <span>2 min</span>
+          <span>3 min</span>
+          <span>4 min</span>
+          <span>5 min</span>
+        </div>
+
+        <br />
+        Microbreak time
+        <input type="range" min="5" max="25" value="10" class="range range-sm range-primary" step="5"
+          id="microbreaktime" />
+        <div class="w-full flex justify-between text-xs px-2">
+          <span>5 s</span>
+          <span>10 s</span>
+          <span>15 s</span>
+          <span>20 s</span>
+          <span>25 s</span>
+        </div>
+
+        <br />
+        Work time
+        <input type="range" min="10" max="60" value="30" class="range range-sm range-primary" step="5" id="worktime" />
+        <div class="w-full flex justify-between text-xs px-2">
+          <span>10 min</span>
+          <span>20 min</span>
+          <span>30 min</span>
+          <span>40 min</span>
+          <span>50 min</span>
+          <span>60 min</span>
+        </div>
+
+
+        <br />
       </div>
-
-      <br />
-      Microbreak time
-      <input type="range" min="5" max="25" value="10" class="range range-sm range-primary" step="5"
-        id="microbreaktime" />
-      <div class="w-full flex justify-between text-xs px-2">
-        <span>5 s</span>
-        <span>10 s</span>
-        <span>15 s</span>
-        <span>20 s</span>
-        <span>25 s</span>
-      </div>
-
-      <br />
-      Work time
-      <input type="range" min="10" max="60" value="30" class="range range-sm range-primary" step="5"
-        id="worktime" />
-      <div class="w-full flex justify-between text-xs px-2">
-        <span>10 min</span>
-        <span>20 min</span>
-        <span>30 min</span>
-        <span>40 min</span>
-        <span>50 min</span>
-        <span>60 min</span>
-      </div>
-
-      <br />
-      <div class="form-control">
-        <label class="label cursor-pointer">
-          <span>Focus training prior to start</span>
-          <input type="checkbox" class="toggle toggle-primary" id="focusModeCheckBox" value="off" unchecked/>
-        </label>
-      </div>
-
-      <div class="form-control">
-        <label class="label cursor-pointer">
-          <span>Breathing routine</span>
-          <input type="checkbox" class="toggle toggle-primary unchecked" id="breathingModeCheckBox" value="off" unchecked/>
-        </label>
-      </div>
-
-
-      <br />
-    </div>
+    </label>
   </label>
-</label>
 
 
 
@@ -498,104 +577,105 @@
   </div>
 
 
-<script>
-// Watch Buttons for clicks
+  <script>
+    // Watch Buttons for clicks
 
-// START AND STOP BUTTONS
-document.getElementById("para").onclick = function () {
-  console.log("button clicked");
-  setWorkMode();
-  console.log("timer_runs: " + timer_runs);
+    // START AND STOP BUTTONS
+    document.getElementById("para").onclick = function () {
+      console.log("button clicked");
+      setWorkMode();
+      console.log("timer_runs: " + timer_runs);
 
-  if (!timer_runs) {
-    let a = pointFocusModeOn();
-    document.getElementById("steps").classList.add("invisible");
-    timer = setIntervalImmediately(RemainingTime, 1000);
-    timer_runs = true;
+      if (!timer_runs) {
+        let a = pointFocusModeOn();
+        timer = setIntervalImmediately(RemainingTime, 1000);
+        timer_runs = true;
 
-    document.getElementById("stop").onclick = function () {
-      console.log("stop button clicked");
-      document.getElementById("steps").classList.remove("invisible");
-      clearInterval(timer);
-      setDefaultMode();
-      timer_runs = false;
+        document.getElementById("stop").onclick = function () {
+          console.log("stop button clicked");
+          clearInterval(timer);
+          setPauseMode();
+          timer_runs = false;
+        };
+
+        // Reset button (time should be reset to default)
+        document.getElementById("reset").onclick = function () {
+          console.log("reset button clicked");
+          clearInterval(timer);
+          setDefaultMode();
+          timer_runs = false;
+          totalTime = 0;
+          seconds = 1;
+          breakCount = 0
+
+        };
+
+
+
+
+
+      }
     };
 
-    // Reset button (time should be reset to default)
-    document.getElementById("reset").onclick = function () {
-      console.log("reset button clicked");
-      document.getElementById("steps").classList.remove("invisible");
-      clearInterval(timer);
-      setDefaultMode();
-      timer_runs = false;
-      totalTime = 0;
-      seconds = 1;
-      breakCount = 0
+    // get values from settings modal
+
+    // On changes
+    document.getElementById("focusModeCheckBox").onchange = function () {
+      console.log("focusMode checkbox changed");
+      FocusModeToggle = FocusModeToggle ? false : true;
+      console.log("changed - FocusModeToggle: " + FocusModeToggle);
+    };
+
+    document.getElementById("breathingModeCheckBox").onchange = function () {
+      console.log("breathingToggle checkbox changed");
+      breathingToggle = breathingToggle ? false : true;
+      console.log("changed - breathingToggle: " + breathingToggle);
+    };
+
+    document.getElementById("audioToggleCheckBox").onchange = function () {
+      console.log("audioToggle checkbox changed");
+      audioToggle = audioToggle ? false : true;
+      console.log("changed - audioToggle: " + audioToggle);
+      // dingaLing(audioToggle)
+      // boxingBell(audioToggle)
+      // beep2(audioToggle)
+      // singleChime(audioToggle)
 
     };
 
+    document.getElementById("timermaximum").onchange = function () {
+      timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
+      console.log("changed - timemaximum: " + timerMaximum);
+    }
+
+    document.getElementById("microbreaktime").onchange = function () {
+      microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
+      console.log("changed - microbreaktime: " + microBreakTime);
+    }
+
+    document.getElementById("worktime").onchange = function () {
+      totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
+      console.log("changed - totalWorkTimeMinutes: " + totalWorkTimeMinutes);
+
+    }
 
 
+    //Initial Settings
+
+    // Because I cant get the saiyUI swap to work with standard unchecked, I have to use this to set the initial state of the checkbox
+    FocusModeToggle = document.getElementById("focusModeCheckBox").value === "off";
+    breathingToggle = document.getElementById("breathingModeCheckBox").value === "off";
 
 
-  }
-};
+    audioToggle = document.getElementById("audioToggleCheckBox").value;
+    timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
+    microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
+    totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
 
-// get values from settings modal
+    console.log(document.getElementById("focusModeCheckBox").value);
+    console.log("FocusModeToggle: " + FocusModeToggle);
 
-// On changes
-document.getElementById("focusModeCheckBox").onchange = function () {
-  console.log("focusMode checkbox changed");
-  FocusModeToggle = FocusModeToggle ? false : true; 
-  console.log("changed - FocusModeToggle: " + FocusModeToggle);
-};
-
-document.getElementById("breathingModeCheckBox").onchange = function () {
-  console.log("breathingToggle checkbox changed");
-  breathingToggle = breathingToggle ? false : true; 
-  console.log("changed - breathingToggle: " + breathingToggle);
-};
-
-document.getElementById("audioToggleCheckBox").onchange = function () {
-  console.log("audioToggle checkbox changed");
-  audioToggle = audioToggle ? false : true; 
-  console.log("changed - audioToggle: " + audioToggle);
-  // dingaLing(audioToggle)
-  // boxingBell(audioToggle)
-  // beep2(audioToggle)
-  // singleChime(audioToggle)
-
-};
-
-document.getElementById("timermaximum").onchange = function () {
-  timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
-  console.log("changed - timemaximum: " + timerMaximum);
-}
-
-document.getElementById("microbreaktime").onchange = function () {
-  microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
-  console.log("changed - microbreaktime: " + microBreakTime);
-}
-
-document.getElementById("worktime").onchange = function () {
-  totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
-  console.log("changed - totalWorkTimeMinutes: " + totalWorkTimeMinutes);
-
-}
-
-
-//Initial Settings
-FocusModeToggle = document.getElementById("focusModeCheckBox").value === "on";
-breathingToggle = document.getElementById("breathingModeCheckBox").value === "on";
-audioToggle = document.getElementById("audioToggleCheckBox").value;
-timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
-microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
-totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
-
-console.log(document.getElementById("focusModeCheckBox").value);
-console.log("FocusModeToggle: " + FocusModeToggle);
-
-</script>
+  </script>
 
 
 
