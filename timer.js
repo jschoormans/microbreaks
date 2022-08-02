@@ -59,7 +59,7 @@ function setMicroBreakMode() {
   document.getElementById("hero-main").classList.add("invisible")
   document.getElementById("hero-microbreak").classList.remove("invisible")
   document.getElementById("demo3_wm").innerHTML =
-    "Close your eyes and relax!";
+    "Relax!";
   document.getElementById("cont").style.background =
     "url('" + imageMicroBreak + "')";
   document.getElementById("cont").style.backgroundSize = "cover";
