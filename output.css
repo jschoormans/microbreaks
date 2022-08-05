@@ -2113,6 +2113,15 @@ html {
   gap: 0.5rem;
 }
 
+.footer-center {
+  place-items: center;
+  text-align: center;
+}
+
+.footer-center > * {
+  place-items: center;
+}
+
 @media (min-width: 48rem) {
   .footer {
     grid-auto-flow: column;
@@ -2205,6 +2214,16 @@ html {
 
 .link {
   cursor: pointer;
+  -webkit-text-decoration-line: underline;
+  text-decoration-line: underline;
+}
+
+.link-hover {
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.link-hover:hover {
   -webkit-text-decoration-line: underline;
   text-decoration-line: underline;
 }
@@ -3396,6 +3415,13 @@ body[dir="rtl"] .checkbox:checked,
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.footer-title {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.5;
 }
 
 .label-text {
@@ -4812,6 +4838,10 @@ body[dir="rtl"] .checkbox:checked,
   padding: 0px;
 }
 
+.p-10 {
+  padding: 2.5rem;
+}
+
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -4857,6 +4887,10 @@ body[dir="rtl"] .checkbox:checked,
 
 .pl-2 {
   padding-left: 0.5rem;
+}
+
+.pr-3 {
+  padding-right: 0.75rem;
 }
 
 .text-left {
