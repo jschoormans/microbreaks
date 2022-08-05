@@ -29,9 +29,17 @@
     <script defer data-domain="microbreaks.co" src="https://plausible.io/js/plausible.js"></script>
 
 
-    <link href="output.css" rel="stylesheet" />
-    <link href="youtube_css.css" rel="stylesheet" />
-
+    <link href="output.css?build=2" rel="stylesheet" id="outputcss"/>
+    <link href="youtube_css.css?build=2" rel="stylesheet"/>
+  
+    <script>
+      // To fix caching issues, we use a random build number.
+      oldlink = document.getElementById("outputcss");
+      css_file_name = "output.css";
+      css_file_name_with_random_number = "output.css?v=" + Math.random();
+      oldlink.href = css_file_name_with_random_number; 
+    </script>
+  
 </head>
 
 <body>
@@ -94,7 +102,6 @@
 
                         </div>
                         <br />
-                        <a href="blog/public/index.html">Blog</a>
 
                         <!-- <div class="stack p-4">
                             <div class="grid mockup-window bg-neutral drop-shadow-xl w-3/4 place-content-center">
@@ -162,10 +169,7 @@
         </div>
 
 
-        <footer class="footer p-10 bg-neutral text-neutral-content ">
-            <div>
-                <span class="footer-title" ></span> 
-            </div>  
+        <footer class="footer p-10 bg-neutral text-neutral-content  ">
             <div>
               <span class="footer-title" >Site</span> 
               <a class="link link-hover" href="/timer.html">Timer</a>
@@ -182,9 +186,6 @@
               <a class="link link-hover" href="https://tally.so/r/3XxOY4">Contact</a>
       
             </div> 
-            <div>
-                <span class="footer-title" ></span> 
-            </div>  
 
           </footer>
 

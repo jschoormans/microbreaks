@@ -12,9 +12,18 @@
     content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer." />
   <meta name="keywords" content="study, timer, micro breaks, micro rests, gap, pomodoro, study timer, focus" />
 
-  <link href="output.css?build=2" rel="stylesheet" />
-  <link href="youtube_css.css?build=2" rel="stylesheet" />
 
+  <link href="output.css?build=2" rel="stylesheet" id="outputcss"/>
+  <link href="youtube_css.css?build=2" rel="stylesheet"/>
+
+  <script>
+    // To fix caching issues, we use a random build number.
+    oldlink = document.getElementById("outputcss");
+    css_file_name = "output.css";
+    css_file_name_with_random_number = "output.css?v=" + Math.random();
+    oldlink.href = css_file_name_with_random_number; 
+  </script>
+  
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@jasperschoormns" />
@@ -621,6 +630,8 @@
     console.log("FocusModeToggle: " + FocusModeToggle);
 
   </script>
+
+
 
 
 

@@ -10,6 +10,7 @@ function beep2(audioToggle) {
   );
   if (audioToggle) {
     snd.play();
+    console.log("Sound is playing - beep2");
   }
 }
 
@@ -17,6 +18,8 @@ function boxingBell(audioToggle){
   var audio = new Audio('/assets/audio/boxing-bell.wav');
   if (audioToggle) {
     audio.play();
+    console.log("Sound is playing - boxingBell");
+
   }
 }
 
@@ -24,6 +27,8 @@ function singleChime(audioToggle){
   var audio = new Audio('/assets/audio/singleChime.wav');
   if (audioToggle) {
   audio.play();
+  console.log("Sound is playing - singleChime");
+
   }
 }
 
@@ -31,6 +36,8 @@ function dingaLing(audioToggle){
   var audio = new Audio('/assets/audio/dingaling.mp3');
   if (audioToggle) {
     audio.play();
+    console.log("Sound is playing - dingaLing");
+
   }
 }
 
