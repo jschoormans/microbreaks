@@ -86,7 +86,7 @@
         </div>
 
           <!-- BREATHING MODE  TOGGLE  -->
-          <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Breathing Exercise (not yet implemented)">
+          <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Breathing Exercise">
 
             <label class="btn btn-sm btn-circle swap swap-rotate glass">
               <!-- this hidden checkbox controls the state -->
@@ -209,83 +209,8 @@
       </a>
 
 
-      <div class="fixed top-0 right-0 p-2 z-[100] cursor-pointer text-m font-bold opacity-95 invisible">
 
 
-        <!-- FOCUS MODE  TOGGLE  -->
-        <label class="btn btn-circle swap swap-rotate glass"">
-          <!-- this hidden checkbox controls the state -->
-          <input type=" checkbox" id="focusModeCheckBox" />
-
-        <!-- focus on icon -->
-        <img class="swap-on h-6 top-0 left-0" src="assets/icons/idea_handdrawn.png">
-        <img class="swap-off h-6 top-0 left-0" src="assets/icons/idea_handdrawn.png">
-        <img class="swap-off h-6 absolute top-0 left-0 group-hover:invisible" src="assets/icons/cross_handdrawn2.png">
-        </label>
-
-        <!-- BREATHING MODE  TOGGLE  -->
-        <label class="btn btn-circle swap swap-rotate glass">
-          <!-- this hidden checkbox controls the state -->
-          <input type="checkbox" id="breathingModeCheckBox" />
-
-          <!-- focus on icon -->
-          <img class="swap-on h-6 top-0 left-0" src="assets/icons/breath_handdrawn.png">
-          <img class="swap-off h-6 top-0 left-0" src="assets/icons/breath_handdrawn.png">
-          <img class="swap-off h-6 absolute top-0 left-0 group-hover:invisible" src="assets/icons/cross_handdrawn2.png">
-        </label>
-
-
-
-        <!-- AUDIO TOGGLE  -->
-        <label class="btn btn-circle swap swap-rotate glass">
-          <!-- this hidden checkbox controls the state -->
-          <input type="checkbox" id="audioToggleCheckBox" />
-
-          <!-- volume on icon -->
-          <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-            viewBox="0 0 24 24">
-            <path
-              d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
-          </svg>
-
-          <!-- volume off icon -->
-          <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-            viewBox="0 0 24 24">
-            <path
-              d="M3,9H7L12,4V20L7,15H3V9M16.59,12L14,9.41L15.41,8L18,10.59L20.59,8L22,9.41L19.41,12L22,14.59L20.59,16L18,13.41L15.41,16L14,14.59L16.59,12Z" />
-          </svg>
-        </label>
-
-        <!-- SETTINGS TOGGLE -->
-        <label for="modal-settings" class="btn btn-circle glass swap swap-rotate">
-
-          <!-- this hidden checkbox controls the state -->
-          <input type="checkbox" />
-
-          <!-- hamburger icon -->
-          <!-- <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg> -->
-          <svg class="swap-off fill-current" width="32" height="32" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M15.808,14.066H6.516v-1.162H5.354v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.58s0.26,0.58,0.581,0.58h1.162
-              v1.162h1.162v-1.162h9.292c0.32,0,0.58-0.26,0.58-0.58S16.128,14.066,15.808,14.066z M15.808,9.419h-1.742V8.258h-1.162v1.161
-              h-8.71c-0.321,0-0.581,0.26-0.581,0.581c0,0.321,0.26,0.581,0.581,0.581h8.71v1.161h1.162v-1.161h1.742
-              c0.32,0,0.58-0.26,0.58-0.581C16.388,9.679,16.128,9.419,15.808,9.419z M17.55,0.708H2.451c-0.962,0-1.742,0.78-1.742,1.742v15.1
-              c0,0.961,0.78,1.74,1.742,1.74H17.55c0.962,0,1.742-0.779,1.742-1.74v-15.1C19.292,1.488,18.512,0.708,17.55,0.708z M18.13,17.551
-              c0,0.32-0.26,0.58-0.58,0.58H2.451c-0.321,0-0.581-0.26-0.581-0.58v-15.1c0-0.321,0.26-0.581,0.581-0.581H17.55
-              c0.32,0,0.58,0.26,0.58,0.581V17.551z M15.808,4.774H9.419V3.612H8.258v1.162H4.193c-0.321,0-0.581,0.26-0.581,0.581
-              s0.26,0.581,0.581,0.581h4.065v1.162h1.161V5.935h6.388c0.32,0,0.58-0.26,0.58-0.581S16.128,4.774,15.808,4.774z">
-            </path>
-          </svg>
-          <!-- close icon -->
-          <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-            viewBox="0 0 512 512">
-            <polygon
-              points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
-          </svg>
-
-        </label>
-      </div>
 
     </div>
     <!-- ----------- end of hero ----------- -->
@@ -346,27 +271,88 @@
           <div class="place-content-center text-center">
             <!-- METHOD B IN https://ourcodeworld.com/articles/read/1383/how-to-properly-configure-lazy-loading-of-a-youtube-embed-video -->
             <!-- 1. Video Wrapper Container -->
-            <div class="embed-youtube" data-video-id="gu9htLeElv8">
+            <!-- <div class="embed-youtube" data-video-id="gu9htLeElv8"> -->
               <!-- 2. The preview button that will contain the Play icon -->
-              <div class="embed-youtube-play"></div>
+              <!-- <div class="embed-youtube-play"></div> -->
             </div>
           </div>
         </div>
       </div>
 
     </div>
+    <!-- ----------- end of howitworks ----------- -->
+
+        <footer class="footer p-10 bg-neutral text-neutral-content  ">
+            <div>
+              <span class="footer-title" >Site</span> 
+              <a class="link link-hover" href="/timer.html">Timer</a>
+              <a class="link link-hover" href="/blog/public/">Blog</a>
+              <a class="link link-hover" href="/index.html">Landing Page</a>
+
+            </div> 
+            <div>
+              <span class="footer-title">
+                <a href="https://www.twitter.com/jasperschoormns" target="_blank">
+                Made by Jasper 👋</a>
+          </span> 
+              <a class="link link-hover" href="https://www.twitter.com/jasperschoormns">Twitter</a>
+              <a class="link link-hover" href="https://tally.so/r/3XxOY4">Contact</a>
+      
+            </div> 
+
+          </footer>
 
 
 
-    <footer class="footer items-center p-4 bg-neutral text-neutral-content place-content-center">
-      <div class="max-w-md">
+      <!-- SETTINGS MODAL -->
 
-        <a href="/blog/public/">Blog</a>
-        <a href="https://www.twitter.com/jasperschoormns" target="_blank">
-          Made by Jasper 👋</a>
+  <input type="checkbox" id="modal-settings" class="modal-toggle" />
+  <label for="modal-settings" class="modal cursor-pointer">
+    <label class="modal-box w-11/12" for="">
+      <h3 class="text-lg font-bold">Settings</h3>
+      <div>
+        Maximum time between rests
+        <input type="range" min="60" max="300" value="180" class="range range-sm range-primary" step="30"
+          id="timermaximum" />
+        <div class="w-full flex justify-between text-xs px-2">
+          <span>1 min</span>
+          <span>2 min</span>
+          <span>3 min</span>
+          <span>4 min</span>
+          <span>5 min</span>
+        </div>
+
+        <br />
+        Microbreak time
+        <input type="range" min="5" max="25" value="10" class="range range-sm range-primary" step="5"
+          id="microbreaktime" />
+        <div class="w-full flex justify-between text-xs px-2">
+          <span>5 s</span>
+          <span>10 s</span>
+          <span>15 s</span>
+          <span>20 s</span>
+          <span>25 s</span>
+        </div>
+
+        <br />
+        Work time
+        <input type="range" min="10" max="60" value="30" class="range range-sm range-primary" step="5" id="worktime" />
+        <div class="w-full flex justify-between text-xs px-2">
+          <span>10 min</span>
+          <span>20 min</span>
+          <span>30 min</span>
+          <span>40 min</span>
+          <span>50 min</span>
+          <span>60 min</span>
+        </div>
+
+
+        <br />
       </div>
+    </label>
+  </label>
 
-    </footer>
+
   </container>
 
 
@@ -457,7 +443,7 @@
 
       if (seconds === 0) {
         // At the end of either work or microbreak sesh
-        beep2(audioToggle);
+        //beep2(audioToggle);
         if (breakCount % 2 === 0) {
           // WORK MODE
 
@@ -504,57 +490,12 @@
 
 
 
-  <!-- SETTINGS MODAL -->
-  <div class=" container w-full">
-  <input type="checkbox" id="modal-settings" class="modal-toggle" />
-  <label for="modal-settings" class="modal cursor-pointer">
-    <label class="modal-box relative" for="">
-      <h3 class="text-lg font-bold">Settings</h3>
-      <div>
-        Maximum time between rests
-        <input type="range" min="60" max="300" value="180" class="range range-sm range-primary" step="30"
-          id="timermaximum" />
-        <div class="w-full flex justify-between text-xs px-2">
-          <span>1 min</span>
-          <span>2 min</span>
-          <span>3 min</span>
-          <span>4 min</span>
-          <span>5 min</span>
-        </div>
-
-        <br />
-        Microbreak time
-        <input type="range" min="5" max="25" value="10" class="range range-sm range-primary" step="5"
-          id="microbreaktime" />
-        <div class="w-full flex justify-between text-xs px-2">
-          <span>5 s</span>
-          <span>10 s</span>
-          <span>15 s</span>
-          <span>20 s</span>
-          <span>25 s</span>
-        </div>
-
-        <br />
-        Work time
-        <input type="range" min="10" max="60" value="30" class="range range-sm range-primary" step="5" id="worktime" />
-        <div class="w-full flex justify-between text-xs px-2">
-          <span>10 min</span>
-          <span>20 min</span>
-          <span>30 min</span>
-          <span>40 min</span>
-          <span>50 min</span>
-          <span>60 min</span>
-        </div>
-
-
-        <br />
-      </div>
-    </label>
-  </label>
+  <!-- SOMETHING VERY WRONG HERE -->
+  <div class=" container mx-auto w-5/6">
   <!-- FOCUS MODE MODAL -->
   <input type="checkbox" id="my-modal-6" class="modal-toggle" />
   <div class="modal modal-bottom justify-center bg-accent p-3">
-    <div class="modal-box justify-center text-accent-content bg-accent-focus place-content-center">
+    <div class="modal-box w-11/12">
       <h3 class="font-bold neutral text-center text-2xl" id="focusheader">
         Focus for 15 seconds!
       </h3>
