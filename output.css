@@ -4489,6 +4489,10 @@ body[dir="rtl"] .checkbox:checked,
   margin-right: 1rem;
 }
 
+.mr-3 {
+  margin-right: 0.75rem;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -5055,6 +5059,11 @@ body[dir="rtl"] .checkbox:checked,
   color: hsl(var(--in) / var(--tw-text-opacity));
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .opacity-95 {
   opacity: 0.95;
 }
@@ -5099,6 +5108,41 @@ body[dir="rtl"] .checkbox:checked,
   transition-duration: 300ms;
 }
 
+.btn.hover\:glass:hover:hover,
+    .btn.hover\:glass:hover.btn-active {
+  --glass-opacity: 25%;
+  --glass-border-opacity: 15%;
+}
+
+.btn.hover\:glass:hover:focus-visible {
+  outline: 2px solid 0 0 2px currentColor;
+}
+
+.drawer-toggle:focus-visible ~ .drawer-content .drawer-button.hover\:glass:hover {
+  outline: 2px solid currentColor;
+}
+
+.hover\:glass:hover,.hover\:glass:hover:hover,.hover\:glass:hover.btn-active {
+  border: none;
+  -webkit-backdrop-filter: blur(var(--glass-blur, 40px));
+  backdrop-filter: blur(var(--glass-blur, 40px));
+  background-color: transparent;
+  background-image: linear-gradient(
+        135deg,
+        rgb(255 255 255 / var(--glass-opacity, 30%)) 0%,
+        rgb(0 0 0 / 0%) 100%
+      ),
+      linear-gradient(
+        var(--glass-reflex-degree, 100deg),
+        rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%,
+        rgb(0 0 0 / 0%) 25%
+      );
+  box-shadow: 0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%))
+        inset,
+      0 0 0 2px rgb(0 0 0 / 5%);
+  text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
+}
+
 .hover\:invisible:hover {
   visibility: hidden;
 }
@@ -5115,6 +5159,31 @@ body[dir="rtl"] .checkbox:checked,
 .hover\:bg-blue-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-primary:hover {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--p) / var(--tw-bg-opacity));
+}
+
+.hover\:text-primary:hover {
+  --tw-text-opacity: 1;
+  color: hsl(var(--p) / var(--tw-text-opacity));
+}
+
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.hover\:text-accent-content:hover {
+  --tw-text-opacity: 1;
+  color: hsl(var(--ac) / var(--tw-text-opacity));
+}
+
+.hover\:text-secondary:hover {
+  --tw-text-opacity: 1;
+  color: hsl(var(--s) / var(--tw-text-opacity));
 }
 
 .hover\:opacity-100:hover {
@@ -5437,6 +5506,10 @@ body[dir="rtl"] .checkbox:checked,
 
   .md\:gap-2 {
     gap: 0.5rem;
+  }
+
+  .md\:gap-3 {
+    gap: 0.75rem;
   }
 
   .md\:text-xl {
