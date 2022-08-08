@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.microbreaks.co/</loc>
+  <lastmod>2022-08-05T12:15:25+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.microbreaks.co/timer.html</loc>
+  <lastmod>2022-08-08T08:40:59+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.microbreaks.co/blog/public/</loc>
+  <lastmod>2022-08-08T08:40:59+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.microbreaks.co/index.html</loc>
+  <lastmod>2022-08-05T12:15:25+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.microbreaks.co/blog/public/posts/the-best-pomodoro-alternatives/</loc>
+  <lastmod>2022-08-08T08:40:59+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.microbreaks.co/blog/public/posts/the-value-of-microbreaks/</loc>
+  <lastmod>2022-08-08T08:40:59+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
