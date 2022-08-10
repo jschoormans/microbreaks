@@ -13,8 +13,8 @@
   <meta name="keywords" content="study, timer, micro breaks, micro rests, gap, pomodoro, study timer, focus" />
 
 
-  <link href="output.css?build=2" rel="stylesheet" id="outputcss"/>
-  <link href="youtube_css.css?build=2" rel="stylesheet"/>
+  <link href="output.css?build=2" rel="stylesheet" id="outputcss" />
+  <link href="youtube_css.css?build=2" rel="stylesheet" />
 
   <script>
     // To fix caching issues, we use a random build number.
@@ -23,7 +23,7 @@
     css_file_name_with_random_number = "output.css?v=" + Math.random();
     oldlink.href = css_file_name_with_random_number; 
   </script>
-  
+
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@jasperschoormns" />
@@ -77,7 +77,7 @@
         </div>
 
 
-        <div class="navbar-right flex flex-row items-center gap-1 md:gap-3 mr-3 id="Buttons">
+        <div class="navbar-right flex flex-row items-center gap-1 md:gap-3 mr-3 id=" Buttons">
 
           <!-- FOCUS MODE  TOGGLE  -->
 
@@ -87,39 +87,76 @@
 
             <!-- focus on icon -->
             <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Focus Exercise">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-target">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
             </div>
 
             <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Focus Exercise">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target swap-off"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-target swap-off">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
             </div>
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x swap-off"><line x1="23" y1="1" x2="1" y2="23"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-x swap-off">
+              <line x1="23" y1="1" x2="1" y2="23"></line>
+            </svg>
 
           </label>
 
           <!-- BREATHING MODE  TOGGLE  -->
 
-            <label class="swap swap-rotate hover:text-primary">
-              <!-- this hidden checkbox controls the state -->
-              <input type="checkbox" id="breathingModeCheckBox" />
+          <label class="swap swap-rotate hover:text-primary hidden">
+            <!-- this hidden checkbox controls the state -->
+            <input type="checkbox" id="breathingModeCheckBox" />
 
-              <!-- focus on icon -->
-              <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Breathing Exercise 1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-wind"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg>
-              </div>  
+            <!-- focus on icon -->
+            <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Breathing Exercise 1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-wind">
+                <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2">
+                </path>
+              </svg>
+            </div>
 
-              <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Breathing Exercise">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-wind swap-off"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg>
-              </div>
+            <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Breathing Exercise">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-wind swap-off">
+                <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2">
+                </path>
+              </svg>
+            </div>
 
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x swap-off"><line x1="23" y1="1" x2="1" y2="23"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-x swap-off">
+              <line x1="23" y1="1" x2="1" y2="23"></line>
+            </svg>
 
-            </label>
+          </label>
 
           <!-- FULLSCREEN TOGGLE  -->
           <button class="hover:text-primary" onclick="toggleFullScreen()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize-2"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-maximize-2">
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" y1="3" x2="14" y2="10"></line>
+              <line x1="3" y1="21" x2="10" y2="14"></line>
+            </svg>
           </button>
 
 
@@ -129,11 +166,22 @@
             <input type="checkbox" id="audioToggleCheckBox" />
 
             <!-- volume on icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-2 swap-off"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-volume-2 swap-off">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
 
             <!-- volume off icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-x swap-on"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-            
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-volume-x swap-on">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+
           </label>
 
           <!-- SETTINGS TOGGLE -->
@@ -142,7 +190,19 @@
             <!-- this hidden checkbox controls the state -->
             <input type="checkbox" />
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-sliders">
+              <line x1="4" y1="21" x2="4" y2="14"></line>
+              <line x1="4" y1="10" x2="4" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12" y2="3"></line>
+              <line x1="20" y1="21" x2="20" y2="16"></line>
+              <line x1="20" y1="12" x2="20" y2="3"></line>
+              <line x1="1" y1="14" x2="7" y2="14"></line>
+              <line x1="9" y1="8" x2="15" y2="8"></line>
+              <line x1="17" y1="16" x2="23" y2="16"></line>
+            </svg>
 
           </label>
         </div>
@@ -165,21 +225,49 @@
         <div class="flex flex-row justify-center">
 
 
+          <!-- Pause button -->
+
           <div class="btn-group">
-            <button class="btn md:btn-lg rounded-full btn-secondary" id="stop">
-              <!-- <img class="object-contain h-5" src="assets/icons/pause_handdrawn.png"> -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pause"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+
+            <!-- Breathing Exercise button -->
+            <button class="btn md:btn-lg rounded-full btn-secondary" style="position: relative;">
+              <label for="modal-breaths" class="" onclick="doBreaths()" width="100%" heigth="100%">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-wind swap-off">
+                  <path
+                    d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2">
+                  </path>
+                </svg>
+              </label>
+            </button>
+
+            <button class="btn md:btn-lg rounded-full btn-secondary hidden" id="stop">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-pause">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
             </button>
 
             <button class="btn md:btn-lg rounded-full btn-secondary" id="para">
-              <!-- <img class="object-contain h-6" src="assets/icons/arrow_handdrawn.png"> -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-play">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
             </button>
 
             <button class="btn md:btn-lg rounded-full btn-secondary" id="reset">
-              <!-- <img class="object-contain h-5" src="assets/icons/square_handdrawn.png"> -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-square">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              </svg>
             </button>
+
+
 
 
           </div>
@@ -206,6 +294,16 @@
         </div>
       </a>
 
+            <!-- Help? -->
+  <label for="modal-tips" class="">
+    <div
+    class="z-[100] fixed bottom-0 right-0 mr-2 mb-2 p-2
+      cursor-pointer rounded text-m font-bold text-secondary hover:bg-base-200 hover:opacity-100 hover:border-solid duration-200">
+      Tips
+      </div>
+    </label>
+      
+
 
 
 
@@ -223,9 +321,10 @@
         <div class="collapse-content text-left justify-center justify-center">
           <p>
             Research has shown that learning rates improves tremendously
-            while taking random micro rests.
+            while taking random micro rests. During these rests, a replay of the study material is done, in your brain, at a staggering 20 times speed! Read more on this in our <b><a href="https://www.microbreaks.co/blog/public/posts/the-value-of-microbreaks/">blog post</a></b>.
           </p>
           <br />
+          <p>Studying with random micro breaks had these benefits in a research setting:</p>
           <div class="stats shadow w-full">
             <div class="stat w-full">
               <div class="stat-figure text-primary">
@@ -236,9 +335,10 @@
                   </path>
                 </svg>
               </div>
-              <div class="stat-title">Learning Recall</div>
-              <div class="stat-value text-primary">+33%</div>
-              <div class="stat-desc">Learn Faster ( made up for now)</div>
+
+              <div class="stat-title">Repetition speed</div>
+              <div class="stat-value text-primary">10-20x</div>
+              <div class="stat-desc"> </div>
             </div>
 
             <div class="stat w-full">
@@ -250,17 +350,20 @@
                 </svg>
               </div>
               <div class="stat-title">Effectiveness</div>
-              <div class="stat-value text-primary">+55%</div>
-              <div class="stat-desc">Remember more!</div>
+              <div class="stat-value text-primary">95%</div>
+              <div class="stat-desc">of learning done in rest</div>
             </div>
           </div>
 
           <br /><br />
+          <h3 class="text-xl">How?</h3>
           <p>
             Start the microbreaks timer, and at random intervals you will
             be prompted to take a microbreak. Close your eyes, think of
             nothing for a few seconds, and continue working or studying
             after the beep.
+            <br/><br/>
+            Optionally, use the visual focus and attention exercises prior to your session.
           </p>
           <br />
 
@@ -269,86 +372,87 @@
           <div class="place-content-center text-center">
             <!-- METHOD B IN https://ourcodeworld.com/articles/read/1383/how-to-properly-configure-lazy-loading-of-a-youtube-embed-video -->
             <!-- 1. Video Wrapper Container -->
-            <!-- <div class="embed-youtube" data-video-id="gu9htLeElv8"> -->
-              <!-- 2. The preview button that will contain the Play icon -->
-              <!-- <div class="embed-youtube-play"></div> -->
-            </div>
+            <div class="embed-youtube" data-video-id="gu9htLeElv8">
+            <!-- 2. The preview button that will contain the Play icon -->
+            <div class="embed-youtube-play"></div>
           </div>
         </div>
       </div>
+    </div>
 
     </div>
     <!-- ----------- end of howitworks ----------- -->
 
-        <footer class="footer p-10 bg-neutral text-neutral-content  ">
-            <div>
-              <span class="footer-title" >Site</span> 
-              <a class="link link-hover" href="/timer.html">Timer</a>
-              <a class="link link-hover" href="/blog/public/">Blog</a>
-              <a class="link link-hover" href="/index.html">Landing Page</a>
-
-            </div> 
-            <div>
-              <span class="footer-title">
-                <a href="https://www.twitter.com/jasperschoormns" target="_blank">
-                Made by Jasper 👋</a>
-          </span> 
-              <a class="link link-hover" href="https://www.twitter.com/jasperschoormns">Twitter</a>
-              <a class="link link-hover" href="https://tally.so/r/3XxOY4">Contact</a>
-      
-            </div> 
-
-          </footer>
-
-
-
-      <!-- SETTINGS MODAL -->
-
-  <input type="checkbox" id="modal-settings" class="modal-toggle" />
-  <label for="modal-settings" class="modal cursor-pointer">
-    <label class="modal-box w-11/12" for="">
-      <h3 class="text-lg font-bold">Settings</h3>
+    <footer class="footer p-10 bg-neutral text-neutral-content  ">
       <div>
-        Maximum time between rests
-        <input type="range" min="60" max="300" value="180" class="range range-sm range-primary" step="30"
-          id="timermaximum" />
-        <div class="w-full flex justify-between text-xs px-2">
-          <span>1 min</span>
-          <span>2 min</span>
-          <span>3 min</span>
-          <span>4 min</span>
-          <span>5 min</span>
-        </div>
+        <span class="footer-title">Site</span>
+        <a class="link link-hover" href="/timer.html">Timer</a>
+        <a class="link link-hover" href="/blog/public/">Blog</a>
+        <a class="link link-hover" href="/index.html">Landing Page</a>
 
-        <br />
-        Microbreak time
-        <input type="range" min="5" max="25" value="10" class="range range-sm range-primary" step="5"
-          id="microbreaktime" />
-        <div class="w-full flex justify-between text-xs px-2">
-          <span>5 s</span>
-          <span>10 s</span>
-          <span>15 s</span>
-          <span>20 s</span>
-          <span>25 s</span>
-        </div>
-
-        <br />
-        Work time
-        <input type="range" min="10" max="60" value="30" class="range range-sm range-primary" step="5" id="worktime" />
-        <div class="w-full flex justify-between text-xs px-2">
-          <span>10 min</span>
-          <span>20 min</span>
-          <span>30 min</span>
-          <span>40 min</span>
-          <span>50 min</span>
-          <span>60 min</span>
-        </div>
-
-
-        <br />
       </div>
+      <div>
+        <span class="footer-title">
+          <a href="https://www.twitter.com/jasperschoormns" target="_blank">
+            Made by Jasper 👋</a>
+        </span>
+        <a class="link link-hover" href="https://www.twitter.com/jasperschoormns">Twitter</a>
+        <a class="link link-hover" href="https://tally.so/r/3XxOY4">Contact</a>
+
+      </div>
+
+    </footer>
+
+
+
+    <!-- SETTINGS MODAL -->
+
+    <input type="checkbox" id="modal-settings" class="modal-toggle" />
+    <label for="modal-settings" class="modal cursor-pointer">
+      <label class="modal-box w-11/12" for="">
+        <h3 class="text-lg font-bold">Settings</h3>
+        <div>
+          Maximum time between rests
+          <input type="range" min="60" max="300" value="180" class="range range-sm range-primary" step="30"
+            id="timermaximum" />
+          <div class="w-full flex justify-between text-xs px-2">
+            <span>1 min</span>
+            <span>2 min</span>
+            <span>3 min</span>
+            <span>4 min</span>
+            <span>5 min</span>
+          </div>
+
+          <br />
+          Microbreak time
+          <input type="range" min="5" max="25" value="10" class="range range-sm range-primary" step="5"
+            id="microbreaktime" />
+          <div class="w-full flex justify-between text-xs px-2">
+            <span>5 s</span>
+            <span>10 s</span>
+            <span>15 s</span>
+            <span>20 s</span>
+            <span>25 s</span>
+          </div>
+
+          <br />
+          Work time
+          <input type="range" min="10" max="60" value="30" class="range range-sm range-primary" step="5"
+            id="worktime" />
+          <div class="w-full flex justify-between text-xs px-2">
+            <span>10 min</span>
+            <span>20 min</span>
+            <span>30 min</span>
+            <span>40 min</span>
+            <span>50 min</span>
+            <span>60 min</span>
+          </div>
+
+
+          <br />
+        </div>
+      </label>
     </label>
-  </label>
 
 
   </container>
@@ -487,34 +591,33 @@
   <script src="youtubeContainer.js"></script>
 
 
-
-  <!-- SOMETHING VERY WRONG HERE -->
-  <div class=" container mx-auto w-5/6">
   <!-- FOCUS MODE MODAL -->
-  <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-  <div class="modal modal-bottom justify-center bg-accent p-3">
-    <div class="modal-box w-11/12">
-      <h3 class="font-bold neutral text-center text-2xl" id="focusheader">
-        Focus for 15 seconds!
-      </h3>
-      <p class="py-4 neutral text-center" id="focustext">
-        To get in a deep learning state, focus on the cat for 15 seconds.
-      </p>
+  <div class=" container mx-auto w-5/6">
+    <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+    <div class="modal modal-bottom sm:modal-middle justify-center p-3">
+      <div class="modal-box relative w-11/12">
+        <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
-      <!-- add image -->
-      <br /><br /><br /><br /><br />
-      <div class="grid place-items-center" div="bouncingcat">
-        <img src="favicon.ico"" alt=" Focus image" class="object-none
-          object-center animate-bounce " id="bouncingcat">
-        <p id="focustext2"></p>
+        <h3 class="font-bold neutral text-center text-2xl" id="focusheader">
+          Focus for 15 seconds!
+        </h3>
+        <p class="py-4 neutral text-center" id="focustext">
+          To get in a deep learning state, focus on the cat for 15 seconds.
+        </p>
+
+        <!-- add image -->
+        <br /><br /><br /><br /><br />
+        <div class="grid place-items-center" div="bouncingcat">
+          <img src="favicon.ico"" alt=" Focus image" class="object-none
+            object-center animate-bounce " id="bouncingcat">
+          <p id="focustext2"></p>
+        </div>
+        <br /><br /><br /><br /><br /><br />
       </div>
-      <br /><br /><br /><br /><br /><br />
     </div>
-  </div>
 
 
   </div>
-
 
 
 
@@ -530,7 +633,7 @@
       console.log("timer_runs: " + timer_runs);
 
       if (!timer_runs) {
-        let a = pointFocusModeOn();
+        let a = preStudyExercises();
         timer = setIntervalImmediately(RemainingTime, 1000);
         timer_runs = true;
 
@@ -579,10 +682,6 @@
       console.log("audioToggle checkbox changed");
       audioToggle = audioToggle ? false : true;
       console.log("changed - audioToggle: " + audioToggle);
-      // dingaLing(audioToggle)
-      // boxingBell(audioToggle)
-      // beep2(audioToggle)
-      // singleChime(audioToggle)
 
     };
 
@@ -620,6 +719,173 @@
 
     var elem = document.documentElement;
   </script>
+
+
+<!-- MODAL TIPS -->
+<input type="checkbox" id="modal-tips" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-2xl text-center">Tips.</h3>
+    <p>
+      <!-- list -->
+      <ul>
+        <li><b>Focus mode:</b> Improve focus prior to studying with a short visual focus exercise</li>
+        <li><b>Breathing exercise:</b> improve attention </li>
+        <li>Use the Settings to tune your microbreaks</li>
+      </ul>
+      Microbreaks:
+      Focus:
+      Breathing exercise:
+      Audio:
+
+    </p>
+      <div class="modal-end">
+        <label for="modal-tips" class="btn btn-lg btn-success">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg> &nbsp; Done.</label>
+    
+      </div>
+
+
+
+</div>
+</div>
+
+  <!-- MODAL FOR BREATHING EXERCISE -->
+  <input type="checkbox" id="modal-breaths" class="modal-toggle" />
+  <div class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-2xl text-center">Be More Alert.</h3>
+
+      <p class="py-4">
+        This exercise will help you become more alert, by stimulating an increase in adrenaline.
+        Deep breathing has been shown to have a positive effect on attention.
+      </p>
+
+      <div class="grid grid-cols-3 gap-2 bg-primary p-3 rounded-xl mt-1">
+        <div>
+          <div class="grid grid-flow-col gap-5 text-center auto-cols-max justify- my-5 place-content-center">
+            <div class="flex flex-col p-2 bg-primary rounded-box text-neutral-content my-2 place-content-center">
+              <span class="countdown font-mono text-6xl text-center">
+                <span style="--value:25;" id="breathCounter" class="text-center"></span>
+              </span>
+              breaths
+            </div>
+          </div>
+
+          <div class="flex flex-col">
+            <input type="range" min="6" max="14" value="10"
+              class="range range-secondary w-full items-center justify-center" step="2" id="speedRange" />
+            <div class="w-full flex justify-between text-xs text-secondary px-2">
+              <span>Faster</span>
+              <span>|</span>
+              <span>Slower</span>
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+        <div class="grid col-span-2 place-items-center my-5">
+          <div class="object-none
+                object-center animate-deepbreath-10s" id="breath_cue">⚪</div>
+        </div>
+      </div>
+
+
+      <br />
+      <!-- Empty div with all the unsued classes (preloading otherwise doesnt work grene fot) -->
+      <div class="object-none
+              object-center animate-deepbreath-6s animate-deepbreath-8s
+              animate-deepbreath-10s animate-deepbreath-12s animate-deepbreath-14s" id="breath_cue"></div>
+
+
+      <ul class="steps steps-vertical text-sm md:text-md">
+        <li class="step step-primary">Take 25 deep breaths (in via 👃, out via 👄)
+        </li>
+        <li class="step step-primary">On exhale, hold breath (15-60 sec)</li>
+        <li class="step step-primary">Inhale once and hold breath (15-60 sec)</li>
+        <li class="step step-primary">Breath normally</li>
+      </ul>
+
+
+
+      <div class="flex items-end m-0 items-end">
+        <div class="w-full text-xs">
+
+          <p class="text-xs">For informational purposes only. Use at your own risk.<br />
+            Sources used: <a
+              href="https://hubermanlab.com/teach-and-learn-better-with-a-neuroplasticity-super-protocol/">Huberman
+              Lab</a>;
+            <a
+              href="https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/">NHS</a>;
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5455070/">Ma et al.</a>;
+
+
+          </p>
+        </div>
+
+
+        <label for="modal-breaths" class="btn btn-lg btn-success">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg> &nbsp; Done.</label>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+
+
+    async function doBreaths() {
+
+      var breathHoldDuration = 10; // in tailwind config hardcoded
+      var nBreath = 25;
+
+      // loop through the number of breaths
+      for (var i = 0; i < nBreath; i++) {
+        breathsToGo = nBreath - i;
+        // change the style of id breathCounter
+        document.getElementById("breathCounter").style = "--value:" + breathsToGo.toString() + ";";
+
+        // remove animation style of dot to breathe
+        document.getElementById("breath_cue").classList.remove("animate-deepbreath-" + breathHoldDuration.toString() + "s");
+
+
+        // get value of speedRange
+        var breathHoldDuration = document.getElementById("speedRange").value;
+        // change animation style of dot to breathe
+        document.getElementById("breath_cue").classList.add("animate-deepbreath-" + breathHoldDuration.toString() + "s");
+        // force redra
+        // document.getElementById('breath_cue').style.display = 'none';
+        // document.getElementById('breath_cue').style.display = 'block';
+        // forceRedraw("breath_cue");
+
+        // 
+        await sleep(breathHoldDuration * 1000);
+
+        console.log("breath " + i);
+        console.log("resp speed : " + breathHoldDuration);
+
+      }
+      document.getElementById("breath_cue").classList.remove("animate-deepbreath-" + breathHoldDuration.toString() + "s");
+      document.getElementById("breathCounter").style = "--value:0;";
+
+    }
+
+  </script>
+
+
+
+
+
 
 
 </body>

@@ -51,6 +51,9 @@ var imageMicroBreak = "pic3.jpg";
 
 function setWorkMode() {
   singleChime(audioToggle)
+  document.getElementById("para").classList.add("hidden")
+  document.getElementById("stop").classList.remove("hidden")
+
   document.getElementById("hero-main").classList.add("invisible")
   document.getElementById("hero-microbreak").classList.remove("invisible")
 
@@ -76,6 +79,9 @@ function setMicroBreakMode() {
 function setDefaultMode() {
   setProgBar(0, 30*60, 30, 0, '30:00')
 
+  document.getElementById("para").classList.remove("hidden")
+  document.getElementById("stop").classList.add("hidden")
+
   document.getElementById("hero-main").classList.add("invisible")
   document.getElementById("hero-microbreak").classList.remove("invisible")
   document.getElementById("demo3_wm").innerHTML = "Do something today";
@@ -88,6 +94,9 @@ function setDefaultMode() {
 
 
 function setPauseMode() {
+  document.getElementById("para").classList.remove("hidden")
+  document.getElementById("stop").classList.add("hidden")
+
   document.getElementById("cont").style.background =
     "url('" + imageStart + "')";
   document.getElementById("cont").style.backgroundSize = "cover";
@@ -99,28 +108,40 @@ function setPauseMode() {
 
 
 // Focus on point 
-async function pointFocusModeOn() {
-    if (FocusModeToggle === true) {
-      document.getElementById("my-modal-6").checked = true;
-      await sleep(13.5 * 1000);
-      document.getElementById("focusheader").innerHTML =
-        "Work mode activated!";
-      document.getElementById("focustext").innerHTML = " ";
-      document.getElementById("focustext2").innerHTML = "Good luck!💪";
-      document.getElementById("bouncingcat").classList.add("invisible");
-
-      await sleep(1.5 * 1000);
+// change to an overview function 
 
 
-      document.getElementById("focusheader").innerHTML =
-        "Focus for 15 seconds!";
-      document.getElementById("bouncingcat").classList.remove("invisible");
-      document.getElementById("focustext2").innerHTML = "";
-      document.getElementById("my-modal-6").checked = false;
-      console.log("Sleep...");
+async function preStudyExercises() {
+  if (FocusModeToggle === true) {
+    document.getElementById("my-modal-6").checked = true;
+    await sleep(13.5 * 1000);
+    document.getElementById("focusheader").innerHTML =
+      "Work mode activated!";
+    document.getElementById("focustext").innerHTML = " ";
+    document.getElementById("focustext2").innerHTML = "Good luck!💪";
+    document.getElementById("bouncingcat").classList.add("invisible");
 
-    }
+    await sleep(1.5 * 1000);
+
+
+    document.getElementById("focusheader").innerHTML =
+      "Focus for 15 seconds!";
+    document.getElementById("bouncingcat").classList.remove("invisible");
+    document.getElementById("focustext2").innerHTML = "";
+    document.getElementById("my-modal-6").checked = false;
+    console.log("Sleep...");
+
+
+
   }
+  if (breathingToggle === true) {
+    document.getElementById("modal-breathing").checked = true;
+    await sleep(15 * 1000);
+    document.getElementById("modal-breathing").checked = false;
+}
+  console.log('breathing toggle: ', breathingToggle);
+}
+
 
 
 ////////////////////////////////////////
@@ -171,10 +192,9 @@ var isFullScreened = function(){
 
 function toggleFullScreen(){
   if(isFullScreened()){
-    exitFs()
+    closeFullscreen()
   }
   else{
-    enterFS();
+    openFullscreen();
   }
-  
 }

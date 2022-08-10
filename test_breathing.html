@@ -1,0 +1,208 @@
+
+
+
+<html data-theme="garden" lang="en">
+
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+      <title>MicroBreaks Focus Timer</title>
+      <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    
+      <meta name="author" content="Jasper Schoormans" />
+      <meta name="description"
+        content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer." />
+      <meta name="keywords" content="study, timer, micro breaks, micro rests, gap, pomodoro, study timer, focus" />
+    
+    
+      <link href="output.css?build=2" rel="stylesheet" id="outputcss"/>
+      <link href="youtube_css.css?build=2" rel="stylesheet"/>
+    
+      <script>
+        // To fix caching issues, we use a random build number.
+        oldlink = document.getElementById("outputcss");
+        css_file_name = "output.css";
+        css_file_name_with_random_number = "output.css?v=" + Math.random();
+        oldlink.href = css_file_name_with_random_number; 
+      </script>
+      
+    
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@jasperschoormns" />
+      <meta name="twitter:title" content="MicroBreaks Focus Timer" />
+      <meta name="twitter:description"
+        content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
+      <meta name="twitter:image" content="https://www.microbreaks.co/card.png" />
+    
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="MicroBreaks Focus Timer" />
+      <meta property="og:description"
+        content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
+      <meta property="og:url" content="https://www.microbreaks.co" />
+      <meta property="og:image" content="https://www.microbreaks.co/card.png" />
+    
+      <!-- Plausible analytics -->
+      <script defer data-domain="microbreaks.co" src="https://plausible.io/js/plausible.js"></script>
+    
+    </head>
+    
+    <body>
+
+              <!-- The button to open modal -->
+        <label for="my-modal" class="btn modal-button">open modal</label>
+
+        <!-- Put this part before </body> tag -->
+        <input type="checkbox" id="my-modal" class="modal-toggle" checked/>
+        <div class="modal">
+          <div class="modal-box">
+            <h3 class="font-bold text-2xl text-center">Be More Alert.</h3>
+
+            <p class="py-4">
+              This exercise will help you become more alert, by stimulating an increase in adrenaline.
+               Deep breathing has been shown to have a positive effect on attention.
+            </p>
+
+            <div class="grid grid-cols-3 gap-2 bg-primary p-3 rounded-xl mt-1">
+              <div>
+                <div class="grid grid-flow-col gap-5 text-center auto-cols-max justify- my-5 place-content-center">
+                  <div class="flex flex-col p-2 bg-primary rounded-box text-neutral-content my-2 place-content-center">
+                    <span class="countdown font-mono text-6xl text-center">
+                      <span style="--value:25;" id="breathCounter" class="text-center"></span>
+                    </span>
+                     breaths
+                  </div>
+                  </div>
+  
+                  <div class="flex flex-col">
+                    <input type="range" min="6" max="14" value="10" class="range range-secondary w-full items-center justify-center" step="2" id="speedRange"/>
+                    <div class="w-full flex justify-between text-xs text-secondary px-2">
+                      <span>Faster</span>
+                      <span>|</span>
+                      <span>Slower</span>
+                    </div>
+    
+      
+                  </div>
+    
+
+
+              </div>
+              <div class="grid col-span-2 place-items-center my-5">
+                <div class="object-none
+                object-center animate-deepbreath-10s" id="breath_cue">⚪</div>  
+              </div>
+              </div>
+            
+          
+              <br/>
+              <!-- Empty div with all the unsued classes (preloading otherwise doesnt work grene fot) -->
+              <div class="object-none
+              object-center animate-deepbreath-6s animate-deepbreath-8s
+              animate-deepbreath-10s animate-deepbreath-12s animate-deepbreath-14s" id="breath_cue"></div>
+
+
+              <ul class="steps steps-vertical text-sm md:text-md">
+                <li class="step step-primary">Take 25 deep breaths (in via 👃, out via 👄)
+                </li>
+                <li class="step step-primary">On exhale, hold breath (15-60 sec)</li>
+                <li class="step step-primary">Inhale once and hold breath (15-60 sec)</li>
+                <li class="step step-primary">Breath normally</li>
+              </ul>
+              
+
+
+            <div class="modal-action m-0">
+              <div class="w-full text-xs">
+                
+                <p class="text-xs">For informational purposes only. Use at your own risk.<br/>
+                  Sources used: <a href="https://hubermanlab.com/teach-and-learn-better-with-a-neuroplasticity-super-protocol/">Huberman Lab</a>;
+                  <a href="https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/">NHS</a>;
+                  <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5455070/">Ma et al.</a>;
+    
+    
+                </p>    
+              </div>
+              <label for="my-modal" class="btn btn-lg btn-success">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg> &nbsp; Done.</label>
+            </div>
+          </div>
+        </div>
+
+  
+          
+            <script>
+var forceRedraw = function(element){
+
+if (!element) { return; }
+
+var n = document.createTextNode(' ');
+var disp = element.style.display;  // don't worry about previous display style
+
+element.appendChild(n);
+element.style.display = 'none';
+
+setTimeout(function(){
+    element.style.display = disp;
+    n.parentNode.removeChild(n);
+},20); // you can play with this timeout to make it as short as possible
+}
+
+
+              function sleep(ms) {
+                  return new Promise((resolve) => setTimeout(resolve, ms));
+                  }
+
+              async function doBreaths(){
+
+                var breathHoldDuration = 10; // in tailwind config hardcoded
+                var nBreath = 5;
+
+                // loop through the number of breaths
+                for (var i = 0; i < nBreath; i++) {
+                  breathsToGo = nBreath - i;
+                  // change the style of id breathCounter
+                  document.getElementById("breathCounter").style = "--value:" + breathsToGo.toString() + ";";
+
+                  // remove animation style of dot to breathe
+                  document.getElementById("breath_cue").classList.remove("animate-deepbreath-" + breathHoldDuration.toString() + "s");
+
+
+                  // get value of speedRange
+                  var breathHoldDuration = document.getElementById("speedRange").value;
+                  // change animation style of dot to breathe
+                  document.getElementById("breath_cue").classList.add("animate-deepbreath-" + breathHoldDuration.toString() + "s");
+                  // force redra
+                  // document.getElementById('breath_cue').style.display = 'none';
+                  // document.getElementById('breath_cue').style.display = 'block';
+                  // forceRedraw("breath_cue");
+                  
+                  // 
+                  await sleep(breathHoldDuration * 1000);
+
+                  console.log("breath " + i);
+                  console.log("resp speed : " + breathHoldDuration);
+
+                }
+                document.getElementById("breath_cue").classList.remove("animate-deepbreath-" + breathHoldDuration.toString() + "s");
+                document.getElementById("breathCounter").style = "--value:0;";
+
+
+
+
+              }
+
+              doBreaths();
+            </script>
+
+      
+
+
+<!--  -->
+  
+  
+  </div>
+  </body>
+  </html>
+  
