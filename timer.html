@@ -42,9 +42,12 @@
   <!-- Plausible analytics -->
   <script defer data-domain="microbreaks.co" src="https://plausible.io/js/plausible.js"></script>
 
+
 </head>
 
 <body>
+
+
   <container>
 
 
@@ -158,6 +161,27 @@
               <line x1="3" y1="21" x2="10" y2="14"></line>
             </svg>
           </button>
+
+          <!-- SOUND DROPDOWNs -->
+          <button class="hover:text-primary" onclick="toggleFullScreen()">
+          </button>
+
+
+          <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost rounded-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-music"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+            </label>
+            <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+              <li><a onClick="audio_seabirds()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-anchor"><circle cx="12" cy="5" r="3"></circle><line x1="12" y1="22" x2="12" y2="8"></line><path d="M5 12H2a10 10 0 0 0 20 0h-3"></path></svg>
+              </a></li> 
+              <li><a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-droplet"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+              </a></li>
+            </ul>
+    
+          </div>
+
 
 
           <!-- AUDIO TOGGLE  -->
@@ -881,12 +905,6 @@
     }
 
   </script>
-
-
-
-
-
-
 
 </body>
 

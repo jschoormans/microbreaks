@@ -12,7 +12,7 @@ However, some might find a working time of 25 minutes a little bit too short. Yo
 ![Study timer](timer.png)
 
 
-In this list we give the five best alternatives to the simple Pomodoro timer. 
+We have collected the five best alternatives to the simple Pomodoro timer. 
 
 ## 1. MicroBreaks.co 
 [MicroBreaks.co](https://www.microbreaks.co) provides a science-based study timer. This timer has very short (10 second) mini breaks at random intervals, in addition to a customizable longer study interval. These beginning and end of these micro breaks are signaled by a chime. These breaks have been shown in scientific studies to greatly increase learning capabilities. During these breaks, the brain repeats the learned material at a whopping 10 to 20 times. 

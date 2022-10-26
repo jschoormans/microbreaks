@@ -42,6 +42,23 @@ function dingaLing(audioToggle){
 }
 
 
+
+// background music
+
+function audio_seabirds(audioToggle){
+  var audio = new Audio('/assets/audio/seabirds.mp3');
+  if (audioToggle) {
+    audio.play();
+    audio.loop = true;
+
+    console.log("Sound is playing - seabirds");
+    audio.onended = function(){
+      audio.play();
+    }    
+  }
+}
+
+
 ////////////////////////////////////////
 // 2. States
 
