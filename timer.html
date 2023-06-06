@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html data-theme="garden" lang="en">
 
+
+<!-- CHANGES: 
+  * MIN TIME BETWEEN BREAKS LONGER
+  [] volume
+  [] changed max work time to 90 MINUTES in settings
+
+
+
+-->
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -40,7 +50,7 @@
   <meta property="og:image" content="https://www.microbreaks.co/card.png" />
 
   <!-- Plausible analytics -->
-  <script defer data-domain="microbreaks.co" src="https://plausible.io/js/plausible.js"></script>
+  <script defer data-domain="microbreaks.co" src="http://plausible.quadra3d.nl/js/script.js"></script>
 
 
 </head>
@@ -497,7 +507,7 @@
 
           <br />
           Work time
-          <input type="range" min="10" max="60" value="30" class="range range-sm range-primary" step="5"
+          <input type="range" min="10" max="90" value="30" class="range range-sm range-primary" step="5"
             id="worktime" />
           <div class="w-full flex justify-between text-xs px-2">
             <span>10 min</span>
@@ -506,6 +516,9 @@
             <span>40 min</span>
             <span>50 min</span>
             <span>60 min</span>
+            <span>70 min</span>
+            <span>80 min</span>
+            <span>90 min</span>
           </div>
 
 
@@ -528,7 +541,7 @@
     // var breathingToggle = true; //Show breathing animation
     // var audioToggle = true; //Turn on off beeps and other audio effects
 
-    var timerMinimum = 30; // minimum time between rests
+    var timerMinimum = 90; // minimum time between rests
 
 
     var breakCount = 0;

@@ -1,0 +1,301 @@
+name,visitors
+California,633
+England,370
+Ontario,175
+North Holland,168
+New York,166
+Texas,145
+Arizona,135
+British Columbia,131
+Mahārāshtra,122
+Bavaria,113
+North Rhine-Westphalia,104
+Washington,98
+Hesse,92
+Nyland,88
+Auvergne-Rhône-Alpes,88
+Massachusetts,87
+Florida,86
+New Jersey,83
+Wilayah Persekutuan Kuala Lumpur,82
+National Capital Region,79
+New South Wales,79
+Central Bohemia,75
+Stockholms län,74
+South Holland,72
+Hồ Chí Minh,71
+Illinois,69
+Quebec,66
+Virginia,66
+Île-de-France,65
+Georgia,63
+Hà Nội,58
+Pennsylvania,57
+Delhi,55
+Lombardy,53
+Scotland,53
+Michigan,51
+Berlin,51
+Colorado,51
+Maryland,51
+Zürich,49
+Hamburg,49
+Lower Saxony,48
+Karnātaka,47
+Leinster,47
+District of Columbia,44
+Saskatchewan,44
+Ciudad de México,43
+Victoria,43
+Alberta,43
+Gauteng,42
+Tel Aviv,42
+Attica,42
+Ohio,41
+North Carolina,40
+Tennessee,39
+Campania,39
+Munster,38
+Skåne län,36
+Western Australia,34
+Lazio,34
+São Paulo,33
+Capital Governorate,33
+Azuay,32
+Lower Silesia,32
+İstanbul,31
+Utah,31
+Zagreb City,31
+Nevada,30
+Baden-Württemberg,30
+Western Cape,30
+Oregon,29
+Missouri,28
+Mazovia,28
+New Mexico,27
+Budapest,27
+Bern,27
+Lisboa,25
+Queensland,25
+Community of Madrid,24
+București,23
+Tokyo,23
+Kocaeli,23
+Indiana,22
+Alabama,22
+Sankt-Peterburg,22
+Catalonia,22
+South Moravia,22
+Capital Region of Denmark,21
+Manitoba,21
+Auckland,20
+Connecticut,20
+Prague,20
+Tamil Nādu,19
+Región Metropolitana de Santiago,19
+Provence-Alpes-Côte-d’Azur,19
+Kansas,18
+Idaho,18
+Flemish Region,17
+Kerala,17
+Wales,17
+Western Greece,17
+Minnesota,16
+Oslo,16
+Central,16
+Vienna,16
+South Australia,16
+Telangāna,15
+Islamabad,15
+Krung Thep Maha Nakhon,15
+Tbilisi,15
+Moskva,15
+Bihār,15
+Södermanlands län,15
+North Brabant,14
+Saxony,14
+Taipei,14
+Friuli Venezia Giulia,14
+Busan,13
+Brussels-Capital Region,13
+Minas Gerais,13
+Wisconsin,13
+Blekinge län,13
+Beograd,13
+Central Visayas,13
+Uttar Pradesh,12
+Gyeonggi,12
+Utrecht,12
+Central and Western Hong Kong Island,12
+Iowa,12
+Eskişehir,12
+Phnom Penh,12
+Samarskaja oblast',12
+Yangon,12
+Belize,12
+Porto,11
+Nova Scotia,11
+Kentucky,11
+Al ‘A̅şimah,11
+Occitanie,11
+Västra Götalands län,11
+Olomouc,11
+Kaohsiung,11
+Bāgmatī,10
+Rhineland-Palatinate,10
+Vilnius County,10
+Rabat-Salé-Kénitra,10
+South Carolina,10
+New Taipei,10
+Schleswig-Holstein,9
+Piedmont,9
+Gujarāt,9
+Ciudad Autónoma de Buenos Aires,9
+Umbria,9
+Santo Domingo,9
+Buenos Aires,9
+Selangor,8
+Madhya Pradesh,8
+Jakarta Raya,8
+Nairobi City,8
+Jalisco,8
+Höfuðborgarsvæði,8
+Birkaland,8
+Vysočina,8
+Central Luzon,7
+Oklahoma,7
+Wyoming,7
+Sofia (stolitsa),7
+Federation of Bosnia and Herzegovina,7
+Brandenburg,7
+Kyiv,7
+Osaka,7
+Goiás,7
+Nebraska,7
+Greater Poland,7
+West Bengal,7
+Calabarzon,7
+Groningen,7
+Cairo,6
+North Denmark Region,6
+Bay of Plenty,6
+Vestland,6
+Gelderland,6
+Košický kraj,6
+Lesser Poland,6
+Overijssel,6
+Paraíba,6
+Northern Ireland,6
+Port Louis,6
+Sonora,6
+Innlandet,6
+Udmurtskaja Respublika,6
+Long An,6
+Friesland,5
+Ayacucho,5
+Rhode Island,5
+Västmanlands län,5
+Okinawa,5
+Sindh,5
+Louisiana,5
+Normandie,5
+Region of Murcia,5
+Flevoland,5
+Connaught,5
+Montevideo,5
+Uppsala län,5
+Egentliga Finland,5
+Veneto,5
+Bretagne,5
+Marche,5
+Sicilia,5
+Misiones,5
+Port of Spain,5
+San Juan-Laventille,5
+Distrito Federal,5
+Lublin,5
+Panamá,4
+Kayseri,4
+Haryāna,4
+Centre-Val de Loire,4
+Distrito Capital de Bogotá,4
+Beijing Shi,4
+Paraná,4
+Andhra Pradesh,4
+Tsuen Wan New Territories,4
+Lagos,4
+Centre,4
+Seoul,4
+Zlín,4
+Dhaka,4
+Bourgogne-Franche-Comté,4
+Walloon Region,4
+Kaunas County,4
+Western Province,4
+Silesia,4
+Central Denmark Region,4
+Western Visayas,4
+Mureș,4
+Jerusalem,4
+Mpumalanga,4
+Region of Southern Denmark,4
+Gävleborgs län,4
+Apulia,4
+Bình Dương,4
+Ankara,3
+Central Macedonia,3
+Luxembourg,3
+Grand-Est,3
+Haifa,3
+Dubayy,3
+Rio de Janeiro,3
+Hunedoara,3
+Timiș,3
+Prešovský kraj,3
+Tunis,3
+Östergötlands län,3
+Hawaii,3
+Souss-Massa,3
+Arkansas,3
+Basel-Stadt,3
+Shanghai Shi,3
+Đắk Lắk,3
+Basque Country,3
+Thuringia,3
+Eastern Cape,3
+Sankt Gallen,3
+Värmlands län,3
+Pomerania,3
+Pernambuco,3
+Guatemala,3
+Zadar,3
+Jelgava,3
+Northern,3
+Tuscany,3
+Asunción,3
+Khyber Pakhtunkhwa,3
+Bremen,3
+South Bohemia,3
+Andalusia,3
+Sofia,3
+Split-Dalmatia,3
+Romssa ja Finnmárkku,3
+Leiria,3
+İzmir,2
+Goa,2
+Wellington,2
+Bahia,2
+Castries,2
+Punjab,2
+La Araucanía,2
+Nuevo León,2
+Quảng Ninh,2
+Kyivska oblast,2
+Giza,2
+Harjumaa,2
+Calabria,2
+Saitama,2
+North Dakota,2
+Bali,2
+Jawa Timur,2
+Kirovohradska oblast,2
