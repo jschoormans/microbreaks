@@ -49,9 +49,25 @@
   <meta property="og:url" content="https://www.microbreaks.co" />
   <meta property="og:image" content="https://www.microbreaks.co/card.png" />
 
-  <!-- Plausible analytics -->
-  <script defer data-domain="microbreaks.co" src="https://plausible.jasperschoormans.nl/js/script.js"></script>
-
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.microbreaks.co"]);
+  _paq.push(["setDomains", ["*.microbreaks.co"]]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.jasperschoormans.nl/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//matomo.jasperschoormans.nl/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
 
 </head>
 
