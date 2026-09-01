@@ -1,132 +1,267 @@
 <!DOCTYPE html>
 <html data-theme="garden" lang="en">
-
-
-<!-- CHANGES: 
-  * MIN TIME BETWEEN BREAKS LONGER
-  [] volume
-  [] changed max work time to 90 MINUTES in settings
-
-
-
--->
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>MicroBreaks Focus Timer</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
   <meta name="author" content="Jasper Schoormans" />
-  <meta name="description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer." />
-  <meta name="keywords" content="study, timer, micro breaks, micro rests, gap, pomodoro, study timer, focus" />
-
-
+  <meta name="description" content="A simple timer for microbreaks, optional sounds, and guided breathing." />
   <link href="output.css?build=2" rel="stylesheet" id="outputcss" />
   <link href="youtube_css.css?build=2" rel="stylesheet" />
-
   <script>
-    // To fix caching issues, we use a random build number.
     oldlink = document.getElementById("outputcss");
-    css_file_name = "output.css";
-    css_file_name_with_random_number = "output.css?v=" + Math.random();
-    oldlink.href = css_file_name_with_random_number; 
+    oldlink.href = "output.css?v=" + Math.random();
   </script>
-
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@jasperschoormns" />
-  <meta name="twitter:title" content="MicroBreaks Focus Timer" />
-  <meta name="twitter:description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
-  <meta name="twitter:image" content="https://www.microbreaks.co/card.png" />
-
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="MicroBreaks Focus Timer" />
-  <meta property="og:description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
-  <meta property="og:url" content="https://www.microbreaks.co" />
-  <meta property="og:image" content="https://www.microbreaks.co/card.png" />
-
-<!-- Matomo -->
-<script type="text/javascript">
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-  _paq.push(["setCookieDomain", "*.microbreaks.co"]);
-  _paq.push(["setDomains", ["*.microbreaks.co"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//matomo.jasperschoormans.nl/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '2']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//matomo.jasperschoormans.nl/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Matomo Code -->
-
-<style id="mb-week1-chrome">
-  body { background: #f4f6f5; }
-  #cont.hero {
-    background-image: none !important;
-    background: #f4f6f5 !important;
-  }
-  .hero-overlay {
-    opacity: 0 !important;
-    background: transparent !important;
-    display: none !important;
-  }
-  .navbar {
-    background: #ffffff !important;
-    border: 1px solid #e4e9ec;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  }
-  #progbar {
-    color: #1a2e2a !important;
-    border-color: #c5d4cf !important;
-  }
-  .absolute.bottom-0.fixed.pb-8 {
-    padding-bottom: 2.5rem !important;
-  }
-  #app {
-    font-size: 0.75rem !important;
-    opacity: 0.65;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-  }
-  #mb-founder-unlock {
-    --mb-teal: #0d9488;
-    --mb-teal-soft: #ccfbf1;
-    --mb-teal-ink: #134e4a;
-    margin: 1.5rem 0 0;
-    padding: 1.25rem 1.35rem;
-    border-radius: 1rem;
-    border: 1px solid #99f6e4;
-    background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);
-    box-shadow: 0 1px 2px rgba(13, 148, 136, 0.08);
-  }
-  #mb-founder-unlock .mb-fu-label {
-    display: inline-block;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--mb-teal-ink);
-    text-decoration: none;
-  }
-  #mb-founder-unlock .mb-fu-label:hover { color: var(--mb-teal); }
-  #mb-founder-unlock .mb-fu-sub {
-    margin-top: 0.35rem;
-    font-size: 0.875rem;
-    color: #4b635e;
-    line-height: 1.4;
-  }
-  @media (max-width: 440px) {
-    #app { display: none !important; }
-  }
-</style>
-
+  <!-- Matomo -->
+  <script type="text/javascript">
+    var _paq = window._paq = window._paq || [];
+    _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+    _paq.push(["setCookieDomain", "*.microbreaks.co"]);
+    _paq.push(["setDomains", ["*.microbreaks.co"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//matomo.jasperschoormans.nl/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '2']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><p><img src="//matomo.jasperschoormans.nl/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+  <style id="mb-chrome-tokens">
+    :root { --mb-bg:#f4f6f5; --mb-card:#fff; --mb-ink:#1a2332; --mb-muted:#5c6b7a; --mb-faint:#8a97a5; --mb-border:#e4e9ec; --mb-accent:#0d9488; --mb-hover:#0f766e; --mb-soft:#ecfdf8; }
+    body { background-color: var(--mb-bg) !important; color: var(--mb-ink); }
+    .navbar.bg-secondary { background-color: rgba(255,255,255,.92) !important; border:1px solid var(--mb-border); color: var(--mb-ink); }
+    .btn.btn-secondary { background-color: var(--mb-accent) !important; border-color: var(--mb-accent) !important; color:#fff !important; }
+    .btn.btn-secondary:hover { background-color: var(--mb-hover) !important; border-color: var(--mb-hover) !important; }
+    #progbar { color: var(--mb-ink) !important; border-color: var(--mb-accent) !important; }
+    #app { background: transparent !important; border:1px solid var(--mb-border) !important; color: var(--mb-muted) !important; font-size:.75rem !important; font-weight:500 !important; box-shadow:none !important; min-height:2.25rem; height:auto; padding-left:.75rem; padding-right:.75rem; }
+    #app a { color: inherit !important; text-decoration:none; }
+    #app:hover { border-color: var(--mb-accent) !important; color: var(--mb-hover) !important; background: var(--mb-soft) !important; }
+    #founder-unlock { max-width:36rem; margin:1.25rem auto .5rem; padding:1.25rem; background:var(--mb-card); border:1px solid var(--mb-border); border-radius:16px; box-shadow:0 1px 2px rgba(26,35,50,.04); }
+    #founder-unlock h2 { font-size:.9375rem; font-weight:600; margin:0 0 .375rem; color:var(--mb-ink); }
+    #founder-unlock .unlock-copy { font-size:.8125rem; color:var(--mb-muted); margin:0 0 .875rem; }
+    #founder-unlock .unlock-cta { display:inline-flex; width:100%; justify-content:center; background:var(--mb-soft); color:var(--mb-hover); border:1px solid transparent; border-radius:10px; padding:.625rem 1rem; font-size:.875rem; font-weight:600; text-decoration:none; }
+    #founder-unlock .unlock-cta:hover { border-color:var(--mb-accent); background:#dff7ef; }
+    #founder-unlock .unlock-note { margin:.5rem 0 0; font-size:.75rem; color:var(--mb-faint); text-align:center; }
+  </style>
 </head>
-SEE_FULL_FILE_AT_/workspace/timer.html
+<body>
+<container>
+  <div class="hero min-h-screen bg-base-200 bg-opacity-20" id="cont" style="background-image:url('pic1.jpg');background-size:cover">
+    <div class="hero-overlay bg-opacity-20"></div>
+    <div class="hero-content text-center" id="hero-main"></div>
+    <div class="navbar bg-secondary md:w-5/6 rounded-full p-2 drop-shadow-xl absolute top-0 mt-3 flex flex-row justify-between">
+      <div class="navbar-left hidden lg:flex"><a class="btn btn-ghost normal-case text-xl">MicroBreaks.co</a></div>
+      <div class="navbar-center"><a class="btn btn-ghost normal-case text-xl" id="demo3_wm">Do something today</a></div>
+      <div class="navbar-right flex flex-row items-center gap-1 md:gap-3 mr-3">
+        <label class="swap swap-rotate hover:text-primary"><input type="checkbox" id="focusModeCheckBox" /><span class="swap-off">◎</span><span class="swap-on">✕</span></label>
+        <label class="swap swap-rotate hover:text-primary hidden"><input type="checkbox" id="breathingModeCheckBox" /><span>🌬</span></label>
+        <button class="hover:text-primary" onclick="toggleFullScreen()" aria-label="Fullscreen">⛶</button>
+        <label class="swap swap-rotate hover:text-primary"><input type="checkbox" id="audioToggleCheckBox" /><span class="swap-off">🔊</span><span class="swap-on">🔇</span></label>
+        <label for="modal-settings" class="swap hover:text-primary"><input type="checkbox" /><span>⚙</span></label>
+      </div>
+    </div>
+    <div class="flex flex-col justify-center text-center min-h-[87%] max-w-xl" id="hero-microbreak">
+      <div class="grow flex flex-col justify-center items-center">
+        <div class="radial-progress text-5xl text-secondary border-4 border-primary-content" id="progbar" style="--value:0; --size:18rem; --thickness:12px;">30:00</div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 fixed pb-8 z-100 w-full">
+      <div class="flex flex-row justify-center">
+        <div class="btn-group">
+          <button class="btn md:btn-lg rounded-full btn-secondary" type="button"><label for="modal-breaths" onclick="doBreaths()">🌬</label></button>
+          <button class="btn md:btn-lg rounded-full btn-secondary hidden" id="stop" aria-label="Pause">❚❚</button>
+          <button class="btn md:btn-lg rounded-full btn-secondary" id="para" aria-label="Start">▶</button>
+          <button class="btn md:btn-lg rounded-full btn-secondary" id="reset" aria-label="Reset">■</button>
+          <button class="btn md:btn-lg rounded-full btn-secondary" id="app" title="iOS waitlist"><a href="https://tally.so/r/3NYZLG" target="_blank" rel="noopener">iOS waitlist</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto max-w-xl p-4" id="howitworks">
+    <div class="collapse rounded-xl collapse-plus">
+      <input type="checkbox" />
+      <div class="collapse-title text-xl font-medium">How does this work?</div>
+      <div class="collapse-content text-left">
+        <p>Some research explores short rests between focus blocks and how memory replay may occur during those pauses.</p>
+        <br />
+        <p>Ideas explored in related research (not a personal guarantee):</p>
+        <div class="stats shadow w-full">
+          <div class="stat"><div class="stat-title">Repetition speed</div><div class="stat-value text-primary">10-20x</div></div>
+          <div class="stat"><div class="stat-title">During rests</div><div class="stat-value text-primary text-2xl">Replay</div><div class="stat-desc">studied material may replay at high speed (research framing)</div></div>
+        </div>
+        <br />
+        <p>Start the timer; at random intervals take a short microbreak, then continue after the beep.</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="container mx-auto max-w-xl p-4" id="founder-unlock" aria-label="Founder unlock">
+    <h2>Founder unlock</h2>
+    <p class="unlock-copy">Early access to the upcoming iOS app and founder updates. Web timer stays free.</p>
+    <a class="unlock-cta" href="https://buy.stripe.com/dRmeVc4WccRL6JC9NveAg07">Unlock early access — $12</a>
+    <p class="unlock-note">One-time · via Stripe</p>
+  </aside>
+
+  <footer class="footer p-10 bg-neutral text-neutral-content">
+    <div><span class="footer-title">Site</span><a class="link link-hover" href="timer.html">Timer</a><a class="link link-hover" href="/blog/public/">Blog</a></div>
+    <div><span class="footer-title"><a href="https://www.twitter.com/jasperschoormns" target="_blank">Made by Jasper</a></span><a class="link link-hover" href="https://tally.so/r/3NYZLG">Get notified</a></div>
+  </footer>
+
+  <input type="checkbox" id="modal-settings" class="modal-toggle" />
+  <label for="modal-settings" class="modal cursor-pointer">
+    <label class="modal-box w-11/12" for="">
+      <h3 class="text-lg font-bold">Settings</h3>
+      <div>
+        Maximum time between rests
+        <input type="range" min="60" max="300" value="180" class="range range-sm range-primary" step="30" id="timermaximum" />
+        Microbreak time
+        <input type="range" min="5" max="25" value="10" class="range range-sm range-primary" step="5" id="microbreaktime" />
+        Work time
+        <input type="range" min="10" max="90" value="30" class="range range-sm range-primary" step="5" id="worktime" />
+      </div>
+    </label>
+  </label>
+</container>
+
+<script src="timer.js?build=2"></script>
+<script>
+  var timer_runs = false;
+  var timerMinimum = 90;
+  var breakCount = 0;
+  var totalTime = 0;
+  var debug = false;
+  setDefaultMode();
+
+  function setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString) {
+    totalTimePercentage = (totalTime / totalWorkTimeSeconds) * 100;
+    document.getElementById("progbar").innerText = timeLeftString;
+    document.getElementById("progbar").style = "--value:" + totalTimePercentage + "; --size:18rem; --thickness:12px;";
+  }
+
+  function timeLeftCalculation(totalWorkTimeSeconds, totalTime) {
+    timeLeft = totalWorkTimeSeconds - totalTime;
+    timeLeftMinutes = Math.floor(timeLeft / 60);
+    timeLeftSeconds = timeLeft - timeLeftMinutes * 60;
+    timeLeftString = timeLeftMinutes + ":" + timeLeftSeconds.toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
+    return [timeLeftMinutes, timeLeftSeconds, timeLeftString];
+  }
+
+  var seconds = 1;
+  var timeLeftMinutes = 0;
+  var timeLeftSeconds = 0;
+
+  let RemainingTime = () => {
+    seconds = seconds - 1;
+    if (FocusModeToggle == true) {
+      totalWorkTimeSeconds = totalWorkTimeMinutes * 60 + 15;
+    } else {
+      totalWorkTimeSeconds = totalWorkTimeMinutes * 60;
+    }
+    [timeLeftMinutes, timeLeftSeconds, timeLeftString] = timeLeftCalculation(totalWorkTimeSeconds, totalTime);
+    setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString);
+    if (breakCount % 2 === 0) {
+      document.querySelector("title").textContent = "Microbreak Time";
+    } else {
+      document.querySelector("title").textContent = timeLeftString + " - MicroBreaks.co";
+    }
+    if (seconds === 0) {
+      if (breakCount % 2 === 0) {
+        seconds = timerMinimum + Math.floor(Math.random() * (timerMaximum - timerMinimum + 1));
+        if (debug) seconds = 8;
+        breakCount++;
+        setWorkMode();
+      } else {
+        seconds = microBreakTime;
+        breakCount++;
+        setMicroBreakMode();
+      }
+    }
+    totalTime++;
+    if (totalTime > (totalWorkTimeSeconds + 1)) {
+      timer_runs = false;
+      totalTime = 0;
+      seconds = 1;
+      breakCount = 0;
+      boxingBell(audioToggle);
+      clearInterval(timer);
+      setDefaultMode();
+    }
+  };
+
+  document.getElementById("para").onclick = function () {
+    setWorkMode();
+    if (!timer_runs) {
+      preStudyExercises();
+      timer = setIntervalImmediately(RemainingTime, 1000);
+      timer_runs = true;
+      document.getElementById("stop").onclick = function () {
+        clearInterval(timer);
+        setPauseMode();
+        timer_runs = false;
+      };
+      document.getElementById("reset").onclick = function () {
+        clearInterval(timer);
+        setDefaultMode();
+        timer_runs = false;
+        totalTime = 0;
+        seconds = 1;
+        breakCount = 0;
+      };
+    }
+  };
+
+  document.getElementById("focusModeCheckBox").onchange = function () {
+    FocusModeToggle = FocusModeToggle ? false : true;
+  };
+  document.getElementById("breathingModeCheckBox").onchange = function () {
+    breathingToggle = breathingToggle ? false : true;
+  };
+  document.getElementById("audioToggleCheckBox").onchange = function () {
+    audioToggle = audioToggle ? false : true;
+  };
+  document.getElementById("timermaximum").onchange = function () {
+    timerMaximum = document.getElementById("timermaximum").value;
+  };
+  document.getElementById("microbreaktime").onchange = function () {
+    microBreakTime = document.getElementById("microbreaktime").value;
+  };
+  document.getElementById("worktime").onchange = function () {
+    totalWorkTimeMinutes = document.getElementById("worktime").value;
+  };
+
+  FocusModeToggle = document.getElementById("focusModeCheckBox").value === "off";
+  breathingToggle = document.getElementById("breathingModeCheckBox").value === "off";
+  audioToggle = document.getElementById("audioToggleCheckBox").value;
+  timerMaximum = document.getElementById("timermaximum").value;
+  microBreakTime = document.getElementById("microbreaktime").value;
+  totalWorkTimeMinutes = document.getElementById("worktime").value;
+</script>
+
+<input type="checkbox" id="modal-breaths" class="modal-toggle" />
+<div class="modal"><div class="modal-box">
+  <h3 class="font-bold text-2xl text-center">Be More Alert.</h3>
+  <p class="py-4">Deep breathing cue (informational). Use at your own risk.</p>
+  <div><span id="breathCounter" style="--value:25;"></span> breaths</div>
+  <input type="range" min="6" max="14" value="10" class="range" step="2" id="speedRange" />
+  <div id="breath_cue">⚪</div>
+  <label for="modal-breaths" class="btn">Done</label>
+</div></div>
+<script>
+  async function doBreaths() {
+    var breathHoldDuration = 10;
+    var nBreath = 25;
+    for (var i = 0; i < nBreath; i++) {
+      document.getElementById("breathCounter").style = "--value:" + (nBreath - i).toString() + ";";
+      breathHoldDuration = document.getElementById("speedRange").value;
+      await sleep(breathHoldDuration * 1000);
+    }
+    document.getElementById("breathCounter").style = "--value:0;";
+  }
+</script>
+</body>
+</html>
