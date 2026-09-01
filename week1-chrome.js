@@ -23,7 +23,8 @@
     "#mb-founder-unlock p{font-size:13px;color:var(--mb-muted);margin:0 0 12px;line-height:1.45}",
     "#mb-founder-unlock a{display:inline-flex;padding:10px 14px;border-radius:10px;border:1px solid var(--mb-border);background:var(--mb-soft);color:var(--mb-hover);font-size:13.5px;font-weight:600;text-decoration:none}",
     "#mb-founder-unlock a:hover{border-color:var(--mb-accent)}",
-    "@media (max-width:440px){.absolute.bottom-0.fixed.pb-8{padding-bottom:6.5rem!important}.mb-feedback-rail{top:4.5rem!important}}"
+    "@media (max-width:440px){.absolute.bottom-0.fixed.pb-8{padding-bottom:6.5rem!important}.mb-feedback-rail{top:4.5rem!important}}",
+    "@media (max-width:640px){#howitworks .stats{display:flex!important;flex-direction:column!important;width:100%!important}#howitworks .stat{width:100%!important;max-width:100%!important}#howitworks .stats.shadow{overflow:visible!important}}"
   ].join("");
   document.head.appendChild(css);
 
@@ -77,16 +78,37 @@
 
   var how = document.getElementById("howitworks");
   if (how) {
-    how.innerHTML = how.innerHTML
-      .replace(/10-20x/gi, "~10s")
-      .replace(/10–20×/g, "~10s")
-      .replace(/95%\s*of learning done in rest/gi, "when the brain can replay what you just practiced")
-      .replace(/of learning done in rest/gi, "when the brain can replay what you just practiced");
+    var paras = how.querySelectorAll(".collapse-content > p, .collapse-content p");
+    if (paras[0] && /tremendously|20 times|study material/i.test(paras[0].textContent || "")) {
+      paras[0].innerHTML = "Short pauses between practice bouts, inspired by gap / micro-rest research. Research on skill practice found compressed neural replay during short waking rests (Buch et al., Cell Reports 2021). That's motor sequences in the lab — not a guarantee for every study session. Read more in our <b><a href=\"https://www.microbreaks.co/blog/public/posts/the-value-of-microbreaks/\">blog post</a></b>.";
+    }
+    var titles = how.querySelectorAll(".stat-title");
+    var values = how.querySelectorAll(".stat-value");
+    var descs = how.querySelectorAll(".stat-desc");
+    if (titles[0]) titles[0].textContent = "Brief rests";
+    if (values[0]) {
+      values[0].textContent = "~10s";
+      values[0].classList.add("text-xl", "leading-tight");
+    }
+    if (descs[0]) descs[0].textContent = "same timescale as motor-skill rest/replay studies";
+    if (titles[1]) titles[1].textContent = "Between bouts";
+    if (values[1]) {
+      values[1].textContent = "Rest";
+      values[1].classList.add("text-lg", "leading-tight");
+    }
+    if (descs[1]) descs[1].textContent = "when the brain can replay what you just practiced";
     var benefitP = Array.prototype.find.call(how.querySelectorAll("p"), function (p) {
       return /benefits in a research setting/i.test(p.textContent || "");
     });
     if (benefitP) {
       benefitP.textContent = "Claim-safe framing from motor-skill rest/replay studies (not a personal guarantee):";
+    }
+    var video = how.querySelector("h2.text-xl.font-bold, h2");
+    if (video && /Check out this video/i.test(video.textContent || "") && !how.querySelector(".mb-trust")) {
+      var trust = document.createElement("p");
+      trust.className = "mb-trust";
+      trust.textContent = "Inspired by peer-reviewed motor-skill rest/replay research (Buch et al., Cell Reports 2021). Not a medical device; results vary.";
+      video.parentNode.insertBefore(trust, video);
     }
   }
 
