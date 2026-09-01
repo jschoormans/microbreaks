@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="garden">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=5.0" />
-    <title>MicroBreaks Focus Timer iOS App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0" />
+    <title>Founder unlock — MicroBreaks iOS early access</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  
+
     <!-- Plausible analytics -->
     <script defer data-domain="microbreaks.co" src="https://plausible.jasperschoormans.nl/js/script.js"></script>
-    <!-- make sure plausible knows the page is the app -->
     <script>
-      window.plausible.trackEvent('app_view');
+      window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments); };
+      window.plausible('app_view');
     </script>
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -19,11 +19,36 @@
 </head>
 <body class="bg-base-200">
     <div class="hero min-h-screen" style="background-image: url('assets/cat4.jpg'); background-size: cover;">
-        <div class="hero-content text-center">
-            <div class="max-w-md">
-                <h1 class="text-5xl font-bold">MicroBreaks Focus Timer</h1>
-                <p class="py-6 text-xl">The iOS App will be here soon 🚀</p>
-                <a class="btn btn-primary" href="https://tally.so/r/3NYZLG">Join the Waitlist</a>
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content py-12">
+            <div class="max-w-lg bg-base-100 bg-opacity-95 text-base-content rounded-2xl shadow-xl p-8 sm:p-10">
+                <h1 class="text-3xl sm:text-4xl font-bold">Founder unlock — early iOS access</h1>
+                <p class="py-4 text-base sm:text-lg opacity-90">
+                    $12 one-time. Priority on the iOS waitlist + supporters credit when Pro ships. Web timer stays free.
+                </p>
+
+                <!-- TODO(Jasper): replace PLACEHOLDER with real Stripe Payment Link URL -->
+                <a class="btn btn-primary btn-wide"
+                   href="https://buy.stripe.com/PLACEHOLDER"
+                   data-plausible-event="founder_unlock_click">
+                    Unlock early access — $12
+                </a>
+
+                <ul class="text-left text-sm sm:text-base mt-8 space-y-2 list-disc list-inside opacity-90">
+                    <li>Built around research on brief waking rests during skill practice (Buch 2021)</li>
+                    <li>Short, frequent microbreaks on the ~10s timescale used in that work</li>
+                    <li>Inspired by spacing: practice + rest, not only grind</li>
+                    <li>Randomized prompts so you don’t clock-watch</li>
+                    <li>A timer for evidence-aligned rest habits — not a medical device; results vary</li>
+                </ul>
+
+                <p class="mt-4 text-xs sm:text-sm opacity-60 leading-snug">
+                    Inspired by peer-reviewed motor-skill rest/replay research (Buch et al., Cell Reports 2021). Not a medical device; results vary.
+                </p>
+
+                <p class="mt-6">
+                    <a class="link link-hover text-sm opacity-80" href="https://tally.so/r/3NYZLG">Just notify me</a>
+                </p>
             </div>
         </div>
     </div>
