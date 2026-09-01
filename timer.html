@@ -1,1 +1,132 @@
-PLACEHOLDER_REPLACE_WITH_FILE
+<!DOCTYPE html>
+<html data-theme="garden" lang="en">
+
+
+<!-- CHANGES: 
+  * MIN TIME BETWEEN BREAKS LONGER
+  [] volume
+  [] changed max work time to 90 MINUTES in settings
+
+
+
+-->
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>MicroBreaks Focus Timer</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <meta name="author" content="Jasper Schoormans" />
+  <meta name="description"
+    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer." />
+  <meta name="keywords" content="study, timer, micro breaks, micro rests, gap, pomodoro, study timer, focus" />
+
+
+  <link href="output.css?build=2" rel="stylesheet" id="outputcss" />
+  <link href="youtube_css.css?build=2" rel="stylesheet" />
+
+  <script>
+    // To fix caching issues, we use a random build number.
+    oldlink = document.getElementById("outputcss");
+    css_file_name = "output.css";
+    css_file_name_with_random_number = "output.css?v=" + Math.random();
+    oldlink.href = css_file_name_with_random_number; 
+  </script>
+
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@jasperschoormns" />
+  <meta name="twitter:title" content="MicroBreaks Focus Timer" />
+  <meta name="twitter:description"
+    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
+  <meta name="twitter:image" content="https://www.microbreaks.co/card.png" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="MicroBreaks Focus Timer" />
+  <meta property="og:description"
+    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
+  <meta property="og:url" content="https://www.microbreaks.co" />
+  <meta property="og:image" content="https://www.microbreaks.co/card.png" />
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.microbreaks.co"]);
+  _paq.push(["setDomains", ["*.microbreaks.co"]]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.jasperschoormans.nl/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//matomo.jasperschoormans.nl/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
+
+<style id="mb-week1-chrome">
+  body { background: #f4f6f5; }
+  #cont.hero {
+    background-image: none !important;
+    background: #f4f6f5 !important;
+  }
+  .hero-overlay {
+    opacity: 0 !important;
+    background: transparent !important;
+    display: none !important;
+  }
+  .navbar {
+    background: #ffffff !important;
+    border: 1px solid #e4e9ec;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  #progbar {
+    color: #1a2e2a !important;
+    border-color: #c5d4cf !important;
+  }
+  .absolute.bottom-0.fixed.pb-8 {
+    padding-bottom: 2.5rem !important;
+  }
+  #app {
+    font-size: 0.75rem !important;
+    opacity: 0.65;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  #mb-founder-unlock {
+    --mb-teal: #0d9488;
+    --mb-teal-soft: #ccfbf1;
+    --mb-teal-ink: #134e4a;
+    margin: 1.5rem 0 0;
+    padding: 1.25rem 1.35rem;
+    border-radius: 1rem;
+    border: 1px solid #99f6e4;
+    background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);
+    box-shadow: 0 1px 2px rgba(13, 148, 136, 0.08);
+  }
+  #mb-founder-unlock .mb-fu-label {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--mb-teal-ink);
+    text-decoration: none;
+  }
+  #mb-founder-unlock .mb-fu-label:hover { color: var(--mb-teal); }
+  #mb-founder-unlock .mb-fu-sub {
+    margin-top: 0.35rem;
+    font-size: 0.875rem;
+    color: #4b635e;
+    line-height: 1.4;
+  }
+  @media (max-width: 440px) {
+    #app { display: none !important; }
+  }
+</style>
+
+</head>
+SEE_FULL_FILE_AT_/workspace/timer.html
