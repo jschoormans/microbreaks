@@ -1,0 +1,24 @@
+{
+  "identifier" : "A1B2C3D4",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "12.00",
+      "familyShareable" : false,
+      "internalID" : "E5F6A7B8",
+      "localizations" : [
+        {
+          "description" : "Priority on the iOS waitlist and supporters credit when Pro ships. The timer stays free.",
+          "displayName" : "Founder unlock",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.microbreaks.founderunlock",
+      "referenceName" : "Founder Unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : { "_failTransactionsEnabled" : false, "_storeKitErrors" : [] },
+  "subscriptionGroups" : [],
+  "version" : { "major" : 3, "minor" : 0 }
+}
