@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject private var timer: TimerEngine
     @AppStorage("founderUnlocked") private var founderUnlocked = false
+    @AppStorage("breathingEnabled") private var breathingEnabled = false
     @State private var showSettings = false
     @State private var showPaywall = false
     @State private var showBreathing = false
@@ -115,6 +116,9 @@ struct ContentView: View {
                 }
             } else {
                 roundButton(system: "play.fill", label: "Start") {
+                    if breathingEnabled {
+                        showBreathing = true
+                    }
                     timer.start()
                 }
             }
