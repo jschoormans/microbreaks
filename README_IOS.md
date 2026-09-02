@@ -1,45 +1,34 @@
-# MicroBreaks iOS (week 1)
+# Microbreaks iOS (week 1)
 
-Native SwiftUI timer that matches the live web product at [microbreaks.co](https://microbreaks.co): a free focus timer with random ~10s microbreaks, optional sound and breathing, and a $12 founder unlock via StoreKit 2 (not Stripe).
+Native SwiftUI timer. Open in Xcode, run on the iPhone simulator (390-pt width first: iPhone 14 / 15).
 
-## Open in Xcode
+## Open and run
 
-1. Clone `jschoormans/microbreaks` and check out `ios-week1` (or this PR branch).
-2. Open **`ios/MicroBreaks.xcodeproj`** in Xcode 15 or later (iOS 17 SDK).
-3. Select the **MicroBreaks** scheme and an iPhone simulator (for example iPhone 16).
-4. Set your team under Signing & Capabilities if you run on a device. Simulator needs no paid team.
-5. Press Run (Cmd-R).
+1. Open `ios/Microbreaks/Microbreaks.xcodeproj`.
+2. Select the **Microbreaks** scheme and an iPhone simulator (iOS 17+).
+3. Run (Cmd+R). The focus timer works without signing in or paying.
 
-The shared scheme already points at `ios/MicroBreaks/Products.storekit`. Confirm under **Product → Scheme → Edit Scheme → Run → Options → StoreKit Configuration**.
+## StoreKit (founder unlock, $12 one-time)
 
-## StoreKit product
+Product id: `com.microbreaks.founderunlock` (non-consumable). There is **no Stripe** in the iOS app.
 
-| Field | Value |
-| --- | --- |
-| Product ID | `com.microbreaks.founderunlock` |
-| Type | Non-consumable, one-time |
-| Price | USD 12.00 (localizes via StoreKit) |
-| Config file | `ios/MicroBreaks/Products.storekit` |
-| Bundle ID | `com.microbreaks.app` |
+Local testing:
 
-In the simulator, buy with a StoreKit test transaction (Xcode → Debug → StoreKit). Restore Purchases re-reads current entitlements. Unlock is also stored in `AppStorage` key `founderUnlocked` for week-1 persistence.
+1. Product → Scheme → Edit Scheme → Run → Options.
+2. StoreKit Configuration → `ios/Microbreaks/Microbreaks/Microbreaks.storekit`.
+3. Purchase and restore use StoreKit 2. Unlock is persisted via App Store entitlements plus `AppStorage("founderUnlocked")`.
 
-**Do not** add a Stripe Payment Link in the iOS client. Stripe stays on the web (`app.html`).
+App Store Connect: create the same product id as a $12 USD non-consumable before TestFlight.
 
-Create the same product ID in App Store Connect before TestFlight / App Store.
+## What week 1 includes
 
-## Week-1 behavior
+- Timer: large tabular time, Start / Pause / Reset, Focus | Break. Paywall never during a running session (including pause and mid-break).
+- Microbreak: full-screen rest (~10s). Copy is UX (close your eyes / think of nothing), not a study claim. Primary **Resume**; **Skip** as text. Optional chime if sound is on; soft haptic.
+- Settings: Ambient sounds, Breathing cues, duration 25 / 50 / custom. Tertiary waitlist: https://tally.so/r/3NYZLG
+- Unlock copy matches `app.html` on `founder-unlock-cta` (headline, $12 sub, five Scientist bullets, trust line, Not now). Primary CTA is StoreKit, not Stripe.
 
-- **Timer (free):** 30-minute default session. Play / pause / reset. Circular progress, teal `#0d9488` on background `#f4f6f5`.
-- **Microbreaks:** random gap between 90–180s (web defaults); overlay ~10s (“Relax”). Timer keeps working without paying.
-- **Sound toggle:** system chimes at work, rest, and session end.
-- **Breathing toggle:** optional inhale/exhale sheet (no Huberman copy on default screens).
-- **Paywall sheet:** headline **Founder unlock — early iOS access**. Claim-safe bullets. No 10–20×, no 95%, no “proven study hacks”.
+Claim-safe: no 10-20x, no 95%, no proven study hacks, no Huberman.
 
-## Copy notes
+## Bundle
 
-Default screens avoid Huberman Lab. Trust line: inspired by Buch et al., Cell Reports 2021; not a medical device; results vary.
-
-## Leftover vs Designer spec
-
-Not in this slice: production App Icon PNG, DaisyUI/navbar pixel match, 15s cat focus exercise, boxing-bell / dingaling / seabirds assets, YouTube / how-it-works stats, Live Activities / background timer, dark mode, localization, App Store Connect listing + screenshots, paid-team device signing, receipt/email thanks flow.
+`com.microbreaks.app` — change if you already have an App Store record.
