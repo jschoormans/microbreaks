@@ -11,8 +11,8 @@ struct PaywallView: View {
         "Built around research on brief waking rests during skill practice (Buch 2021)",
         "Short, frequent microbreaks on the ~10s timescale used in that work",
         "Inspired by spacing: practice + rest, not only grind",
-        "Randomized prompts so you don't clock-watch",
-        "A timer for evidence-aligned rest habits - not a medical device; results vary"
+        "Randomized prompts so you don\u2019t clock-watch",
+        "A timer for evidence-aligned rest habits \u2014 not a medical device; results vary"
     ]
 
     var body: some View {
@@ -30,7 +30,7 @@ struct PaywallView: View {
 
     private var card: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Founder unlock - early iOS access")
+            Text("Founder unlock \u2014 early iOS access")
                 .font(MBType.title())
                 .kerning(-0.56)
                 .foregroundStyle(MBTheme.ink)
@@ -57,7 +57,7 @@ struct PaywallView: View {
             .accessibilityLabel("Unlock early access, 12 dollars")
 
             if founderUnlocked {
-                Text("You're in - early iOS access is unlocked.")
+                Text("You're in \u2014 early iOS access is unlocked.")
                     .font(MBType.label())
                     .foregroundStyle(MBTheme.accentHover)
                     .padding(.top, 12)
@@ -125,9 +125,9 @@ struct PaywallView: View {
     private var priceLabel: String {
         if founderUnlocked { return "Unlocked" }
         if let product = store.product {
-            return "Unlock early access - \(product.displayPrice)"
+            return "Unlock early access \u2014 \(product.displayPrice)"
         }
-        return "Unlock early access - $12"
+        return "Unlock early access \u2014 $12"
     }
 
     private func purchase() {
