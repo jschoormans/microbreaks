@@ -14,17 +14,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>MicroBreaks Focus Timer</title>
+  <title>Microbreaks timer — brief rests between focus</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
   <meta name="author" content="Jasper Schoormans" />
-  <meta name="description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer." />
+  <link rel="canonical" href="https://microbreaks.co/timer.html" />
+  <meta name="description" content="A focus timer with brief, random microbreaks on the ~10s timescale. Optional sounds and breathing cues." />
   <meta name="keywords" content="study, timer, micro breaks, micro rests, gap, pomodoro, study timer, focus" />
 
 
-  <link href="output.css?build=2" rel="stylesheet" id="outputcss" />
-  <link href="youtube_css.css?build=2" rel="stylesheet" />
+  <link href="output.css?build=4" rel="stylesheet" id="outputcss" />
+  <link href="youtube_css.css?build=4" rel="stylesheet" />
 
   <script>
     // To fix caching issues, we use a random build number.
@@ -37,16 +37,16 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@jasperschoormns" />
-  <meta name="twitter:title" content="MicroBreaks Focus Timer" />
+  <meta name="twitter:title" content="Microbreaks timer — brief rests between focus" />
   <meta name="twitter:description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
+    content="A focus timer with brief, random microbreaks on the ~10s timescale. Optional sounds and breathing cues." />
   <meta name="twitter:image" content="https://www.microbreaks.co/card.png" />
 
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="MicroBreaks Focus Timer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Microbreaks timer — brief rests between focus" />
   <meta property="og:description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
-  <meta property="og:url" content="https://www.microbreaks.co" />
+    content="A focus timer with brief, random microbreaks on the ~10s timescale. Optional sounds and breathing cues." />
+  <meta property="og:url" content="https://microbreaks.co/timer.html" />
   <meta property="og:image" content="https://www.microbreaks.co/card.png" />
 
 <!-- Matomo -->
@@ -69,6 +69,25 @@
 <noscript><p><img src="//matomo.jasperschoormans.nl/matomo.php?idsite=2&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
 
+  <style id="mb-week1-chrome">
+    body { background:#f4f6f5 !important; }
+    #cont.hero { background-image:none !important; background:#f4f6f5 !important; }
+    #cont .hero-overlay { opacity:0 !important; }
+    .navbar.bg-secondary { background:#fff !important; border:1px solid #e4e9ec; color:#1a2332; }
+    #progbar { color:#1a2332 !important; background:#fff; }
+    .absolute.bottom-0.fixed.pb-8 { padding-bottom:5.5rem !important; }
+    #app { font-size:13px !important; opacity:0.85; color:#5c6b7a; }
+    #app a { color:#5c6b7a !important; text-decoration:none; font-size:13px; }
+    #mb-founder-unlock { max-width:420px; margin:1rem auto 2rem; padding:0 1rem; }
+    #mb-founder-unlock .card { background:#fff; border:1px solid #e4e9ec; border-radius:16px; padding:16px 18px; text-align:left; }
+    #mb-founder-unlock h2 { font-size:15px; font-weight:650; margin:0 0 4px; color:#1a2332; }
+    #mb-founder-unlock p { font-size:13px; color:#5c6b7a; margin:0 0 12px; line-height:1.45; }
+    #mb-founder-unlock a { display:inline-flex; padding:10px 14px; border-radius:10px; border:1px solid #0d9488; background:#0d9488; color:#fff; font-size:15px; font-weight:600; text-decoration:none; }
+    #howitworks .stats { overflow:hidden; width:100%; }
+    #howitworks .stat { width:100%; max-width:100%; }
+    @media (max-width:1023px) { #howitworks .stat-figure { display:none !important; } }
+    @media (max-width:440px) { #app { display:none; } }
+  </style>
 </head>
 
 <body>
@@ -81,7 +100,7 @@
 
 
     <div class="hero min-h-screen bg-base-200 bg-opacity-20" id="cont"
-      style="background-image: url('pic1.jpg'); background-size: cover">
+      style="background: #f4f6f5">
       <div class="hero-overlay bg-opacity-20"></div>
 
 
@@ -112,7 +131,7 @@
 
           <label class="swap swap-rotate hover:text-primary">
             <!-- this hidden checkbox controls the state -->
-            <input type="checkbox" id="focusModeCheckBox" />
+            <input type="checkbox" id="focusModeCheckBox" aria-label="Focus exercise" />
 
             <!-- focus on icon -->
             <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Focus Exercise">
@@ -147,7 +166,7 @@
 
           <label class="swap swap-rotate hover:text-primary hidden">
             <!-- this hidden checkbox controls the state -->
-            <input type="checkbox" id="breathingModeCheckBox" />
+            <input type="checkbox" id="breathingModeCheckBox" aria-label="Breathing exercise" />
 
             <!-- focus on icon -->
             <div class="tooltip tooltip-bottom tooltip-primary" data-tip="Breathing Exercise 1">
@@ -177,7 +196,7 @@
           </label>
 
           <!-- FULLSCREEN TOGGLE  -->
-          <button class="hover:text-primary" onclick="toggleFullScreen()">
+          <button class="hover:text-primary" onclick="toggleFullScreen()" aria-label="Fullscreen" title="Fullscreen">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="feather feather-maximize-2">
@@ -215,7 +234,7 @@
           <!-- AUDIO TOGGLE  -->
           <label class=" swap swap-rotate hover:text-primary">
             <!-- this hidden checkbox controls the state -->
-            <input type="checkbox" id="audioToggleCheckBox" />
+            <input type="checkbox" id="audioToggleCheckBox" aria-label="Sound" />
 
             <!-- volume on icon -->
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -237,7 +256,7 @@
           </label>
 
           <!-- SETTINGS TOGGLE -->
-          <label for="modal-settings" class="swap hover:text-primary">
+          <label for="modal-settings" class="swap hover:text-primary" aria-label="Settings" title="Settings">
 
             <!-- this hidden checkbox controls the state -->
             <input type="checkbox" />
@@ -325,7 +344,7 @@
             <button class="btn md:btn-lg rounded-full btn-secondary" id="app">
               <!-- add a phone icon -->
               <a href="/app.html" class="" target="_blank">
-                Get the iOs App
+                iOS waitlist
               </a>
 
             </button>
@@ -417,13 +436,14 @@
         </div>
         <div class="collapse-content text-left justify-center justify-center">
           <p>
-            Research has shown that learning rates improves tremendously
-            while taking random micro rests. During these rests, a replay of the study material is done, in your brain, at a staggering 20 times speed! Read more on this in our <b><a href="https://www.microbreaks.co/blog/public/posts/the-value-of-microbreaks/">blog post</a></b>.
+            Short pauses between practice bouts, inspired by gap / micro-rest research.
+            Research on skill practice found compressed neural replay during short waking rests (Buch et al., Cell Reports 2021). That’s motor sequences in the lab — not a guarantee for every study session.
+            Read more in our <b><a href="https://www.microbreaks.co/blog/public/posts/the-value-of-microbreaks/">blog post</a></b>.
           </p>
           <br />
           <p>Studying with random micro breaks had these benefits in a research setting:</p>
-          <div class="stats shadow w-full">
-            <div class="stat w-full">
+          <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+            <div class="stat">
               <div class="stat-figure text-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   class="inline-block w-8 h-8 stroke-current">
@@ -433,12 +453,12 @@
                 </svg>
               </div>
 
-              <div class="stat-title">Repetition speed</div>
-              <div class="stat-value text-primary">10-20x</div>
-              <div class="stat-desc"> </div>
+              <div class="stat-title">Brief rests</div>
+              <div class="stat-value text-primary text-xl leading-tight">~10s</div>
+              <div class="stat-desc">same timescale as motor-skill rest/replay studies</div>
             </div>
 
-            <div class="stat w-full">
+            <div class="stat">
               <div class="stat-figure text-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   class="inline-block w-8 h-8 stroke-current">
@@ -446,9 +466,9 @@
                   </path>
                 </svg>
               </div>
-              <div class="stat-title">Effectiveness</div>
-              <div class="stat-value text-primary">95%</div>
-              <div class="stat-desc">of learning done in rest</div>
+              <div class="stat-title">Between bouts</div>
+              <div class="stat-value text-primary text-lg leading-tight">Rest</div>
+              <div class="stat-desc">when the brain can replay what you just practiced</div>
             </div>
           </div>
 
@@ -465,6 +485,7 @@
           <br />
 
           <br />
+                    <p style="font-size:12px;color:#8a97a5;margin-top:12px;line-height:1.45">Inspired by peer-reviewed motor-skill rest/replay research (Buch et al., Cell Reports 2021). Not a medical device; results vary.</p>
           <h2 class="text-xl font-bold">Check out this video</h2>
           <div class="place-content-center text-center">
             <!-- METHOD B IN https://ourcodeworld.com/articles/read/1383/how-to-properly-configure-lazy-loading-of-a-youtube-embed-video -->
@@ -478,6 +499,14 @@
     </div>
 
     </div>
+    
+    <aside id="mb-founder-unlock" aria-label="Founder unlock">
+      <div class="card">
+        <h2>Founder unlock — $12</h2>
+        <p>Early iOS access + supporters credit when Pro ships. Web timer stays free.</p>
+        <a href="https://buy.stripe.com/dRmeVc4WccRL6JC9NveAg07">Unlock early access — $12</a>
+      </div>
+    </aside>
     <!-- ----------- end of howitworks ----------- -->
 
     <footer class="footer p-10 bg-neutral text-neutral-content  ">
@@ -559,7 +588,7 @@
 
 
   <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
-  <script src="timer.js?build=2"></script>
+  <script src="timer.js?build=4"></script>
   <script>
 
     // Initial Settings and Toggles
@@ -983,6 +1012,7 @@
   </script>
 
 
+  <script src="week1-chrome.js?build=5"></script>
 </body>
 
 </html>
