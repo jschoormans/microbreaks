@@ -1,0 +1,32 @@
+{
+  "identifier" : "7c3e1a90-4b2d-4f8a-9c11-microbreakssk01",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "12.00",
+      "familyShareable" : false,
+      "internalID" : "a91d2c40-8e55-4b70-9f22-founderunlock01",
+      "localizations" : [
+        {
+          "description" : "Early iOS access and supporters credit when Pro ships. The focus timer stays free.",
+          "displayName" : "Founder unlock",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.microbreaks.founderunlock",
+      "referenceName" : "Founder Unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : []
+  },
+  "subscriptionGroups" : [],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
