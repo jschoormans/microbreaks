@@ -122,4 +122,66 @@
     if (marker && marker.parentNode) marker.parentNode.insertBefore(aside, marker.nextSibling);
     else document.body.appendChild(aside);
   }
+
+  function mbFirstUse() {
+    try {
+      if (localStorage.getItem("mb-firstuse-v1")) return;
+    } catch (e) {}
+    if (document.getElementById("mb-firstuse")) return;
+    if (!document.getElementById("progbar")) return;
+
+    var css = document.createElement("style");
+    css.id = "mb-firstuse-css";
+    css.textContent = [
+      "#mb-firstuse{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center;padding:20px;background:rgba(26,35,50,.45);font-family:Inter,system-ui,-apple-system,sans-serif}",
+      "@media (min-width:640px){#mb-firstuse{align-items:center}}",
+      "#mb-firstuse .mb-fu-sheet{background:#fff;color:#1a2332;border:1px solid #e4e9ec;border-radius:16px;padding:28px 24px;max-width:390px;width:100%;max-height:min(92vh,720px);overflow:auto;box-shadow:0 8px 32px rgba(26,35,50,.12)}",
+      "#mb-firstuse h2{font-size:22px;line-height:1.25;font-weight:650;letter-spacing:-.02em;margin:0 0 12px;color:#1a2332}",
+      "#mb-firstuse .mb-fu-p{font-size:15px;line-height:22px;color:#5c6b7a;margin:0 0 10px}",
+      "#mb-firstuse .mb-fu-cards{display:flex;flex-direction:column;gap:10px;margin:16px 0 20px}",
+      "#mb-firstuse .mb-fu-card{background:#f4f6f5;border:1px solid #e4e9ec;border-radius:16px;padding:14px 16px}",
+      "#mb-firstuse .mb-fu-card h3{font-size:13px;line-height:18px;font-weight:600;margin:0 0 4px;color:#1a2332}",
+      "#mb-firstuse .mb-fu-card p{font-size:15px;line-height:22px;color:#5c6b7a;margin:0}",
+      "#mb-firstuse .mb-fu-start{display:flex;align-items:center;justify-content:center;width:100%;height:48px;border:none;border-radius:10px;background:#0d9488;color:#fff;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit}",
+      "#mb-firstuse .mb-fu-start:hover{background:#0f766e}",
+      "#mb-firstuse .mb-fu-skip{display:block;width:100%;margin-top:10px;background:none;border:none;color:#5c6b7a;font-size:15px;line-height:22px;cursor:pointer;text-align:center;font-family:inherit}",
+      "#mb-firstuse .mb-fu-trust{font-size:12px;line-height:17px;color:#8a97a5;margin:14px 0 0}"
+    ].join("");
+    document.head.appendChild(css);
+
+    var wrap = document.createElement("div");
+    wrap.id = "mb-firstuse";
+    wrap.setAttribute("role", "dialog");
+    wrap.setAttribute("aria-modal", "true");
+    wrap.setAttribute("aria-labelledby", "mb-fu-title");
+    wrap.innerHTML =
+      '<div class="mb-fu-sheet">' +
+      '<h2 id="mb-fu-title">How Microbreaks works</h2>' +
+      '<p class="mb-fu-p">A focus timer that inserts brief (~10s) microbreaks at random while you work — short pauses between practice bouts, not another Pomodoro clone.</p>' +
+      '<p class="mb-fu-p">Inspired by peer-reviewed motor-skill rest/replay research on short waking rests (Buch et al., Cell Reports 2021). That’s lab skill practice, not a guarantee for every study session. Not a medical device; results vary.</p>' +
+      '<div class="mb-fu-cards">' +
+      '<div class="mb-fu-card"><h3>Focus</h3><p>Optional ~15s visual attention exercise before you start — look at the point (or cat) and let your mind settle. Product habit, not a study finding.</p></div>' +
+      '<div class="mb-fu-card"><h3>Breathing</h3><p>Optional breathing cue if you want to feel more alert. Informational only — skip anytime.</p></div>' +
+      '<div class="mb-fu-card"><h3>Sounds / cats</h3><p>Optional background sound and a focus visual. Atmosphere, not science.</p></div>' +
+      "</div>" +
+      '<button type="button" class="mb-fu-start">Start timer</button>' +
+      '<button type="button" class="mb-fu-skip">Skip</button>' +
+      '<p class="mb-fu-trust">Inspired by Buch et al., Cell Reports 2021. Not a medical device; results vary.</p>' +
+      "</div>";
+    document.body.appendChild(wrap);
+
+    function dismiss() {
+      try { localStorage.setItem("mb-firstuse-v1", "1"); } catch (e) {}
+      wrap.remove();
+      css.remove();
+    }
+    wrap.querySelector(".mb-fu-start").addEventListener("click", dismiss);
+    wrap.querySelector(".mb-fu-skip").addEventListener("click", dismiss);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mbFirstUse);
+  } else {
+    mbFirstUse();
+  }
+
 })();
