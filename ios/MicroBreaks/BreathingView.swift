@@ -3,6 +3,7 @@ import SwiftUI
 /// Optional inhale / exhale cue. No Huberman copy on this screen.
 struct BreathingView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.sizeCategory) private var sizeCategory
     @State private var inhale = true
     @State private var scale: CGFloat = 0.72
 
@@ -20,13 +21,15 @@ struct BreathingView: View {
                         .scaleEffect(scale)
                 }
                 Text(inhale ? "Inhale" : "Exhale")
-                    .font(.system(size: 24, weight: .semibold))
+                    .font(MBType.title())
+                    .kerning(-0.56)
                     .foregroundStyle(MBTheme.ink)
-                Text("A calm pace. Skip anytime — this is optional.")
-                    .font(.system(size: 15))
+                Text("A calm pace. Skip anytime - this is optional.")
+                    .font(MBType.body())
                     .foregroundStyle(MBTheme.muted)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, 24)
+                    .lineSpacing(7)
+                    .padding(.horizontal, MBType.screenPad())
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
