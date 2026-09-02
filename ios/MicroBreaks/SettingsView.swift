@@ -2,41 +2,68 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject private var timer: TimerEngine
+    @Environment(\.sizeCategory) private var sizeCategory
     @Environment(\.dismiss) private var dismiss
     @AppStorage("soundEnabled") private var soundEnabled = true
     @AppStorage("breathingEnabled") private var breathingEnabled = false
     @AppStorage("founderUnlocked") private var founderUnlocked = false
+    @AppStorage("durationPreset") private var durationPreset = "25"
+    @AppStorage("customMinutes") private var customMinutes = 40
     @Binding var showPaywall: Bool
+    @State private var showBreathing = false
+
+    private let tallyURL = URL(string: "https://tally.so/r/3NYZLG")!
 
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     Toggle(isOn: $soundEnabled) {
-                        Label("Sound", systemImage: soundEnabled ? "speaker.wave.2" : "speaker.slash")
+                        Text("Ambient sounds")
+                            .font(MBType.body())
                     }
                     .tint(MBTheme.accent)
                     Toggle(isOn: $breathingEnabled) {
-                        Label("Breathing cues", systemImage: "wind")
+                        Text("Breathing cues")
+                            .font(MBType.body())
                     }
                     .tint(MBTheme.accent)
-                    Text("Sound plays a short system chime at work and rest. Breathing is a simple inhale/exhale cue — optional.")
-                        .font(.system(size: 13))
-                        .foregroundStyle(MBTheme.muted)
+                    if breathingEnabled {
+                        Button("Preview breathing") {
+                            showBreathing = true
+                        }
+                        .font(MBType.label())
+                        .foregroundStyle(MBTheme.accentHover)
+                    }
                 } header: {
                     Text("Session")
                 }
 
                 Section {
-                    stepperRow("Work", value: $timer.workMinutes, range: 10...90, step: 5, suffix: "min")
-                    stepperRow("Microbreak", value: $timer.microbreakDuration, range: 5...25, step: 5, suffix: "s")
-                    stepperRow("Min gap", value: $timer.minGapSeconds, range: 60...240, step: 30, suffix: "s")
-                    stepperRow("Max gap", value: $timer.maxGapSeconds, range: 60...300, step: 30, suffix: "s")
-                    Text("Rests arrive at a random interval between min and max gap. Web defaults: 90-180s gap, ~10s rest, 30 min session.")
-                        .font(.system(size: 13))
+                    Picker("Focus length", selection: $durationPreset) {
+                        Text("25 min").tag("25")
+                        Text("50 min").tag("50")
+                        Text("Custom").tag("custom")
+                    }
+                    .pickerStyle(.segmented)
+                    .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    if durationPreset == "custom" {
+                        Stepper(value: $customMinutes, in: 5...180, step: 5) {
+                            HStack {
+                                Text("Custom")
+                                Spacer()
+                                Text("\(customMinutes) min")
+                                    .foregroundStyle(MBTheme.muted)
+                                    .monospacedDigit()
+                            }
+                        }
+                    }
+                    Text("Microbreaks stay ~10s. Focus length is 25, 50, or custom.")
+                        .font(MBType.trust())
                         .foregroundStyle(MBTheme.muted)
+                        .lineSpacing(5)
                 } header: {
-                    Text("Timing")
+                    Text("Focus length")
                 }
 
                 Section {
@@ -45,25 +72,34 @@ struct SettingsView: View {
                             .foregroundStyle(MBTheme.accentHover)
                     } else {
                         Button {
+                            guard !timer.blocksPaywall else { return }
                             dismiss()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                                showPaywall = true
+                                if !timer.blocksPaywall {
+                                    showPaywall = true
+                                }
                             }
                         } label: {
-                            Label("Founder unlock — early iOS access", systemImage: "sparkle")
+                            Text("Founder unlock - early iOS access")
                         }
+                        .disabled(timer.blocksPaywall)
                     }
-                    Text("The focus timer works without paying. Unlock is a one-time $12 App Store purchase (\(StoreManager.productID)).")
-                        .font(.system(size: 13))
+                    Text("The focus timer works without paying. Unlock is a one-time $12 App Store purchase.")
+                        .font(MBType.trust())
                         .foregroundStyle(MBTheme.muted)
+                        .lineSpacing(5)
                 } header: {
                     Text("Unlock")
                 }
 
                 Section {
-                    Text("Inspired by peer-reviewed motor-skill rest/replay research (Buch et al., Cell Reports 2021). Not a medical device; results vary.")
-                        .font(.system(size: 13))
-                        .foregroundStyle(MBTheme.faint)
+                    Link(destination: tallyURL) {
+                        Text("Notify me")
+                            .font(MBType.body())
+                            .foregroundStyle(MBTheme.faint)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .listRowBackground(Color.clear)
                 }
             }
             .scrollContentBackground(.hidden)
@@ -77,24 +113,25 @@ struct SettingsView: View {
                         .foregroundStyle(MBTheme.accent)
                 }
             }
+            .sheet(isPresented: $showBreathing) {
+                BreathingView()
+            }
         }
+        .onAppear { applyPreset() }
         .onChange(of: soundEnabled) { _, value in
             SoundPlayer.shared.isEnabled = value
         }
-        .onChange(of: timer.workMinutes) { _, _ in
-            if timer.phase == .idle { timer.reset() }
-        }
+        .onChange(of: durationPreset) { _, _ in applyPreset() }
+        .onChange(of: customMinutes) { _, _ in applyPreset() }
     }
 
-    private func stepperRow(_ title: String, value: Binding<Int>, range: ClosedRange<Int>, step: Int, suffix: String) -> some View {
-        Stepper(value: value, in: range, step: step) {
-            HStack {
-                Text(title)
-                Spacer()
-                Text("\(value.wrappedValue) \(suffix)")
-                    .foregroundStyle(MBTheme.muted)
-                    .monospacedDigit()
-            }
+    private func applyPreset() {
+        let minutes: Int
+        switch durationPreset {
+        case "50": minutes = 50
+        case "custom": minutes = customMinutes
+        default: minutes = 25
         }
+        timer.applyWorkMinutes(minutes)
     }
 }

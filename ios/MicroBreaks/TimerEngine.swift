@@ -11,7 +11,7 @@ enum SessionPhase: Equatable {
 
 @MainActor
 final class TimerEngine: ObservableObject {
-    static let defaultWorkMinutes = 30
+    static let defaultWorkMinutes = 25
     static let defaultMicrobreakSeconds = 10
     static let defaultMinGapSeconds = 90
     static let defaultMaxGapSeconds = 180
@@ -32,7 +32,7 @@ final class TimerEngine: ObservableObject {
     private var workInSegment = 0
 
     var displayClock: String {
-        let value: Int = phase == .microbreak ? microbreakSecondsLeft : remainingWorkSeconds
+        let value = remainingWorkSeconds
         let m = max(0, value) / 60
         let s = max(0, value) % 60
         return String(format: "%d:%02d", m, s)
@@ -45,15 +45,14 @@ final class TimerEngine: ObservableObject {
 
     var statusTitle: String {
         switch phase {
-        case .idle: return "Do something today"
-        case .work: return "Work mode"
-        case .microbreak: return "Relax"
-        case .paused: return "Pause"
-        case .finished: return "Session complete"
+        case .microbreak: return "Break"
+        default: return "Focus"
         }
     }
 
     var isRunning: Bool { phase == .work || phase == .microbreak }
+
+    var blocksPaywall: Bool { phase == .work || phase == .microbreak || phase == .paused }
 
     init(
         workMinutes: Int = TimerEngine.defaultWorkMinutes,
@@ -70,8 +69,15 @@ final class TimerEngine: ObservableObject {
         self.remainingWorkSeconds = total
     }
 
+    func applyWorkMinutes(_ minutes: Int) {
+        workMinutes = max(1, minutes)
+        if phase == .idle || phase == .finished {
+            reset()
+        }
+    }
+
     func start() {
-        guard !isRunning else { return }
+        guard phase != .work, phase != .microbreak else { return }
         if phase == .idle || phase == .finished {
             elapsedWorkSeconds = 0
             totalWorkSeconds = max(1, workMinutes) * 60
@@ -84,7 +90,7 @@ final class TimerEngine: ObservableObject {
     }
 
     func pause() {
-        guard isRunning else { return }
+        guard phase == .work else { return }
         timer?.invalidate()
         timer = nil
         phase = .paused
@@ -100,6 +106,11 @@ final class TimerEngine: ObservableObject {
         microbreakSecondsLeft = 0
         segmentSecondsLeft = 0
         phase = .idle
+    }
+
+    func resumeFromBreak() {
+        guard phase == .microbreak else { return }
+        endMicrobreak()
     }
 
     func skipMicrobreak() {
