@@ -18,7 +18,7 @@ struct ContentView: View {
                 timerRing
                 Spacer(minLength: 12)
                 controls
-                if !founderUnlocked {
+                if !founderUnlocked && !timer.isRunning && timer.phase == .idle {
                     founderChip
                 }
             }
@@ -84,8 +84,10 @@ struct ContentView: View {
                 .animation(.linear(duration: 0.35), value: timer.progress)
             VStack(spacing: 8) {
                 Text(timer.displayClock)
-                    .font(.system(size: 48, weight: .medium, design: .rounded))
+                    .font(.system(size: 72, weight: .medium))
                     .monospacedDigit()
+                    .minimumScaleFactor(0.7)
+                    .lineLimit(1)
                     .foregroundStyle(MBTheme.ink)
                 if timer.phase == .work {
                     Text("Next rest in \(timer.segmentSecondsLeft)s")
@@ -97,6 +99,7 @@ struct ContentView: View {
                         .foregroundStyle(MBTheme.faint)
                 }
             }
+            .padding(.horizontal, 28)
         }
         .frame(width: 280, height: 280)
         .padding(8)
