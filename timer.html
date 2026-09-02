@@ -14,17 +14,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>MicroBreaks Focus Timer</title>
+  <title>Microbreaks timer — brief rests between focus</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
   <meta name="author" content="Jasper Schoormans" />
-  <meta name="description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer." />
+  <link rel="canonical" href="https://microbreaks.co/timer.html" />
+  <meta name="description" content="A focus timer with brief, random microbreaks on the ~10s timescale. Optional sounds and breathing cues." />
   <meta name="keywords" content="study, timer, micro breaks, micro rests, gap, pomodoro, study timer, focus" />
 
 
-  <link href="output.css?build=2" rel="stylesheet" id="outputcss" />
-  <link href="youtube_css.css?build=2" rel="stylesheet" />
+  <link href="output.css?build=4" rel="stylesheet" id="outputcss" />
+  <link href="youtube_css.css?build=4" rel="stylesheet" />
 
   <script>
     // To fix caching issues, we use a random build number.
@@ -37,16 +37,16 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@jasperschoormns" />
-  <meta name="twitter:title" content="MicroBreaks Focus Timer" />
+  <meta name="twitter:title" content="Microbreaks timer — brief rests between focus" />
   <meta name="twitter:description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
+    content="A focus timer with brief, random microbreaks on the ~10s timescale. Optional sounds and breathing cues." />
   <meta name="twitter:image" content="https://www.microbreaks.co/card.png" />
 
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="MicroBreaks Focus Timer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Microbreaks timer — brief rests between focus" />
   <meta property="og:description"
-    content="Increase your study effectiveness with the gap technique. Have 10s microbreaks at random intervals with this timer" />
-  <meta property="og:url" content="https://www.microbreaks.co" />
+    content="A focus timer with brief, random microbreaks on the ~10s timescale. Optional sounds and breathing cues." />
+  <meta property="og:url" content="https://microbreaks.co/timer.html" />
   <meta property="og:image" content="https://www.microbreaks.co/card.png" />
 
 <!-- Matomo -->
@@ -76,13 +76,16 @@
     .navbar.bg-secondary { background:#fff !important; border:1px solid #e4e9ec; color:#1a2332; }
     #progbar { color:#1a2332 !important; background:#fff; }
     .absolute.bottom-0.fixed.pb-8 { padding-bottom:5.5rem !important; }
-    #app { font-size:0.7rem !important; opacity:0.85; }
-    #app a { color:#8a97a5 !important; text-decoration:none; }
+    #app { font-size:13px !important; opacity:0.85; color:#5c6b7a; }
+    #app a { color:#5c6b7a !important; text-decoration:none; font-size:13px; }
     #mb-founder-unlock { max-width:420px; margin:1rem auto 2rem; padding:0 1rem; }
     #mb-founder-unlock .card { background:#fff; border:1px solid #e4e9ec; border-radius:16px; padding:16px 18px; text-align:left; }
     #mb-founder-unlock h2 { font-size:15px; font-weight:650; margin:0 0 4px; color:#1a2332; }
     #mb-founder-unlock p { font-size:13px; color:#5c6b7a; margin:0 0 12px; line-height:1.45; }
-    #mb-founder-unlock a { display:inline-flex; padding:10px 14px; border-radius:10px; border:1px solid #e4e9ec; background:#ecfdf8; color:#0f766e; font-size:13.5px; font-weight:600; text-decoration:none; }
+    #mb-founder-unlock a { display:inline-flex; padding:10px 14px; border-radius:10px; border:1px solid #0d9488; background:#0d9488; color:#fff; font-size:15px; font-weight:600; text-decoration:none; }
+    #howitworks .stats { overflow:hidden; width:100%; }
+    #howitworks .stat { width:100%; max-width:100%; }
+    @media (max-width:1023px) { #howitworks .stat-figure { display:none !important; } }
     @media (max-width:440px) { #app { display:none; } }
   </style>
 </head>
@@ -439,7 +442,7 @@
           </p>
           <br />
           <p>Studying with random micro breaks had these benefits in a research setting:</p>
-          <div class="stats stats-vertical sm:stats-horizontal shadow w-full">
+          <div class="stats stats-vertical lg:stats-horizontal shadow w-full">
             <div class="stat">
               <div class="stat-figure text-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -585,7 +588,7 @@
 
 
   <!-- ------------------------------------------------------------------------------------------------------------------------------------------------ -->
-  <script src="timer.js?build=2"></script>
+  <script src="timer.js?build=4"></script>
   <script>
 
     // Initial Settings and Toggles
