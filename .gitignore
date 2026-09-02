@@ -1,3 +1,9 @@
 resources
 .DS_Store
 assets/.DS_Store
+
+# Xcode
+ios/MicroBreaks.xcodeproj/xcuserdata/
+ios/MicroBreaks.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+*.xcuserstate
