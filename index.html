@@ -37,33 +37,29 @@
 
   <style>
     :root {
-      --bg: #f4f6f5;
       --card: #fff;
       --ink: #1a2332;
       --muted: #5c6b7a;
       --faint: #8a97a5;
       --border: #e4e9ec;
       --accent: #0f766e;
-      --hover: #0f766e;
+      --hover: #0d9488;
       --soft: #ecfdf8;
       --radius: 16px;
       --btn-radius: 10px;
       --font: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: var(--font);
-      background: var(--bg);
       color: var(--ink);
       line-height: 1.5;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       -webkit-font-smoothing: antialiased;
+      background: #0b1c24 url(pic1.jpg) center / cover no-repeat fixed;
     }
-
     .wrap {
       width: min(560px, 100% - 2rem);
       margin: 0 auto;
@@ -73,15 +69,15 @@
       flex-direction: column;
       justify-content: center;
     }
-
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.7);
       border-radius: var(--radius);
       padding: 2.25rem 2rem;
-      box-shadow: 0 1px 2px rgba(26, 35, 50, 0.04);
+      box-shadow: 0 8px 32px rgba(11, 28, 36, 0.22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
-
     h1 {
       font-size: clamp(1.75rem, 4vw, 2.125rem);
       font-weight: 700;
@@ -89,107 +85,39 @@
       line-height: 1.2;
       margin-bottom: 0.625rem;
     }
-
-    .sub {
-      color: var(--muted);
-      font-size: 1.0625rem;
-      margin-bottom: 1.75rem;
-    }
-
+    .sub { color: var(--muted); font-size: 1.0625rem; margin-bottom: 1.75rem; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 0.875rem 1.25rem;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: var(--btn-radius);
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; width: 100%;
+      padding: 0.875rem 1.25rem; font-family: inherit; font-size: 1rem; font-weight: 600;
+      border-radius: var(--btn-radius); border: none; cursor: pointer; text-decoration: none;
       transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
+    .btn-primary { background: var(--accent); color: #fff; }
     .btn-primary:hover { background: var(--hover); }
-
     .btn-secondary {
-      background: var(--card);
-      color: var(--ink);
-      border: 1px solid var(--border);
-      margin-top: 0.75rem;
+      background: var(--card); color: var(--ink); border: 1px solid var(--border); margin-top: 0.75rem;
     }
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--hover);
-      background: var(--soft);
-    }
-
-    .features {
-      list-style: none;
-      margin: 1.75rem 0 0;
-      padding: 0;
-      display: grid;
-      gap: 0.75rem;
-    }
-
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: var(--soft); }
+    .features { list-style: none; margin: 1.75rem 0 0; padding: 0; display: grid; gap: 0.75rem; }
     .features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.625rem;
-      color: var(--muted);
-      font-size: 0.9375rem;
+      display: flex; align-items: flex-start; gap: 0.625rem; color: var(--muted); font-size: 0.9375rem;
     }
-
     .features li::before {
-      content: "";
-      flex-shrink: 0;
-      width: 0.5rem;
-      height: 0.5rem;
-      margin-top: 0.45rem;
-      border-radius: 50%;
-      background: var(--accent);
+      content: ""; flex-shrink: 0; width: 0.5rem; height: 0.5rem; margin-top: 0.45rem;
+      border-radius: 50%; background: var(--accent);
     }
-
-    .unlock-block {
-      margin-top: 1.75rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-
+    .unlock-block { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
     .unlock-label {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.625rem;
+      font-size: 0.8125rem; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.625rem;
     }
-
-    .trust {
-      margin-top: 0.625rem;
-      font-size: 0.8125rem;
-      color: var(--faint);
-      text-align: center;
-    }
-
+    .trust { margin-top: 0.625rem; font-size: 0.8125rem; color: var(--faint); text-align: center; }
     footer {
-      text-align: center;
-      padding: 1.5rem 1rem 2rem;
-      font-size: 0.8125rem;
-      color: var(--faint);
+      text-align: center; padding: 1.5rem 1rem 2rem; font-size: 0.8125rem;
+      color: rgba(255,255,255,.85); text-shadow: 0 1px 2px rgba(0,0,0,.35);
     }
-
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-    footer a:hover { color: var(--accent); }
+    footer a { color: #fff; text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -197,15 +125,13 @@
     <div class="card">
       <h1>Short resets. Clearer focus.</h1>
       <p class="sub">A simple timer for microbreaks, optional sounds, and guided breathing — no account required.</p>
-
       <a class="btn btn-primary" href="timer.html">Start free</a>
-
       <ul class="features">
         <li>Microbreaks between focus blocks</li>
         <li>Optional ambient sounds</li>
         <li>Optional breathing cues</li>
+        <li>Cute cats for company</li>
       </ul>
-
       <div class="unlock-block">
         <p class="unlock-label">Founder unlock</p>
         <a class="btn btn-secondary" href="https://buy.stripe.com/dRmeVc4WccRL6JC9NveAg07">Unlock early access — $12</a>
@@ -213,7 +139,6 @@
       </div>
     </div>
   </main>
-
   <footer>
     Built by <a href="https://www.twitter.com/jasperschoormns" target="_blank" rel="noopener">Jasper Schoormans</a>
     · <a href="https://tally.so/r/3NYZLG">Get notified</a>
