@@ -6,7 +6,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @AppStorage("soundEnabled") private var soundEnabled = true
     @AppStorage("breathingEnabled") private var breathingEnabled = false
-    @AppStorage("focusExerciseEnabled") private var focusExerciseEnabled = false
+    @AppStorage("focusExerciseEnabled") private var focusExerciseEnabled = true
     @AppStorage("founderUnlocked") private var founderUnlocked = false
     @AppStorage("durationPreset") private var durationPreset = "25"
     @AppStorage("customMinutes") private var customMinutes = 40

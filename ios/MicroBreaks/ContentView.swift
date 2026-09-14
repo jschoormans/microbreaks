@@ -4,7 +4,7 @@ struct ContentView: View {
     @EnvironmentObject private var timer: TimerEngine
     @Environment(\.sizeCategory) private var sizeCategory
     @AppStorage("breathingEnabled") private var breathingEnabled = false
-    @AppStorage("focusExerciseEnabled") private var focusExerciseEnabled = false
+    @AppStorage("focusExerciseEnabled") private var focusExerciseEnabled = true
     @AppStorage("founderUnlocked") private var founderUnlocked = false
     /// Scientist first-use gate — must match web key.
     @AppStorage("mb-firstuse-v1") private var firstUseSeen = false
