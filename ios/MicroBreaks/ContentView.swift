@@ -228,6 +228,12 @@ struct ContentView: View {
 
     private var controls: some View {
         HStack(spacing: 8) {
+            if isIdle {
+                controlButton("Focus", enabled: !showFirstUse) {
+                    guard !showFirstUse else { return }
+                    showFocusExercise = true
+                }
+            }
             controlButton(isIdle || timer.phase == .paused ? "Start" : "Start", enabled: timer.phase != .work && timer.phase != .microbreak) {
                 requestStart()
             }
