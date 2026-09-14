@@ -11,6 +11,12 @@ enum MBTheme {
     static let border = Color(red: 228 / 255, green: 233 / 255, blue: 236 / 255) // #e4e9ec
     static let card = Color.white
     static let soft = Color(red: 236 / 255, green: 253 / 255, blue: 248 / 255) // #ecfdf8
+    /// Ocean dim overlay #0b1c24 @ 28%
+    static let oceanOverlay = Color(red: 11 / 255, green: 28 / 255, blue: 36 / 255).opacity(0.28)
+    static let oceanDeep = Color(red: 11 / 255, green: 28 / 255, blue: 36 / 255) // #0b1c24
+    static let glassFill = Color.white.opacity(0.88)
+    static let glassStroke = Color.white.opacity(0.55)
+    static let softWhite = Color.white.opacity(0.96)
 
     static let cardRadius: CGFloat = 16
     static let buttonRadius: CGFloat = 10
@@ -24,6 +30,7 @@ enum MBTheme {
     static let buttonHeight: CGFloat = 48
     static let notNowGap: CGFloat = 16
     static let controlsGap: CGFloat = 24
+    static let chromeFadeSeconds: Double = 2.0
 }
 
 /// Type scale at 390pt width; sizes grow with Dynamic Type (SF Pro = system).
@@ -52,5 +59,53 @@ struct MBPrimaryButtonStyle: ButtonStyle {
             .frame(height: MBType.buttonHeight())
             .background(enabled ? (configuration.isPressed ? MBTheme.accentHover : MBTheme.accent) : MBTheme.accent.opacity(0.5))
             .clipShape(RoundedRectangle(cornerRadius: MBTheme.buttonRadius, style: .continuous))
+    }
+}
+
+/// Glass card: rgba(255,255,255,0.88) + blur.
+struct MBGlassBackground: ViewModifier {
+    var cornerRadius: CGFloat = MBTheme.cardRadius
+
+    func body(content: Content) -> some View {
+        content
+            .background {
+                RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                    .fill(.ultraThinMaterial)
+                    .background(
+                        RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                            .fill(MBTheme.glassFill)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                            .stroke(MBTheme.glassStroke, lineWidth: 1)
+                    )
+                    .shadow(color: MBTheme.oceanDeep.opacity(0.18), radius: 20, y: 4)
+            }
+    }
+}
+
+extension View {
+    func mbGlass(cornerRadius: CGFloat = MBTheme.cardRadius) -> some View {
+        modifier(MBGlassBackground(cornerRadius: cornerRadius))
+    }
+}
+
+/// Full-bleed ocean hero + 28% overlay.
+struct OceanBackdrop: View {
+    var dimOpacity: Double = 1
+
+    var body: some View {
+        ZStack {
+            MBTheme.oceanDeep.ignoresSafeArea()
+            Image("OceanBackground")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+                .accessibilityHidden(true)
+            MBTheme.oceanOverlay
+                .opacity(dimOpacity)
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
+        }
     }
 }

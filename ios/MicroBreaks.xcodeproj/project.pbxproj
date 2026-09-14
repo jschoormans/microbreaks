@@ -19,6 +19,8 @@
 		B3000000000000000000000A /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* PaywallView.swift */; };
 		B3000000000000000000000B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* Assets.xcassets */; };
 		B3000000000000000000000C /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000C /* Products.storekit */; };
+		B3000000000000000000000D /* FirstUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* FirstUseView.swift */; };
+		B3000000000000000000000E /* FocusExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000E /* FocusExerciseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		A2000000000000000000000A /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		A2000000000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2000000000000000000000C /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
+		A2000000000000000000000D /* FirstUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstUseView.swift; sourceTree = "<group>"; };
+		A2000000000000000000000E /* FocusExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusExerciseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 			children = (
 				A20000000000000000000001 /* MicroBreaksApp.swift */,
 				A20000000000000000000006 /* ContentView.swift */,
+				A2000000000000000000000D /* FirstUseView.swift */,
+				A2000000000000000000000E /* FocusExerciseView.swift */,
 				A20000000000000000000007 /* MicrobreakOverlay.swift */,
 				A20000000000000000000008 /* SettingsView.swift */,
 				A20000000000000000000009 /* BreathingView.swift */,
@@ -159,6 +165,8 @@
 				B30000000000000000000004 /* SoundPlayer.swift in Sources */,
 				B30000000000000000000005 /* StoreManager.swift in Sources */,
 				B30000000000000000000006 /* ContentView.swift in Sources */,
+				B3000000000000000000000D /* FirstUseView.swift in Sources */,
+				B3000000000000000000000E /* FocusExerciseView.swift in Sources */,
 				B30000000000000000000007 /* MicrobreakOverlay.swift in Sources */,
 				B30000000000000000000008 /* SettingsView.swift in Sources */,
 				B30000000000000000000009 /* BreathingView.swift in Sources */,
