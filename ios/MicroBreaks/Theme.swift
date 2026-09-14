@@ -28,7 +28,7 @@ enum MBTheme {
 
 /// Type scale at 390pt width; sizes grow with Dynamic Type (SF Pro = system).
 enum MBType {
-    static func title() -> Font { .system(size: scaled(28, .title), weight: .semibold) }
+    static func title() -> Font { .system(size: scaled(28, .title1), weight: .semibold) }
     static func time() -> Font { .system(size: scaled(72, .largeTitle), weight: .medium) }
     static func body() -> Font { .system(size: scaled(15, .body), weight: .regular) }
     static func label() -> Font { .system(size: scaled(13, .subheadline), weight: .medium) }
