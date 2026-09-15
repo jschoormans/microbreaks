@@ -1,0 +1,181 @@
+:root {
+      --mb-bg: #f4f6f5;
+      --mb-card: #ffffff;
+      --mb-ink: #1a2332;
+      --mb-muted: #5c6b7a;
+      --mb-faint: #8a97a5;
+      --mb-border: #e4e9ec;
+      --mb-accent: #0d9488;
+      --mb-hover: #0f766e;
+      --mb-soft: #ecfdf8;
+    }
+    body {
+      background-color: var(--mb-bg) !important;
+      color: var(--mb-ink);
+    }
+    #cont.hero,
+    #cont {
+      background-image: none !important;
+      background-color: var(--mb-bg) !important;
+    }
+    #cont > .hero-overlay { display: none !important; }
+    .navbar.bg-secondary {
+      background-color: rgba(255, 255, 255, 0.96) !important;
+      border: 1px solid var(--mb-border);
+      color: var(--mb-ink);
+      backdrop-filter: blur(8px);
+    }
+    .btn.btn-secondary {
+      background-color: var(--mb-accent) !important;
+      border-color: var(--mb-accent) !important;
+      color: #fff !important;
+    }
+    .btn.btn-secondary:hover {
+      background-color: var(--mb-hover) !important;
+      border-color: var(--mb-hover) !important;
+    }
+    #progbar {
+      color: var(--mb-ink) !important;
+      border-color: var(--mb-accent) !important;
+      background: var(--mb-card);
+      box-shadow: 0 1px 2px rgba(26, 35, 50, 0.04);
+    }
+    #app {
+      background: transparent !important;
+      border: 1px solid var(--mb-border) !important;
+      color: var(--mb-muted) !important;
+      font-size: 0.75rem !important;
+      font-weight: 500 !important;
+      box-shadow: none !important;
+      min-height: 2.25rem;
+      height: auto;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    #app a {
+      color: inherit !important;
+      text-decoration: none;
+      font-size: inherit;
+      font-weight: inherit;
+    }
+    #app:hover {
+      border-color: var(--mb-accent) !important;
+      color: var(--mb-hover) !important;
+      background: var(--mb-soft) !important;
+    }
+    .mb-controls-bar {
+      padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px)) !important;
+    }
+    @media (max-width: 430px) {
+      .mb-controls-bar { padding-bottom: 4.75rem !important; }
+      .mb-side-links {
+        position: fixed !important;
+        left: 0.5rem !important;
+        bottom: 0.35rem !important;
+        z-index: 90;
+        font-size: 0.7rem !important;
+        line-height: 1.25;
+        max-width: 5.5rem;
+        padding: 0.25rem !important;
+        margin: 0 !important;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--mb-border);
+        border-radius: 8px;
+      }
+      .mb-side-links a div,
+      .mb-side-links .mb-link {
+        font-size: 0.7rem !important;
+        font-weight: 600 !important;
+        color: var(--mb-muted) !important;
+      }
+      .mb-tips-link {
+        right: 0.5rem !important;
+        bottom: 0.35rem !important;
+        font-size: 0.7rem !important;
+        z-index: 90;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--mb-border);
+        border-radius: 8px;
+        padding: 0.25rem 0.5rem !important;
+        margin: 0 !important;
+      }
+      #founder-unlock.mb-unlock-fixed {
+        left: 0.75rem !important;
+        right: 0.75rem !important;
+        bottom: 5.5rem !important;
+        width: auto !important;
+        max-width: none !important;
+      }
+    }
+    #founder-unlock.mb-unlock-fixed {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 80;
+      width: min(17.5rem, calc(100vw - 2rem));
+      margin: 0;
+      padding: 1rem 1rem 0.875rem;
+      background: var(--mb-card);
+      border: 1px solid var(--mb-border);
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(26, 35, 50, 0.08);
+    }
+    #founder-unlock h2 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--mb-ink);
+      margin: 0 0 0.25rem;
+    }
+    #founder-unlock .unlock-copy {
+      font-size: 0.75rem;
+      color: var(--mb-muted);
+      margin: 0 0 0.75rem;
+      line-height: 1.4;
+    }
+    #founder-unlock .unlock-cta {
+      display: inline-flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      background: var(--mb-soft);
+      color: var(--mb-hover);
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    #founder-unlock .unlock-cta:hover {
+      border-color: var(--mb-accent);
+      background: #dff7ef;
+    }
+    #founder-unlock .unlock-note {
+      margin: 0.4rem 0 0;
+      font-size: 0.6875rem;
+      color: var(--mb-faint);
+      text-align: center;
+    }
+    #founder-unlock .unlock-dismiss {
+      position: absolute;
+      top: 0.35rem;
+      right: 0.45rem;
+      border: none;
+      background: transparent;
+      color: var(--mb-faint);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.2rem;
+    }
+    #howitworks {
+      background: var(--mb-card);
+      border: 1px solid var(--mb-border);
+      border-radius: 16px;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer {
+      background: #eef2f1 !important;
+      color: var(--mb-muted) !important;
+    }
