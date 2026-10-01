@@ -922,17 +922,24 @@
 
 
     function setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString) {
-      if (mbSessionMode.isStopwatch()) {
+      var progbar = document.getElementById("progbar");
+      if (!progbar) {
+        console.error("setProgBar: progbar element not found");
+        return;
+      }
+      
+      var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+      
+      if (isStopwatch) {
         // Stopwatch mode: show elapsed time, keep ring empty/static
-        document.getElementById("progbar").innerText = timeLeftString;
-        document.getElementById("progbar").style =
-          "--value:0; --size:18rem; --thickness:12px;";
+        progbar.innerText = timeLeftString;
+        progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
+        console.log("setProgBar (stopwatch): " + timeLeftString);
       } else {
         // Countdown mode: show time remaining with progress
-        totalTimePercentage = (totalTime / totalWorkTimeSeconds) * 100;
-        document.getElementById("progbar").innerText = timeLeftString;
-        document.getElementById("progbar").style =
-          "--value:" + totalTimePercentage + "; --size:18rem; --thickness:12px;";
+        var totalTimePercentage = (totalTime / totalWorkTimeSeconds) * 100;
+        progbar.innerText = timeLeftString;
+        progbar.setAttribute('style', '--value:' + totalTimePercentage + '; --size:18rem; --thickness:12px;');
       }
     }
 
@@ -991,9 +998,12 @@
         totalWorkTimeSeconds = totalWorkTimeMinutes * 60;
       }
 
-      if (mbSessionMode.isStopwatch()) {
+      var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+      
+      if (isStopwatch) {
         // STOPWATCH MODE: count up, display elapsed time
         var elapsedString = formatElapsedTime(totalTime);
+        console.log("RemainingTime (stopwatch): totalTime=" + totalTime + ", elapsed=" + elapsedString);
         setProgBar(totalTime, totalWorkTimeSeconds, 0, 0, elapsedString);
         
         // CHANGE THE TITLE EVERY SECOND
@@ -1048,7 +1058,8 @@
       totalTime++;
 
       // check for end - ONLY in countdown mode
-      if (!mbSessionMode.isStopwatch() && totalTime > (totalWorkTimeSeconds + 1)) {
+      var isStopwatchEnd = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+      if (!isStopwatchEnd && totalTime > (totalWorkTimeSeconds + 1)) {
         // End of the timer (countdown mode only)
         console.log("End of the timer");
         timer_runs = false;
@@ -1401,7 +1412,7 @@
               // Stopwatch idle: show 00:00, ring empty
               if (progbar) {
                 progbar.innerText = "00:00";
-                progbar.style = "--value:0; --size:18rem; --thickness:12px;";
+                progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
               }
               if (clockCaption) clockCaption.style.display = "block";
             } else {
@@ -1410,7 +1421,7 @@
               var mins = worktimeEl ? parseInt(worktimeEl.value, 10) : 30;
               if (progbar) {
                 progbar.innerText = mins + ":00";
-                progbar.style = "--value:0; --size:18rem; --thickness:12px;";
+                progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
               }
               if (clockCaption) clockCaption.style.display = "none";
             }

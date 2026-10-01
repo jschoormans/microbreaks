@@ -166,16 +166,19 @@ function setDefaultMode() {
   // Check if stopwatch mode is active (mbSessionMode may not be defined yet on initial load)
   var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
   
-  if (isStopwatch) {
-    // Stopwatch idle: show 00:00, ring empty
-    document.getElementById("progbar").innerText = "00:00";
-    document.getElementById("progbar").style = "--value:0; --size:18rem; --thickness:12px;";
-  } else {
-    // Countdown idle: show work time from slider (or default 30:00)
-    var worktimeSlider = document.getElementById("worktime");
-    var mins = worktimeSlider ? parseInt(worktimeSlider.value, 10) : 30;
-    document.getElementById("progbar").innerText = mins + ":00";
-    document.getElementById("progbar").style = "--value:0; --size:18rem; --thickness:12px;";
+  var progbar = document.getElementById("progbar");
+  if (progbar) {
+    if (isStopwatch) {
+      // Stopwatch idle: show 00:00, ring empty
+      progbar.innerText = "00:00";
+      progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
+    } else {
+      // Countdown idle: show work time from slider (or default 30:00)
+      var worktimeSlider = document.getElementById("worktime");
+      var mins = worktimeSlider ? parseInt(worktimeSlider.value, 10) : 30;
+      progbar.innerText = mins + ":00";
+      progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
+    }
   }
 
   document.getElementById("para").classList.remove("hidden")
