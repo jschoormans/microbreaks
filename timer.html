@@ -1329,93 +1329,126 @@
 
     // Session Mode UI Management
     (function setupModeControls() {
-      var countdownChip = document.getElementById("mbModeCountdown");
-      var stopwatchChip = document.getElementById("mbModeStopwatch");
-      var modeHelper = document.getElementById("mbModeHelper");
-      var modeLocked = document.getElementById("mbModeLocked");
-      var worktimeSection = document.getElementById("mbWorktimeSection");
-      var clockCaption = document.getElementById("mbClockCaption");
-      var settingsModal = document.getElementById("modal-settings");
-
-      function updateModeUI() {
-        var isStopwatch = mbSessionMode.isStopwatch();
+      try {
+        var countdownChip = document.getElementById("mbModeCountdown");
+        var stopwatchChip = document.getElementById("mbModeStopwatch");
+        var modeHelper = document.getElementById("mbModeHelper");
+        var modeLocked = document.getElementById("mbModeLocked");
+        var worktimeSection = document.getElementById("mbWorktimeSection");
+        var clockCaption = document.getElementById("mbClockCaption");
+        var settingsModal = document.getElementById("modal-settings");
         
-        // Update chip selection
-        if (isStopwatch) {
-          countdownChip.classList.remove("is-selected");
-          stopwatchChip.classList.add("is-selected");
-          modeHelper.style.display = "block";
-          worktimeSection.style.display = "none";
-          clockCaption.style.display = "block";
-        } else {
-          countdownChip.classList.add("is-selected");
-          stopwatchChip.classList.remove("is-selected");
-          modeHelper.style.display = "none";
-          worktimeSection.style.display = "block";
-          clockCaption.style.display = "none";
-        }
-        
-        // Update locked state
-        if (timer_runs) {
-          countdownChip.classList.add("is-locked");
-          stopwatchChip.classList.add("is-locked");
-          modeLocked.style.display = "block";
-        } else {
-          countdownChip.classList.remove("is-locked");
-          stopwatchChip.classList.remove("is-locked");
-          modeLocked.style.display = "none";
-        }
-      }
-
-      function handleModeChange(newMode) {
-        if (timer_runs) {
-          console.log("Cannot change mode while timer is running");
+        if (!countdownChip || !stopwatchChip) {
+          console.error("Mode chips not found in DOM");
           return;
         }
-        mbSessionMode.setMode(newMode);
+
+        function updateModeUI() {
+          try {
+            var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+            
+            // Update chip selection
+            if (isStopwatch) {
+              countdownChip.classList.remove("is-selected");
+              stopwatchChip.classList.add("is-selected");
+              if (modeHelper) modeHelper.style.display = "block";
+              if (worktimeSection) worktimeSection.style.display = "none";
+              if (clockCaption) clockCaption.style.display = "block";
+            } else {
+              countdownChip.classList.add("is-selected");
+              stopwatchChip.classList.remove("is-selected");
+              if (modeHelper) modeHelper.style.display = "none";
+              if (worktimeSection) worktimeSection.style.display = "block";
+              if (clockCaption) clockCaption.style.display = "none";
+            }
+            
+            // Update locked state
+            if (typeof timer_runs !== 'undefined' && timer_runs) {
+              countdownChip.classList.add("is-locked");
+              stopwatchChip.classList.add("is-locked");
+              if (modeLocked) modeLocked.style.display = "block";
+            } else {
+              countdownChip.classList.remove("is-locked");
+              stopwatchChip.classList.remove("is-locked");
+              if (modeLocked) modeLocked.style.display = "none";
+            }
+          } catch (e) {
+            console.error("Error in updateModeUI:", e);
+          }
+        }
+
+        function handleModeChange(newMode) {
+          if (typeof timer_runs !== 'undefined' && timer_runs) {
+            console.log("Cannot change mode while timer is running");
+            return;
+          }
+          if (typeof mbSessionMode !== 'undefined') {
+            mbSessionMode.setMode(newMode);
+          }
+          updateModeUI();
+          updateIdleClockDisplay();
+          console.log("Session mode changed to: " + newMode);
+        }
+
+        function updateIdleClockDisplay() {
+          try {
+            if (typeof timer_runs !== 'undefined' && timer_runs) return;
+            
+            var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+            var progbar = document.getElementById("progbar");
+            
+            if (isStopwatch) {
+              // Stopwatch idle: show 00:00, ring empty
+              if (progbar) {
+                progbar.innerText = "00:00";
+                progbar.style = "--value:0; --size:18rem; --thickness:12px;";
+              }
+              if (clockCaption) clockCaption.style.display = "block";
+            } else {
+              // Countdown idle: show work time, ring empty
+              var worktimeEl = document.getElementById("worktime");
+              var mins = worktimeEl ? parseInt(worktimeEl.value, 10) : 30;
+              if (progbar) {
+                progbar.innerText = mins + ":00";
+                progbar.style = "--value:0; --size:18rem; --thickness:12px;";
+              }
+              if (clockCaption) clockCaption.style.display = "none";
+            }
+          } catch (e) {
+            console.error("Error in updateIdleClockDisplay:", e);
+          }
+        }
+
+        // Chip click handlers
+        countdownChip.addEventListener("click", function(e) {
+          e.preventDefault();
+          handleModeChange("countdown");
+        });
+
+        stopwatchChip.addEventListener("click", function(e) {
+          e.preventDefault();
+          handleModeChange("stopwatch");
+        });
+
+        // Update UI when settings modal opens (to refresh locked state)
+        if (settingsModal) {
+          settingsModal.addEventListener("change", function() {
+            updateModeUI();
+          });
+        }
+
+        // Expose update functions globally for use elsewhere
+        window.updateModeUI = updateModeUI;
+        window.updateIdleClockDisplay = updateIdleClockDisplay;
+
+        // Initialize UI
         updateModeUI();
         updateIdleClockDisplay();
-        console.log("Session mode changed to: " + newMode);
-      }
-
-      function updateIdleClockDisplay() {
-        if (timer_runs) return;
         
-        if (mbSessionMode.isStopwatch()) {
-          // Stopwatch idle: show 00:00, ring empty
-          document.getElementById("progbar").innerText = "00:00";
-          document.getElementById("progbar").style = "--value:0; --size:18rem; --thickness:12px;";
-          clockCaption.style.display = "block";
-        } else {
-          // Countdown idle: show work time, ring empty
-          var mins = parseInt(document.getElementById("worktime").value, 10);
-          document.getElementById("progbar").innerText = mins + ":00";
-          document.getElementById("progbar").style = "--value:0; --size:18rem; --thickness:12px;";
-          clockCaption.style.display = "none";
-        }
+        console.log("Mode controls initialized successfully");
+      } catch (e) {
+        console.error("Error in setupModeControls:", e);
       }
-
-      // Chip click handlers
-      countdownChip.addEventListener("click", function() {
-        handleModeChange("countdown");
-      });
-
-      stopwatchChip.addEventListener("click", function() {
-        handleModeChange("stopwatch");
-      });
-
-      // Update UI when settings modal opens (to refresh locked state)
-      settingsModal.addEventListener("change", function() {
-        updateModeUI();
-      });
-
-      // Expose update functions globally for use elsewhere
-      window.updateModeUI = updateModeUI;
-      window.updateIdleClockDisplay = updateIdleClockDisplay;
-
-      // Initialize UI
-      updateModeUI();
-      updateIdleClockDisplay();
     })();
 
 
