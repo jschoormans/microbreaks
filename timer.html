@@ -119,6 +119,64 @@
       font-weight:600;
     }
     @media (max-width:440px) { #app { display:none; } }
+    /* Volume control styling - glass chrome */
+    .mb-volume-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .mb-volume-mute {
+      cursor: pointer;
+    }
+    .mb-volume-slider-wrap {
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+    }
+    .mb-volume-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 60px;
+      height: 4px;
+      background: rgba(26,35,50,0.18);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    .mb-volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      background: #0d9488;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(11,28,36,0.25);
+      transition: background 0.15s ease;
+    }
+    .mb-volume-slider::-webkit-slider-thumb:hover {
+      background: #0f766e;
+    }
+    .mb-volume-slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      background: #0d9488;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 1px 3px rgba(11,28,36,0.25);
+    }
+    .mb-volume-slider::-moz-range-thumb:hover {
+      background: #0f766e;
+    }
+    .mb-volume-slider::-moz-range-track {
+      background: rgba(26,35,50,0.18);
+      border-radius: 2px;
+      height: 4px;
+    }
+    @media (max-width: 480px) {
+      .mb-volume-slider { width: 48px; }
+    }
   </style>
 </head>
 
@@ -263,29 +321,32 @@
 
 
 
-          <!-- AUDIO TOGGLE  -->
-          <label class=" swap swap-rotate hover:text-primary">
-            <!-- this hidden checkbox controls the state -->
-            <input type="checkbox" id="audioToggleCheckBox" aria-label="Sound" />
-
-            <!-- volume on icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="feather feather-volume-2 swap-off">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-
-            <!-- volume off icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="feather feather-volume-x swap-on">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <line x1="23" y1="9" x2="17" y2="15"></line>
-              <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-
-          </label>
+          <!-- VOLUME CONTROL (mute + slider) -->
+          <div class="mb-volume-wrap" id="mbVolumeWrap">
+            <!-- MUTE TOGGLE -->
+            <label class="swap swap-rotate hover:text-primary mb-volume-mute" title="Volume">
+              <input type="checkbox" id="audioToggleCheckBox" aria-label="Sound" />
+              <!-- volume on icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-volume-2 swap-off">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              <!-- volume off icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-volume-x swap-on">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </label>
+            <!-- VOLUME SLIDER (inline compact) -->
+            <div class="mb-volume-slider-wrap" title="Volume">
+              <input type="range" min="0" max="100" value="70" class="mb-volume-slider" id="mbVolumeSlider" aria-label="Volume level" />
+            </div>
+          </div>
 
           <!-- SETTINGS TOGGLE -->
           <label for="modal-settings" class="swap hover:text-primary" aria-label="Settings" title="Settings">
@@ -842,8 +903,21 @@
     document.getElementById("audioToggleCheckBox").onchange = function () {
       console.log("audioToggle checkbox changed");
       audioToggle = audioToggle ? false : true;
-      console.log("changed - audioToggle: " + audioToggle);
+      mbVolume.setMuted(!audioToggle);
+      console.log("changed - audioToggle: " + audioToggle + ", muted: " + mbVolume.muted);
+    };
 
+    // Volume slider change handler
+    document.getElementById("mbVolumeSlider").oninput = function () {
+      var level = parseInt(this.value, 10) / 100;
+      mbVolume.setLevel(level);
+      // If currently muted and user moves slider, unmute
+      if (mbVolume.muted && level > 0) {
+        mbVolume.setMuted(false);
+        audioToggle = true;
+        document.getElementById("audioToggleCheckBox").checked = false;
+      }
+      console.log("Volume slider changed - level: " + level);
     };
 
     document.getElementById("timermaximum").onchange = function () {
@@ -869,8 +943,23 @@
     FocusModeToggle = document.getElementById("focusModeCheckBox").value === "off";
     breathingToggle = document.getElementById("breathingModeCheckBox").value === "off";
 
+    // Initialize volume controls from localStorage
+    (function initVolumeControls() {
+      var slider = document.getElementById("mbVolumeSlider");
+      var muteCheckbox = document.getElementById("audioToggleCheckBox");
+      
+      // Set slider to stored level (0-1 to 0-100)
+      slider.value = Math.round(mbVolume.level * 100);
+      
+      // Set mute checkbox state (checked = muted/volume-x shown)
+      muteCheckbox.checked = mbVolume.muted;
+      
+      // Sync audioToggle variable with stored mute state
+      audioToggle = !mbVolume.muted;
+      
+      console.log("Volume initialized - level: " + mbVolume.level + ", muted: " + mbVolume.muted);
+    })();
 
-    audioToggle = document.getElementById("audioToggleCheckBox").value;
     timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
     microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
     totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak

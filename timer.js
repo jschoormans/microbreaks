@@ -1,5 +1,71 @@
 /* week-1 chrome */(function(){var s=document.createElement('script');s.src='week1-chrome.js';document.head.appendChild(s);})();
 
+// Volume Manager - persists to localStorage key "mb-volume-v1"
+var mbVolume = (function() {
+  var STORAGE_KEY = 'mb-volume-v1';
+  var DEFAULT_LEVEL = 0.7;
+  var state = { muted: false, level: DEFAULT_LEVEL };
+
+  function load() {
+    try {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        var parsed = JSON.parse(stored);
+        if (typeof parsed.muted === 'boolean') state.muted = parsed.muted;
+        if (typeof parsed.level === 'number' && parsed.level >= 0 && parsed.level <= 1) {
+          state.level = parsed.level;
+        }
+      }
+    } catch (e) { }
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) { }
+  }
+
+  function getEffectiveVolume() {
+    return state.muted ? 0 : state.level;
+  }
+
+  function setLevel(level) {
+    state.level = Math.max(0, Math.min(1, level));
+    save();
+  }
+
+  function setMuted(muted) {
+    state.muted = muted;
+    save();
+  }
+
+  function toggleMute() {
+    state.muted = !state.muted;
+    save();
+    return state.muted;
+  }
+
+  function applyToAudio(audio) {
+    if (audio && typeof audio.volume !== 'undefined') {
+      audio.volume = getEffectiveVolume();
+    }
+    return audio;
+  }
+
+  load();
+
+  return {
+    get muted() { return state.muted; },
+    get level() { return state.level; },
+    getEffectiveVolume: getEffectiveVolume,
+    setLevel: setLevel,
+    setMuted: setMuted,
+    toggleMute: toggleMute,
+    applyToAudio: applyToAudio,
+    load: load
+  };
+})();
+
 // Functions 
 
 ////////////////////////////////////////
@@ -10,6 +76,7 @@ function beep2(audioToggle) {
     "data:audio/wav;base64,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dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU="
   );
   if (audioToggle) {
+    mbVolume.applyToAudio(snd);
     snd.play();
     console.log("Sound is playing - beep2");
   }
@@ -18,27 +85,27 @@ function beep2(audioToggle) {
 function boxingBell(audioToggle){
   var audio = new Audio('/assets/audio/boxing-bell.wav');
   if (audioToggle) {
+    mbVolume.applyToAudio(audio);
     audio.play();
     console.log("Sound is playing - boxingBell");
-
   }
 }
 
 function singleChime(audioToggle){
   var audio = new Audio('/assets/audio/singleChime.wav');
   if (audioToggle) {
-  audio.play();
-  console.log("Sound is playing - singleChime");
-
+    mbVolume.applyToAudio(audio);
+    audio.play();
+    console.log("Sound is playing - singleChime");
   }
 }
 
 function dingaLing(audioToggle){
   var audio = new Audio('/assets/audio/dingaling.mp3');
   if (audioToggle) {
+    mbVolume.applyToAudio(audio);
     audio.play();
     console.log("Sound is playing - dingaLing");
-
   }
 }
 
@@ -49,13 +116,14 @@ function dingaLing(audioToggle){
 function audio_seabirds(audioToggle){
   var audio = new Audio('/assets/audio/seabirds.mp3');
   if (audioToggle) {
+    mbVolume.applyToAudio(audio);
     audio.play();
     audio.loop = true;
-
     console.log("Sound is playing - seabirds");
     audio.onended = function(){
+      mbVolume.applyToAudio(audio);
       audio.play();
-    }    
+    }
   }
 }
 
