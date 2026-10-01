@@ -127,7 +127,17 @@
     }
     .mb-volume-mute {
       cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .mb-volume-mute.is-muted .mb-vol-icon-on { display: none; }
+    .mb-volume-mute.is-muted .mb-vol-icon-off { display: block !important; }
+    .mb-volume-mute:not(.is-muted) .mb-vol-icon-on { display: block; }
+    .mb-volume-mute:not(.is-muted) .mb-vol-icon-off { display: none !important; }
     .mb-volume-slider-wrap {
       display: flex;
       align-items: center;
@@ -178,9 +188,85 @@
       .mb-volume-slider { width: 48px; }
     }
     @media (max-width: 400px) {
-      .mb-volume-slider { width: 32px; }
-      .mb-volume-slider-wrap { padding: 0 2px; }
-      .mb-volume-wrap { gap: 2px; }
+      /* Hide inline slider at narrow widths - use popover instead */
+      .mb-volume-slider-wrap { display: none !important; }
+      .mb-volume-wrap { position: relative; }
+    }
+    /* Volume popover - glass style */
+    .mb-volume-popover {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 8px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(11, 28, 36, 0.18);
+      z-index: 100;
+      min-width: 140px;
+    }
+    .mb-volume-popover.is-open {
+      display: block;
+    }
+    .mb-volume-popover-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #5c6b7a;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .mb-volume-popover-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: rgba(26, 35, 50, 0.15);
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+    }
+    .mb-volume-popover-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: #0d9488;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(11, 28, 36, 0.25);
+      transition: background 0.15s ease;
+    }
+    .mb-volume-popover-slider::-webkit-slider-thumb:hover {
+      background: #0f766e;
+    }
+    .mb-volume-popover-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: #0d9488;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 6px rgba(11, 28, 36, 0.25);
+    }
+    .mb-volume-popover-slider::-moz-range-thumb:hover {
+      background: #0f766e;
+    }
+    .mb-volume-popover-slider::-moz-range-track {
+      background: rgba(26, 35, 50, 0.15);
+      border-radius: 3px;
+      height: 6px;
+    }
+    .mb-volume-popover-value {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1a2332;
+      text-align: right;
+      margin-top: 6px;
     }
   </style>
 </head>
@@ -326,30 +412,37 @@
 
 
 
-          <!-- VOLUME CONTROL (mute + slider) -->
+          <!-- VOLUME CONTROL (mute + popover slider) -->
           <div class="mb-volume-wrap" id="mbVolumeWrap">
-            <!-- MUTE TOGGLE -->
-            <label class="swap swap-rotate hover:text-primary mb-volume-mute" title="Volume">
-              <input type="checkbox" id="audioToggleCheckBox" aria-label="Sound" />
-              <!-- volume on icon -->
+            <!-- MUTE TOGGLE (tap to toggle mute, also opens popover on narrow screens) -->
+            <button type="button" class="swap swap-rotate hover:text-primary mb-volume-mute" id="mbVolumeMuteBtn" title="Volume" aria-label="Sound">
+              <!-- volume on icon (shown when not muted) -->
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-volume-2 swap-off">
+                class="feather feather-volume-2 mb-vol-icon-on">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
               </svg>
-              <!-- volume off icon -->
+              <!-- volume off icon (shown when muted) -->
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-volume-x swap-on">
+                class="feather feather-volume-x mb-vol-icon-off" style="display:none;">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <line x1="23" y1="9" x2="17" y2="15"></line>
                 <line x1="17" y1="9" x2="23" y2="15"></line>
               </svg>
-            </label>
-            <!-- VOLUME SLIDER (inline compact) -->
+            </button>
+            <!-- Hidden checkbox to track mute state for JS compatibility -->
+            <input type="checkbox" id="audioToggleCheckBox" aria-label="Sound" style="display:none;" />
+            <!-- VOLUME SLIDER (inline compact - hidden on narrow screens) -->
             <div class="mb-volume-slider-wrap" title="Volume">
               <input type="range" min="0" max="100" value="70" class="mb-volume-slider" id="mbVolumeSlider" aria-label="Volume level" />
+            </div>
+            <!-- VOLUME POPOVER (shown on tap at narrow widths) -->
+            <div class="mb-volume-popover" id="mbVolumePopover" role="dialog" aria-label="Volume control">
+              <div class="mb-volume-popover-label">Volume</div>
+              <input type="range" min="0" max="100" value="70" class="mb-volume-popover-slider" id="mbVolumePopoverSlider" aria-label="Volume level" />
+              <div class="mb-volume-popover-value" id="mbVolumePopoverValue">70%</div>
             </div>
           </div>
 
@@ -905,25 +998,156 @@
       console.log("changed - breathingToggle: " + breathingToggle);
     };
 
-    document.getElementById("audioToggleCheckBox").onchange = function () {
-      console.log("audioToggle checkbox changed");
-      audioToggle = audioToggle ? false : true;
-      mbVolume.setMuted(!audioToggle);
-      console.log("changed - audioToggle: " + audioToggle + ", muted: " + mbVolume.muted);
-    };
-
-    // Volume slider change handler
-    document.getElementById("mbVolumeSlider").oninput = function () {
-      var level = parseInt(this.value, 10) / 100;
-      mbVolume.setLevel(level);
-      // If currently muted and user moves slider, unmute
-      if (mbVolume.muted && level > 0) {
-        mbVolume.setMuted(false);
-        audioToggle = true;
-        document.getElementById("audioToggleCheckBox").checked = false;
+    // Volume control logic with popover support
+    (function setupVolumeControls() {
+      var muteBtn = document.getElementById("mbVolumeMuteBtn");
+      var muteCheckbox = document.getElementById("audioToggleCheckBox");
+      var inlineSlider = document.getElementById("mbVolumeSlider");
+      var popover = document.getElementById("mbVolumePopover");
+      var popoverSlider = document.getElementById("mbVolumePopoverSlider");
+      var popoverValue = document.getElementById("mbVolumePopoverValue");
+      var volumeWrap = document.getElementById("mbVolumeWrap");
+      
+      function isNarrowViewport() {
+        return window.matchMedia("(max-width: 400px)").matches;
       }
-      console.log("Volume slider changed - level: " + level);
-    };
+      
+      function updateMuteUI() {
+        var muted = mbVolume.muted;
+        if (muted) {
+          muteBtn.classList.add("is-muted");
+        } else {
+          muteBtn.classList.remove("is-muted");
+        }
+        muteCheckbox.checked = muted;
+        audioToggle = !muted;
+      }
+      
+      function updateSliderUI() {
+        var val = Math.round(mbVolume.level * 100);
+        inlineSlider.value = val;
+        popoverSlider.value = val;
+        popoverValue.textContent = val + "%";
+      }
+      
+      function closePopover() {
+        popover.classList.remove("is-open");
+      }
+      
+      function openPopover() {
+        updateSliderUI();
+        popover.classList.add("is-open");
+      }
+      
+      function togglePopover() {
+        if (popover.classList.contains("is-open")) {
+          closePopover();
+        } else {
+          openPopover();
+        }
+      }
+      
+      // Mute button click handler
+      muteBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (isNarrowViewport()) {
+          // On narrow screens, tap opens/closes popover
+          togglePopover();
+        } else {
+          // On wider screens, tap toggles mute
+          mbVolume.toggleMute();
+          updateMuteUI();
+          console.log("Mute toggled - muted: " + mbVolume.muted);
+        }
+      });
+      
+      // Long press to toggle mute on narrow screens
+      var longPressTimer = null;
+      var longPressTriggered = false;
+      
+      muteBtn.addEventListener("mousedown", function() {
+        if (!isNarrowViewport()) return;
+        longPressTriggered = false;
+        longPressTimer = setTimeout(function() {
+          longPressTriggered = true;
+          mbVolume.toggleMute();
+          updateMuteUI();
+          console.log("Long press mute toggle - muted: " + mbVolume.muted);
+        }, 500);
+      });
+      
+      muteBtn.addEventListener("mouseup", function() {
+        if (longPressTimer) clearTimeout(longPressTimer);
+      });
+      
+      muteBtn.addEventListener("mouseleave", function() {
+        if (longPressTimer) clearTimeout(longPressTimer);
+      });
+      
+      // Touch events for long press
+      muteBtn.addEventListener("touchstart", function(e) {
+        if (!isNarrowViewport()) return;
+        longPressTriggered = false;
+        longPressTimer = setTimeout(function() {
+          longPressTriggered = true;
+          mbVolume.toggleMute();
+          updateMuteUI();
+          console.log("Long press (touch) mute toggle - muted: " + mbVolume.muted);
+        }, 500);
+      }, { passive: true });
+      
+      muteBtn.addEventListener("touchend", function() {
+        if (longPressTimer) clearTimeout(longPressTimer);
+      });
+      
+      // Inline slider change handler
+      inlineSlider.addEventListener("input", function() {
+        var level = parseInt(this.value, 10) / 100;
+        mbVolume.setLevel(level);
+        popoverSlider.value = this.value;
+        popoverValue.textContent = this.value + "%";
+        // If currently muted and user moves slider, unmute
+        if (mbVolume.muted && level > 0) {
+          mbVolume.setMuted(false);
+          updateMuteUI();
+        }
+        console.log("Volume slider changed - level: " + level);
+      });
+      
+      // Popover slider change handler
+      popoverSlider.addEventListener("input", function() {
+        var level = parseInt(this.value, 10) / 100;
+        mbVolume.setLevel(level);
+        inlineSlider.value = this.value;
+        popoverValue.textContent = this.value + "%";
+        // If currently muted and user moves slider, unmute
+        if (mbVolume.muted && level > 0) {
+          mbVolume.setMuted(false);
+          updateMuteUI();
+        }
+        console.log("Volume popover slider changed - level: " + level);
+      });
+      
+      // Close popover when clicking outside
+      document.addEventListener("click", function(e) {
+        if (!volumeWrap.contains(e.target)) {
+          closePopover();
+        }
+      });
+      
+      // Close popover on Escape key
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+          closePopover();
+        }
+      });
+      
+      // Initialize UI state
+      updateMuteUI();
+      updateSliderUI();
+    })();
 
     document.getElementById("timermaximum").onchange = function () {
       timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
@@ -948,22 +1172,10 @@
     FocusModeToggle = document.getElementById("focusModeCheckBox").value === "off";
     breathingToggle = document.getElementById("breathingModeCheckBox").value === "off";
 
-    // Initialize volume controls from localStorage
-    (function initVolumeControls() {
-      var slider = document.getElementById("mbVolumeSlider");
-      var muteCheckbox = document.getElementById("audioToggleCheckBox");
-      
-      // Set slider to stored level (0-1 to 0-100)
-      slider.value = Math.round(mbVolume.level * 100);
-      
-      // Set mute checkbox state (checked = muted/volume-x shown)
-      muteCheckbox.checked = mbVolume.muted;
-      
-      // Sync audioToggle variable with stored mute state
-      audioToggle = !mbVolume.muted;
-      
-      console.log("Volume initialized - level: " + mbVolume.level + ", muted: " + mbVolume.muted);
-    })();
+    // Volume controls are now initialized in the setupVolumeControls IIFE above
+    // Just sync audioToggle here for legacy compatibility
+    audioToggle = !mbVolume.muted;
+    console.log("Volume initialized - level: " + mbVolume.level + ", muted: " + mbVolume.muted);
 
     timerMaximum = document.getElementById("timermaximum").value; // maximum time between rests
     microBreakTime = document.getElementById("microbreaktime").value; // time for a microbreak
