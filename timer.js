@@ -163,7 +163,23 @@ function setMicroBreakMode() {
 
 // Default = first screen (hero)
 function setDefaultMode() {
-  setProgBar(0, 30*60, 30, 0, '30:00')
+  // Check if stopwatch mode is active (mbSessionMode may not be defined yet on initial load)
+  var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+  
+  var progbar = document.getElementById("progbar");
+  if (progbar) {
+    if (isStopwatch) {
+      // Stopwatch idle: show 00:00, ring empty
+      progbar.innerText = "00:00";
+      progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
+    } else {
+      // Countdown idle: show work time from slider (or default 30:00)
+      var worktimeSlider = document.getElementById("worktime");
+      var mins = worktimeSlider ? parseInt(worktimeSlider.value, 10) : 30;
+      progbar.innerText = mins + ":00";
+      progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
+    }
+  }
 
   document.getElementById("para").classList.remove("hidden")
   document.getElementById("stop").classList.add("hidden")
@@ -175,7 +191,17 @@ function setDefaultMode() {
   document.getElementById("cont").style.background =
     "url('" + imageStart + "')";
   document.getElementById("cont").style.backgroundSize = "cover";
-
+  
+  // Update clock caption visibility
+  var clockCaption = document.getElementById("mbClockCaption");
+  if (clockCaption) {
+    clockCaption.style.display = isStopwatch ? "block" : "none";
+  }
+  
+  // Update mode UI if available
+  if (typeof updateModeUI === 'function') {
+    updateModeUI();
+  }
 }
 
 
@@ -188,7 +214,13 @@ function setPauseMode() {
   document.getElementById("cont").style.backgroundSize = "cover";
   document.getElementById("demo3_wm").innerHTML =
   "🧘  Pause. ";
-
+  
+  // Update clock caption visibility based on mode
+  var clockCaption = document.getElementById("mbClockCaption");
+  var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+  if (clockCaption) {
+    clockCaption.style.display = isStopwatch ? "block" : "none";
+  }
 }
 
 

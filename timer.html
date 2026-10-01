@@ -192,6 +192,68 @@
       .mb-volume-slider-wrap { display: none !important; }
       .mb-volume-wrap { position: relative; }
     }
+    /* Session mode chips - segmented control */
+    .mb-mode-chips {
+      display: flex;
+      gap: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e4e9ec;
+      background: rgba(255,255,255,0.88);
+      margin-bottom: 12px;
+    }
+    .mb-mode-chip {
+      flex: 1;
+      min-height: 40px;
+      padding: 10px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: #1a2332;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .mb-mode-chip:first-child {
+      border-radius: 10px 0 0 10px;
+    }
+    .mb-mode-chip:last-child {
+      border-radius: 0 10px 10px 0;
+    }
+    .mb-mode-chip.is-selected {
+      background: #0d9488;
+      color: #fff;
+    }
+    .mb-mode-chip:not(.is-selected):hover {
+      background: rgba(13, 148, 136, 0.08);
+    }
+    .mb-mode-chip.is-locked {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .mb-mode-helper {
+      font-size: 13px;
+      color: #5c6b7a;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .mb-mode-locked-note {
+      font-size: 12px;
+      color: #b45309;
+      margin-top: 6px;
+      font-style: italic;
+    }
+    .mb-clock-caption {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      margin-top: 12px;
+      font-weight: 500;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      letter-spacing: 0.02em;
+    }
     /* Volume popover - glass style */
     .mb-volume-popover {
       display: none;
@@ -479,6 +541,7 @@
             style="--value:0; --size:18rem; --thickness:12px;">
             30:00
           </div>
+          <div class="mb-clock-caption" id="mbClockCaption" style="display:none;">Stopwatch</div>
         </div>
       </div>
 
@@ -753,21 +816,33 @@
           </div>
 
           <br />
-          Work time
-          <input type="range" min="10" max="90" value="30" class="range range-sm range-primary" step="5"
-            id="worktime" />
-          <div class="w-full flex justify-between text-xs px-2">
-            <span>10 min</span>
-            <span>20 min</span>
-            <span>30 min</span>
-            <span>40 min</span>
-            <span>50 min</span>
-            <span>60 min</span>
-            <span>70 min</span>
-            <span>80 min</span>
-            <span>90 min</span>
+          <!-- Session Mode Selector -->
+          <div id="mbModeSection">
+            <div class="mb-mode-chips" id="mbModeChips">
+              <button type="button" class="mb-mode-chip is-selected" id="mbModeCountdown" data-mode="countdown">Countdown</button>
+              <button type="button" class="mb-mode-chip" id="mbModeStopwatch" data-mode="stopwatch">Stopwatch</button>
+            </div>
+            <div class="mb-mode-helper" id="mbModeHelper" style="display:none;">Counts up. Microbreaks keep firing until you stop.</div>
+            <div class="mb-mode-locked-note" id="mbModeLocked" style="display:none;">End session to switch mode.</div>
           </div>
 
+          <!-- Work time (hidden in stopwatch mode) -->
+          <div id="mbWorktimeSection">
+            Work time
+            <input type="range" min="10" max="90" value="30" class="range range-sm range-primary" step="5"
+              id="worktime" />
+            <div class="w-full flex justify-between text-xs px-2">
+              <span>10 min</span>
+              <span>20 min</span>
+              <span>30 min</span>
+              <span>40 min</span>
+              <span>50 min</span>
+              <span>60 min</span>
+              <span>70 min</span>
+              <span>80 min</span>
+              <span>90 min</span>
+            </div>
+          </div>
 
           <br />
         </div>
@@ -782,11 +857,56 @@
   <script src="timer.js?build=6"></script>
   <script>
 
+    // Session Mode Manager - persists to localStorage key "mb-session-mode-v1"
+    var mbSessionMode = (function() {
+      var STORAGE_KEY = 'mb-session-mode-v1';
+      var mode = 'countdown'; // 'countdown' or 'stopwatch'
+
+      function load() {
+        try {
+          var stored = localStorage.getItem(STORAGE_KEY);
+          if (stored === 'countdown' || stored === 'stopwatch') {
+            mode = stored;
+          }
+        } catch (e) { }
+      }
+
+      function save() {
+        try {
+          localStorage.setItem(STORAGE_KEY, mode);
+        } catch (e) { }
+      }
+
+      function getMode() {
+        return mode;
+      }
+
+      function setMode(newMode) {
+        if (newMode === 'countdown' || newMode === 'stopwatch') {
+          mode = newMode;
+          save();
+        }
+      }
+
+      function isStopwatch() {
+        return mode === 'stopwatch';
+      }
+
+      load();
+
+      return {
+        getMode: getMode,
+        setMode: setMode,
+        isStopwatch: isStopwatch,
+        load: load
+      };
+    })();
+
     // Initial Settings and Toggles
     var timer_runs = false;  // timer is already running (so start button should not do anything)
-    // var FocusModeToggle = false; //Show 15 seconds focus mode before work 
-    // var breathingToggle = true; //Show breathing animation
-    // var audioToggle = true; //Turn on off beeps and other audio effects
+    var FocusModeToggle = false; // Show 15 seconds focus mode before work 
+    var breathingToggle = false; // Show breathing animation
+    var audioToggle = true; // Turn on off beeps and other audio effects
 
     var timerMinimum = 90; // minimum time between rests
 
@@ -804,13 +924,42 @@
 
 
     function setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString) {
-      totalTimePercentage = (totalTime / totalWorkTimeSeconds) * 100;
-      document.getElementById("progbar").innerText = timeLeftString
-      // document.getElementById('counterElementMinutes').style.setProperty('--value', timeLeftMinutes);  
-      // document.getElementById('counterElementSeconds').style.setProperty('--value', timeLeftSeconds);       
-      document.getElementById("progbar").style =
-        "--value:" + totalTimePercentage + "; --size:18rem; --thickness:12px;";
+      var progbar = document.getElementById("progbar");
+      if (!progbar) {
+        console.error("setProgBar: progbar element not found");
+        return;
+      }
+      
+      var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+      
+      if (isStopwatch) {
+        // Stopwatch mode: show elapsed time, keep ring empty/static
+        progbar.innerText = timeLeftString;
+        progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
+        console.log("setProgBar (stopwatch): " + timeLeftString);
+      } else {
+        // Countdown mode: show time remaining with progress
+        var totalTimePercentage = (totalTime / totalWorkTimeSeconds) * 100;
+        progbar.innerText = timeLeftString;
+        progbar.setAttribute('style', '--value:' + totalTimePercentage + '; --size:18rem; --thickness:12px;');
+      }
+    }
 
+    // Format elapsed time for stopwatch (handles H:MM:SS past 99:59)
+    function formatElapsedTime(totalSeconds) {
+      var hours = Math.floor(totalSeconds / 3600);
+      var minutes = Math.floor((totalSeconds % 3600) / 60);
+      var seconds = totalSeconds % 60;
+      
+      var secondsStr = seconds.toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
+      
+      if (hours > 0) {
+        var minutesStr = minutes.toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
+        return hours + ":" + minutesStr + ":" + secondsStr;
+      } else {
+        var minutesStr = minutes.toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
+        return minutesStr + ":" + secondsStr;
+      }
     }
 
 
@@ -839,37 +988,57 @@
     // RemainingTime Function 
     let RemainingTime = () => {
       console.log("Running the function RemainingTime");
-      console.log("totalWorkTimeMinutes" + totalWorkTimeMinutes);
+      console.log("totalWorkTimeMinutes: " + totalWorkTimeMinutes);
+      console.log("Session mode: " + mbSessionMode.getMode());
 
       seconds = seconds - 1;
 
-      // Calculate the totalWorkTime in Seconds
+      // Calculate the totalWorkTime in Seconds (only used for countdown mode)
       if (FocusModeToggle == true) {
         totalWorkTimeSeconds = totalWorkTimeMinutes * 60 + 15;
       } else {
         totalWorkTimeSeconds = totalWorkTimeMinutes * 60;
       }
 
-      [timeLeftMinutes, timeLeftSeconds, timeLeftString] = timeLeftCalculation(totalWorkTimeSeconds, totalTime)
-      setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString);
-
-      // CHANGE THE TITLE EVERY SECOND
-      if (breakCount % 2 === 0) {
-        // MICROBREAK MODE
-        newPageTitle = "Microbreak Time"
+      var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+      
+      if (isStopwatch) {
+        // STOPWATCH MODE: count up, display elapsed time
+        var elapsedString = formatElapsedTime(totalTime);
+        console.log("RemainingTime (stopwatch): totalTime=" + totalTime + ", elapsed=" + elapsedString);
+        setProgBar(totalTime, totalWorkTimeSeconds, 0, 0, elapsedString);
+        
+        // CHANGE THE TITLE EVERY SECOND
+        if (breakCount % 2 === 0) {
+          // MICROBREAK MODE
+          newPageTitle = "Microbreak Time";
+        } else {
+          // WORK MODE
+          newPageTitle = elapsedString + " - MicroBreaks.co";
+        }
+        document.querySelector("title").textContent = newPageTitle;
       } else {
-        // WORK MODE
-        newPageTitle = timeLeftString + " - MicroBreaks.co";
+        // COUNTDOWN MODE: count down, display remaining time
+        [timeLeftMinutes, timeLeftSeconds, timeLeftString] = timeLeftCalculation(totalWorkTimeSeconds, totalTime);
+        setProgBar(totalTime, totalWorkTimeSeconds, timeLeftMinutes, timeLeftSeconds, timeLeftString);
+
+        // CHANGE THE TITLE EVERY SECOND
+        if (breakCount % 2 === 0) {
+          // MICROBREAK MODE
+          newPageTitle = "Microbreak Time";
+        } else {
+          // WORK MODE
+          newPageTitle = timeLeftString + " - MicroBreaks.co";
+        }
+        document.querySelector("title").textContent = newPageTitle;
       }
-      document.querySelector("title").textContent = newPageTitle;
 
       if (seconds === 0) {
-        // At the end of either work or microbreak sesh
-        //beep2(audioToggle);
+        // At the end of either work or microbreak interval
         if (breakCount % 2 === 0) {
-          // WORK MODE
+          // WORK MODE - time for next work interval
 
-          // Reset the timer
+          // Reset the timer for next work interval
           seconds =
             timerMinimum +
             Math.floor(Math.random() * (timerMaximum - timerMinimum + 1));
@@ -882,7 +1051,7 @@
           breakCount++;
           setWorkMode();
         } else {
-          // MICRO BREAK MODE
+          // MICRO BREAK MODE - time for a microbreak
           seconds = microBreakTime;
           breakCount++;
           setMicroBreakMode();
@@ -890,14 +1059,15 @@
       }
       totalTime++;
 
-      // check for end
-      if (totalTime > (totalWorkTimeSeconds + 1)) {
-        // End of the timer
+      // check for end - ONLY in countdown mode
+      var isStopwatchEnd = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+      if (!isStopwatchEnd && totalTime > (totalWorkTimeSeconds + 1)) {
+        // End of the timer (countdown mode only)
         console.log("End of the timer");
         timer_runs = false;
         totalTime = 0;
         seconds = 1;
-        breakCount = 0
+        breakCount = 0;
         boxingBell(audioToggle);
         clearInterval(timer);
         setDefaultMode();
@@ -956,12 +1126,14 @@
         let a = preStudyExercises();
         timer = setIntervalImmediately(RemainingTime, 1000);
         timer_runs = true;
+        if (typeof updateModeUI === 'function') updateModeUI();
 
         document.getElementById("stop").onclick = function () {
           console.log("stop button clicked");
           clearInterval(timer);
           setPauseMode();
           timer_runs = false;
+          if (typeof updateModeUI === 'function') updateModeUI();
         };
 
         // Reset button (time should be reset to default)
@@ -972,8 +1144,8 @@
           timer_runs = false;
           totalTime = 0;
           seconds = 1;
-          breakCount = 0
-
+          breakCount = 0;
+          if (typeof updateModeUI === 'function') updateModeUI();
         };
 
 
@@ -1162,8 +1334,135 @@
     document.getElementById("worktime").onchange = function () {
       totalWorkTimeMinutes = document.getElementById("worktime").value; // time for a microbreak
       console.log("changed - totalWorkTimeMinutes: " + totalWorkTimeMinutes);
+      // Update idle clock if not running and in countdown mode
+      if (!timer_runs && typeof updateIdleClockDisplay === 'function') {
+        updateIdleClockDisplay();
+      }
+    };
 
-    }
+    // Session Mode UI Management
+    ;(function setupModeControls() {
+      try {
+        var countdownChip = document.getElementById("mbModeCountdown");
+        var stopwatchChip = document.getElementById("mbModeStopwatch");
+        var modeHelper = document.getElementById("mbModeHelper");
+        var modeLocked = document.getElementById("mbModeLocked");
+        var worktimeSection = document.getElementById("mbWorktimeSection");
+        var clockCaption = document.getElementById("mbClockCaption");
+        var settingsModal = document.getElementById("modal-settings");
+        
+        if (!countdownChip || !stopwatchChip) {
+          console.error("Mode chips not found in DOM");
+          return;
+        }
+
+        function updateModeUI() {
+          try {
+            var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+            
+            // Update chip selection
+            if (isStopwatch) {
+              countdownChip.classList.remove("is-selected");
+              stopwatchChip.classList.add("is-selected");
+              if (modeHelper) modeHelper.style.display = "block";
+              if (worktimeSection) worktimeSection.style.display = "none";
+              if (clockCaption) clockCaption.style.display = "block";
+            } else {
+              countdownChip.classList.add("is-selected");
+              stopwatchChip.classList.remove("is-selected");
+              if (modeHelper) modeHelper.style.display = "none";
+              if (worktimeSection) worktimeSection.style.display = "block";
+              if (clockCaption) clockCaption.style.display = "none";
+            }
+            
+            // Update locked state
+            if (typeof timer_runs !== 'undefined' && timer_runs) {
+              countdownChip.classList.add("is-locked");
+              stopwatchChip.classList.add("is-locked");
+              if (modeLocked) modeLocked.style.display = "block";
+            } else {
+              countdownChip.classList.remove("is-locked");
+              stopwatchChip.classList.remove("is-locked");
+              if (modeLocked) modeLocked.style.display = "none";
+            }
+          } catch (e) {
+            console.error("Error in updateModeUI:", e);
+          }
+        }
+
+        function handleModeChange(newMode) {
+          if (typeof timer_runs !== 'undefined' && timer_runs) {
+            console.log("Cannot change mode while timer is running");
+            return;
+          }
+          if (typeof mbSessionMode !== 'undefined') {
+            mbSessionMode.setMode(newMode);
+          }
+          updateModeUI();
+          updateIdleClockDisplay();
+          console.log("Session mode changed to: " + newMode);
+        }
+
+        function updateIdleClockDisplay() {
+          try {
+            if (typeof timer_runs !== 'undefined' && timer_runs) return;
+            
+            var isStopwatch = typeof mbSessionMode !== 'undefined' && mbSessionMode.isStopwatch();
+            var progbar = document.getElementById("progbar");
+            
+            if (isStopwatch) {
+              // Stopwatch idle: show 00:00, ring empty
+              if (progbar) {
+                progbar.innerText = "00:00";
+                progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
+              }
+              if (clockCaption) clockCaption.style.display = "block";
+            } else {
+              // Countdown idle: show work time, ring empty
+              var worktimeEl = document.getElementById("worktime");
+              var mins = worktimeEl ? parseInt(worktimeEl.value, 10) : 30;
+              if (progbar) {
+                progbar.innerText = mins + ":00";
+                progbar.setAttribute('style', '--value:0; --size:18rem; --thickness:12px;');
+              }
+              if (clockCaption) clockCaption.style.display = "none";
+            }
+          } catch (e) {
+            console.error("Error in updateIdleClockDisplay:", e);
+          }
+        }
+
+        // Chip click handlers
+        countdownChip.addEventListener("click", function(e) {
+          e.preventDefault();
+          handleModeChange("countdown");
+        });
+
+        stopwatchChip.addEventListener("click", function(e) {
+          e.preventDefault();
+          handleModeChange("stopwatch");
+        });
+
+        // Update UI when settings modal opens (to refresh locked state)
+        if (settingsModal) {
+          settingsModal.addEventListener("change", function() {
+            updateModeUI();
+          });
+        }
+
+        // Expose update functions globally for use elsewhere
+        window.updateModeUI = updateModeUI;
+        window.updateIdleClockDisplay = updateIdleClockDisplay;
+
+        // Initialize UI
+        updateModeUI();
+        updateIdleClockDisplay();
+        
+        console.log("Mode controls initialized successfully");
+      } catch (e) {
+        console.error("Error in setupModeControls:", e);
+      }
+    })();
 
 
     //Initial Settings
