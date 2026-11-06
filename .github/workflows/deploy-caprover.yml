@@ -1,0 +1,49 @@
+name: Deploy to CapRover
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-caprover
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to CapRover
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate required secrets
+        run: |
+          missing=""
+          if [ -z "${{ secrets.CAPROVER_SERVER }}" ]; then
+            missing="${missing}CAPROVER_SERVER "
+          fi
+          if [ -z "${{ secrets.CAPROVER_APP }}" ]; then
+            missing="${missing}CAPROVER_APP "
+          fi
+          if [ -z "${{ secrets.CAPROVER_APP_TOKEN }}" ]; then
+            missing="${missing}CAPROVER_APP_TOKEN "
+          fi
+          if [ -n "$missing" ]; then
+            echo "::error::Missing required secrets: ${missing}"
+            echo ""
+            echo "Please add the following secrets in Settings → Secrets and variables → Actions:"
+            echo "  - CAPROVER_SERVER: Your CapRover server URL (e.g., https://captain.example.com)"
+            echo "  - CAPROVER_APP: The CapRover app name"
+            echo "  - CAPROVER_APP_TOKEN: App token from CapRover dashboard → app → Deployment → Enable App Token"
+            exit 1
+          fi
+          echo "All required secrets are configured."
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to CapRover
+        uses: caprover/deploy-from-github@v1.1.2
+        with:
+          server: ${{ secrets.CAPROVER_SERVER }}
+          app: ${{ secrets.CAPROVER_APP }}
+          token: ${{ secrets.CAPROVER_APP_TOKEN }}
